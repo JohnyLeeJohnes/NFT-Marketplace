@@ -1,13 +1,25 @@
+@ -1,34 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Basic Sample Hardhat Project
 
 ## Getting Started
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
 First, run the development server:
+Try running some of the following tasks:
 
 ```bash
 npm run dev
 # or
 yarn dev
+```shell
+npx hardhat accounts
+npx hardhat compile
+npx hardhat clean
+npx hardhat test
+npx hardhat node
+node scripts/sample-script.js
+npx hardhat help
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
