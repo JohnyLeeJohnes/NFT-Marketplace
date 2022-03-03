@@ -7,12 +7,12 @@ services:
         labels:
             - 'traefik.enable=true'
             # http stuff
-            - 'traefik.http.routers.johny-marketplace.rule=Host(`staging.johny-marketplace.site`)'
+            - 'traefik.http.routers.johny-marketplace.rule=Host(`johny-marketplace.site`)'
             - 'traefik.http.routers.johny-marketplace.entrypoints=http'
             - 'traefik.http.routers.johny-marketplace.middlewares=redirect-to-https'
             - 'traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https'
             # https stuff
-            - 'traefik.http.routers.johny-marketplace-tls.rule=Host(`staging.johny-marketplace.site`)'
+            - 'traefik.http.routers.johny-marketplace-tls.rule=Host(`johny-marketplace.site`)'
             - 'traefik.http.routers.johny-marketplace-tls.entrypoints=https'
             - 'traefik.http.routers.johny-marketplace-tls.tls=true'
             - 'traefik.http.routers.johny-marketplace-tls.tls.certresolver=default'
