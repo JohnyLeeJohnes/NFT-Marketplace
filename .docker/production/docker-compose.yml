@@ -2,7 +2,6 @@ version: '3.4'
 services:
     johny-marketplace-staging:
         image: johnymarketplace/nft-vsfs-market:latest
-        env_file: .env
         networks:
             - web
         labels:
