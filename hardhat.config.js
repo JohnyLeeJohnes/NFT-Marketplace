@@ -8,9 +8,6 @@ require("@nomiclabs/hardhat-waffle");
   }
 });*/
 
-const fs = require("fs")
-const pKey = fs.readFileSync(".key").toString()
-
 module.exports = {
     network: {
         hardhat: {
@@ -18,12 +15,12 @@ module.exports = {
         },
         mumbai: {
             url: "https://polygon-mumbai.infura.io/v3/44c7220a91f547cb81c8905063bccee1",
-            accounts: [pKey]
+            accounts: [process.env['METAMASK_KEY']]
         },
         mainnet: {
             url: "https://polygon-mumbai.infura.io/v3/44c7220a91f547cb81c8905063bccee1",
-            accounts: [pKey]
+            accounts: [process.env['METAMASK_KEY']]
         }
     },
-    solidity: "0.8.4",
+    solidity: "0.8.4"
 };
