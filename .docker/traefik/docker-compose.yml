@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+    traefik:
+        image: traefik:v2.5
+        restart: always
+        command:
+            - --providers.docker
+            - --providers.docker.exposedbydefault=false
+            # docker network create web --attachable
+            - --providers.docker.network=web
+            - --entrypoints.http.address=:80
+            - --entrypoints.https.address=:443
+            - --certificatesresolvers.default.acme.tlschallenge=true
+            - --certificatesresolvers.default.acme.email=john.le@seznam.cz
+            - --certificatesresolvers.default.acme.storage=/letsencrypt/acme.json
+        ports:
+            - '80:80'
+            - '443:443'
+        networks:
+            - web
+        volumes:
+            - letsencrypt:/letsencrypt
+            - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+    letsencrypt:
+
+networks:
+    web:
+        external: true

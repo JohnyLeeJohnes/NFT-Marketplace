@@ -1,0 +1,125 @@
+name: Staging Release
+
+on:
+    push:
+        branches:
+            - staging
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        outputs:
+            version: ${{ steps.prepare.outputs.version }}
+        steps:
+            -   name: Cancel previous jobs
+                uses: styfle/cancel-workflow-action@0.9.1
+                with:
+                    access_token: ${{ github.token }}
+
+            -   name: Check out the repo
+                uses: actions/checkout@master
+
+            -   name: Repository metadata
+                uses: actions/github-script@v4
+                with:
+                    script: |
+                        const repository = await github.repos.get(context.repo)
+                        return repository.data
+
+            -   name: Prepare
+                id: prepare
+                run: |
+                    DOCKER_IMAGE=johnymarketplace/nft-vsfs-market
+                    VERSION=noop
+                    if [[ $GITHUB_REF == refs/tags/* ]]; then
+                      VERSION=${GITHUB_REF#refs/tags/}
+                    elif [[ $GITHUB_REF == refs/heads/* ]]; then
+                      VERSION=$(echo ${GITHUB_REF#refs/heads/} | sed -r 's#/+#-#g')
+                      if [ "${{ github.event.repository.default_branch }}" = "$VERSION" ]; then
+                        VERSION=edge
+                      fi
+                    elif [[ $GITHUB_REF == refs/pull/* ]]; then
+                      VERSION=pr-${{ github.event.number }}
+                    fi
+                    TAGS="${DOCKER_IMAGE}:${VERSION}"
+                    if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+                      TAGS="$TAGS,${DOCKER_IMAGE}:latest"
+                    fi
+                    echo ::set-output name=version::${VERSION}
+                    echo ::set-output name=tags::${TAGS}
+                    echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+
+            -   name: Login to DockerHub
+                uses: docker/login-action@master
+                with:
+                    username: ${{ secrets.DOCKER_USERNAME }}
+                    password: ${{ secrets.DOCKER_PASSWORD }}
+
+            -   name: Set up Docker Buildx
+                uses: docker/setup-buildx-action@master
+
+            -   name: Build and push
+                uses: docker/build-push-action@master
+                id: build
+                with:
+                    push: ${{ github.event_name != 'pull_request' }}
+                    tags: ${{ steps.prepare.outputs.tags }}
+                    build-args: BUILD=${{ steps.prepare.outputs.version }}
+
+            -   name: Image digest
+                run: echo ${{ steps.build.outputs.digest }}
+
+    config:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Check out the repo
+                uses: actions/checkout@master
+
+            -   name: Deploy Configs
+                uses: appleboy/scp-action@master
+                with:
+                    host: ${{ secrets.HOST }}
+                    username: root
+                    key: ${{ secrets.SSHKEY }}
+                    source: "./.docker"
+                    target: "/opt/app"
+                    rm: true
+
+    traefik:
+        runs-on: ubuntu-latest
+        needs:
+            - config
+        steps:
+            -   name: Update Traefik
+                uses: appleboy/ssh-action@master
+                with:
+                    username: root
+                    host: ${{ secrets.HOST }}
+                    key: ${{ secrets.SSHKEY }}
+                    script_stop: true
+                    script: |
+                        docker network create web --attachable || true
+                        cd /opt/app/.docker/traefik
+                        docker compose pull
+                        docker compose up -d
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs:
+            - build
+            - config
+        steps:
+            -   name: Deploy Application
+                uses: appleboy/ssh-action@master
+                with:
+                    username: root
+                    host: ${{ secrets.HOST }}
+                    key: ${{ secrets.SSHKEY }}
+                    script_stop: true
+                    script: |
+                        cd /opt/app/.docker/staging
+                        docker system prune -f --all
+                        docker compose pull
+                        docker compose down
+                        docker compose rm
+                        docker compose up -d
