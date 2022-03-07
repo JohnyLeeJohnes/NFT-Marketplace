@@ -29,6 +29,7 @@ ENV \
 WORKDIR /opt/app
 
 COPY contracts contracts
+COPY .next .next
 COPY pages pages
 COPY public public
 COPY scripts scripts
