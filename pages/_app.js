@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/Link'
+import Link from 'next/link'
 import '../styles/globals.css'
 import 'antd/dist/antd.css';
 import {Menu, Space, Typography} from 'antd';
