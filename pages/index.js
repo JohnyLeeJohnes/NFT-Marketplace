@@ -20,9 +20,9 @@ export default function Home() {
     const [NFTs, setNFTs] = useState([])
     const [loadState, setLoadState] = useState("not-loaded")
 
-    useEffect(() => {
+    /*useEffect(() => {
         (async () => await fetchNFTs())();
-    }, [])
+    }, [])*/
 
     async function fetchNFTs() {
         //Get RPC provider and contracts

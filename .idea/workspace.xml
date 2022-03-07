@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="Moved tests to separate file&#10;Moved shared contracts to seperate directory&#10;Added Logic to index.js -&gt; fetchNFTs and BuyNFT(unfinnished)&#10;New icon&#10;Added file to utils/use-translation -&gt; ready for translation now&#10;Created minifier in next.config.mjs -&gt; less space on server">
-      <change afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/contract-test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/use-translations.js" afterDir="false" />
+    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/JohnyMarket.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/JohnyMarket.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/SharedEvents.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Shared/SharedEvents.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/SharedStructs.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Shared/SharedStructs.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vercel.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/Home.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sample-test.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +90,7 @@
       <workItem from="1646336215519" duration="893000" />
       <workItem from="1646649594962" duration="1719000" />
       <workItem from="1646651375568" duration="27000" />
-      <workItem from="1646651418428" duration="28230000" />
+      <workItem from="1646651418428" duration="28492000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes, added Secret to hardhat config">
       <created>1646336378155</created>
@@ -172,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646670307543</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Moved tests to separate file&#10;Moved shared contracts to separate directory&#10;Added Logic to index.js -&gt; fetchNFTs and BuyNFT(unfinished)&#10;New icon&#10;Added file to utils/use-translation -&gt; ready for translation now&#10;Created minifier in next.config.mjs -&gt; less space on server">
+      <created>1646682987804</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1646682987804</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +178,8 @@
     <MESSAGE value="package.json" />
     <MESSAGE value="fixed bug in next/link import" />
     <MESSAGE value="Moved tests to separate file&#10;Moved shared contracts to seperate directory&#10;Added Logic to index.js -&gt; fetchNFTs and BuyNFT(unfinnished)&#10;New icon&#10;Added file to utils/use-translation -&gt; ready for translation now&#10;Created minifier in next.config.mjs -&gt; less space on server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved tests to separate file&#10;Moved shared contracts to seperate directory&#10;Added Logic to index.js -&gt; fetchNFTs and BuyNFT(unfinnished)&#10;New icon&#10;Added file to utils/use-translation -&gt; ready for translation now&#10;Created minifier in next.config.mjs -&gt; less space on server" />
+    <MESSAGE value="Moved tests to separate file&#10;Moved shared contracts to separate directory&#10;Added Logic to index.js -&gt; fetchNFTs and BuyNFT(unfinished)&#10;New icon&#10;Added file to utils/use-translation -&gt; ready for translation now&#10;Created minifier in next.config.mjs -&gt; less space on server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved tests to separate file&#10;Moved shared contracts to separate directory&#10;Added Logic to index.js -&gt; fetchNFTs and BuyNFT(unfinished)&#10;New icon&#10;Added file to utils/use-translation -&gt; ready for translation now&#10;Created minifier in next.config.mjs -&gt; less space on server" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
