@@ -67,6 +67,7 @@ COPY --chown=app:app hardhat.config.js hardhat.config.js
 COPY --chown=app:app public public
 COPY --chown=app:app package.json package-lock.json ./
 COPY --from=prod-deps --chown=app:app /opt/app/node_modules ./node_modules
+COPY --from=builder --chown=app:app /opt/app/pages ./artifacts
 COPY --from=builder --chown=app:app /opt/app/.next ./.next
 
 EXPOSE 3000

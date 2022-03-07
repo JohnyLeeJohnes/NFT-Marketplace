@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link'
 import 'antd/dist/antd.css';
-import {Menu, Space, Typography} from 'antd';
+import {Menu, Image, Space, Typography} from 'antd';
 import {WalletOutlined, HomeOutlined, DashboardOutlined, UnorderedListOutlined} from '@ant-design/icons';
 import {useTranslation} from "../utils/use-translations";
+import logo from "../public/logo.PNG"
 
 const {Title} = Typography;
 
@@ -17,6 +18,7 @@ function App({Component, pageProps}) {
                     <Title>Welcome to Johny NFT Marketplace</Title>
                 </Typography>
             </Space>
+            <Image width={100} src={logo}/>
 
             <Menu mode="horizontal" style={{justifyContent: 'center'}}>
                 <Menu.Item key="home" icon={<HomeOutlined/>}>
