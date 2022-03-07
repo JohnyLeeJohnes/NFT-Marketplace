@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="Fixed Chai tests">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/chai.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nft-vsfs-market.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nft-vsfs-market.iml" afterDir="false" />
+    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="Frontend - Created title and navbar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sample-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/sample-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,41 +57,7 @@
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
     <property name="ts.external.directory.path" value="D:\Programs\JetBrains - toolbox\apps\IDEA-U\ch-0\213.6777.52\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
-  <component name="RunManager" selected="Solidity.JohnyMarket.createMarketNFT">
-    <configuration name="JohnyMarket.createMarketNFT" type="SolidityConfigurationType" factoryName="Solidity" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="nft-vsfs-market" />
-      <option name="VMParameters" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="alternativeJrePath" />
-      <option name="alternativeJrePathEnabled" value="false" />
-      <option name="classpathModifications">
-        <list />
-      </option>
-      <option name="envs">
-        <map />
-      </option>
-      <option name="passParentEnvs" value="true" />
-      <option name="programParameters" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="workingDirectory" value="" />
-      <option name="contractName" value="JohnyMarket" />
-      <option name="contractFile" value="$PROJECT_DIR$/contracts/JohnyMarket.sol" />
-      <option name="functionName" value="createMarketNFT" />
-      <option name="vmParameters" />
-      <option name="programParameters" />
-      <option name="workingDirectory" />
-      <option name="envs">
-        <map />
-      </option>
-      <option name="ajreEnabled" value="false" />
-      <option name="ajre" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="RUN" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -102,11 +68,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Solidity.JohnyMarket.createMarketNFT" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -123,7 +84,7 @@
       <workItem from="1646336215519" duration="893000" />
       <workItem from="1646649594962" duration="1719000" />
       <workItem from="1646651375568" duration="27000" />
-      <workItem from="1646651418428" duration="13871000" />
+      <workItem from="1646651418428" duration="17018000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes, added Secret to hardhat config">
       <created>1646336378155</created>
@@ -139,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646662219705</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixed Chai tests">
+      <created>1646665410016</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646665410016</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +117,8 @@
     <MESSAGE value="Minor changes, added Secret to hardhat config" />
     <MESSAGE value="Created contract for ERC721 token and Marketplace (SharedStructs and SharedEvents)&#10;Created one test for whole process of creation" />
     <MESSAGE value="Fixed Chai tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Chai tests" />
+    <MESSAGE value="Frontend - Created title and navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Frontend - Created title and navbar" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
