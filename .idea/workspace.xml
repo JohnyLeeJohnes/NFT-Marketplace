@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="" />
+    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +80,7 @@
       <workItem from="1646336215519" duration="893000" />
       <workItem from="1646649594962" duration="1719000" />
       <workItem from="1646651375568" duration="27000" />
-      <workItem from="1646651418428" duration="18009000" />
+      <workItem from="1646651418428" duration="18157000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes, added Secret to hardhat config">
       <created>1646336378155</created>
@@ -115,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646669347696</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="package-lock.json">
+      <created>1646669594226</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646669594226</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
