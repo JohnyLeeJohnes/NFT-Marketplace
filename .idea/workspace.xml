@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,7 +78,7 @@
       <workItem from="1646336215519" duration="893000" />
       <workItem from="1646649594962" duration="1719000" />
       <workItem from="1646651375568" duration="27000" />
-      <workItem from="1646651418428" duration="17703000" />
+      <workItem from="1646651418428" duration="18009000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes, added Secret to hardhat config">
       <created>1646336378155</created>
@@ -112,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646668595703</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="package-lock.json">
+      <created>1646669347696</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646669347696</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,7 +126,8 @@
     <MESSAGE value="Created contract for ERC721 token and Marketplace (SharedStructs and SharedEvents)&#10;Created one test for whole process of creation" />
     <MESSAGE value="Fixed Chai tests" />
     <MESSAGE value="Frontend - Created title and navbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Frontend - Created title and navbar" />
+    <MESSAGE value="package-lock.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="package-lock.json" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
