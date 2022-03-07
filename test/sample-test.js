@@ -1,44 +1,63 @@
 const {ethers} = require("hardhat");
 
 describe("JohnyMarket", function () {
-    it('Should create & deploy marketplace, create & deploy token, mint tokens, create market offer, sell one NFT, list rest of the NFTs', async function () {
+    let marketContract;
+    let marketContractAddress;
+    let tokenContract;
+    let tokenContractAddress;
+
+    it('should create and deploy marketplace contract', async function () {
         //Create marketplace contract -> deploy it and get address
         const market = await ethers.getContractFactory("JohnyMarket")
-        const deployedMarket = await market.deploy()
-        await deployedMarket.deployed()
-        const deployedMarketAddress = deployedMarket.address
+        marketContract = await market.deploy()
+        await marketContract.deployed()
+        marketContractAddress = marketContract.address
+    });
 
+    it('should create and deploy token contract', async function () {
         //Create ERC721 token contract -> deploy it and get address
         const token = await ethers.getContractFactory("Token")
-        const deployedToken = await token.deploy(deployedMarketAddress)
-        await deployedToken.deployed()
-        const deployedTokenAddress = deployedToken.address
+        tokenContract = await token.deploy(marketContractAddress)
+        await tokenContract.deployed()
+        tokenContractAddress = tokenContract.address
+    });
 
-        //Get token price & auction price
-        let tokenPrice = await deployedMarket.getTokenPrice()
-        tokenPrice = tokenPrice.toString()
-        const auctionPrice = ethers.utils.parseUnits('1', 'ether')
+    it('should mint new nfts ', async function () {
+        //Both contracts should be deployed
+        await marketContract.deployed()
+        await tokenContract.deployed()
 
         //Create testing tokens
-        await deployedToken.mintToken("https://www.test-token-1.cz")
-        await deployedToken.mintToken("https://www.test-token-2.cz")
-        await deployedToken.mintToken("https://www.test-token-3.cz")
+        await tokenContract.mintToken("https://www.test-token-1.cz")
+        await tokenContract.mintToken("https://www.test-token-2.cz")
+        await tokenContract.mintToken("https://www.test-token-3.cz")
+    });
+
+    it('should create market offer and sell one NFTs', async function () {
+        //Both contracts should be deployed
+        await marketContract.deployed()
+        await tokenContract.deployed()
+
+        //Get default token price & offer price
+        let tokenPrice = await marketContract.getTokenPrice()
+        tokenPrice = tokenPrice.toString()
+        const offerPrice = ethers.utils.parseUnits('1', 'ether')
 
         //In the market contract - create market NFT
-        await deployedMarket.createMarketNFT(deployedTokenAddress, 1, auctionPrice, {value: tokenPrice})
-        await deployedMarket.createMarketNFT(deployedTokenAddress, 2, auctionPrice, {value: tokenPrice})
-        await deployedMarket.createMarketNFT(deployedTokenAddress, 3, auctionPrice, {value: tokenPrice})
+        await marketContract.createMarketNFT(tokenContractAddress, 1, offerPrice, {value: tokenPrice})
+        await marketContract.createMarketNFT(tokenContractAddress, 2, offerPrice, {value: tokenPrice})
+        await marketContract.createMarketNFT(tokenContractAddress, 3, offerPrice, {value: tokenPrice})
 
         //Connect to contract with buyer address -> sell him the NFT with ID 1
         const [, buyerAddress] = await ethers.getSigners()
-        await deployedMarket.connect(buyerAddress).createMarketNFTSale(deployedTokenAddress, 1, {value: auctionPrice})
+        await marketContract.connect(buyerAddress).createMarketNFTSale(tokenContractAddress, 1, {value: offerPrice})
+    });
 
+    it('should list all offered NFTs on the market', async function () {
         //Get all NFTs on the market
-        let nfts = await deployedMarket.getListedNFTs()
-
-
+        let nfts = await marketContract.getListedNFTs()
         nfts = await Promise.all(nfts.map(async item => {
-            const tokenURI = await deployedToken.tokenURI(item.tokenID)
+            const tokenURI = await tokenContract.tokenURI(item.tokenID)
             return {
                 tokenID: item.tokenID.toString(),
                 price: item.price.toString(),
