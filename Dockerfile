@@ -34,7 +34,7 @@ COPY public public
 COPY scripts scripts
 COPY styles styles
 COPY .eslintrc.json .eslintrc.json
-COPY next.config.js next.config.js
+COPY next.config.mjs next.config.mjs
 COPY hardhat.config.js hardhat.config.js
 COPY package.json package.json
 COPY package-lock.json package-lock.json
@@ -62,7 +62,7 @@ WORKDIR /opt/app
 RUN addgroup app
 RUN adduser --disabled-password --system --shell /bin/false --no-create-home --gecos "" --home /opt/app --ingroup app app
 
-COPY --chown=app:app next.config.js next.config.js
+COPY --chown=app:app next.config.mjs next.config.mjs
 COPY --chown=app:app hardhat.config.js hardhat.config.js
 COPY --chown=app:app public public
 COPY --chown=app:app package.json package-lock.json ./

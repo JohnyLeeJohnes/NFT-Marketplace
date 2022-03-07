@@ -1,6 +1,6 @@
 const {ethers} = require("hardhat");
 
-describe("JohnyMarket", function () {
+describe("Contract tests", function () {
     let marketContract;
     let marketContractAddress;
     let tokenContract;
