@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="">
+    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="Minor update">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/RUN.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/CenterWrapper.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo-black.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo-colored.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,17 +72,11 @@
       <recent name="C:\Users\Johny\nft-vsfs-market\contracts\Shared" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="RUN" type="js.build_tools.npm">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="npm.RUN">
+    <list>
+      <item itemvalue="npm.RUN" />
+      <item itemvalue="npm.INSTALL" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -91,7 +94,8 @@
       <workItem from="1646649594962" duration="1719000" />
       <workItem from="1646651375568" duration="27000" />
       <workItem from="1646651418428" duration="29965000" />
-      <workItem from="1646748552382" duration="992000" />
+      <workItem from="1646748552382" duration="1746000" />
+      <workItem from="1646750503975" duration="2077000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes, added Secret to hardhat config">
       <created>1646336378155</created>
@@ -191,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646749020771</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Dockerfile fix">
+      <created>1646749581875</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1646749581875</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

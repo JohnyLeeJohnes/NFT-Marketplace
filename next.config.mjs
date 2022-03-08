@@ -1,6 +1,7 @@
 import plugins from "next-compose-plugins";
+import images from "next-images";
 
-const config = plugins([], {
+const config = plugins([images], {
     swcMinify: true,
     webpack: (config, {webpack, buildId}) => {
         config.plugins.push(
