@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="Minor update">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/RUN.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CenterWrapper.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/logo-black.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/logo-colored.svg" afterDir="false" />
+    <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/create.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CenterWrapper.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/CenterWrapper.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/JohnyMarket.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/JohnyMarket.sol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/sample-script.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/deploy.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +49,6 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -60,7 +58,7 @@
     <property name="nodejs.mocha.mocha_node_package_dir" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="D:\Programs\JetBrains - toolbox\apps\IDEA-U\ch-0\213.6777.52\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -68,6 +66,7 @@
       <recent name="C:\Users\Johny\nft-vsfs-market\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Johny\nft-vsfs-market\pages" />
       <recent name="C:\Users\Johny\nft-vsfs-market\public" />
       <recent name="C:\Users\Johny\nft-vsfs-market\contracts\Shared" />
     </key>
@@ -95,7 +94,7 @@
       <workItem from="1646651375568" duration="27000" />
       <workItem from="1646651418428" duration="29965000" />
       <workItem from="1646748552382" duration="1746000" />
-      <workItem from="1646750503975" duration="2077000" />
+      <workItem from="1646750503975" duration="19333000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes, added Secret to hardhat config">
       <created>1646336378155</created>
@@ -202,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646749581875</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Minor update">
+      <created>1646752633302</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1646752633302</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,7 +228,8 @@
     <MESSAGE value="Update - so he won't shout on the server" />
     <MESSAGE value="Added logo - Updated Dockerfile" />
     <MESSAGE value="Dockerfile fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dockerfile fix" />
+    <MESSAGE value="Minor update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

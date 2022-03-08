@@ -1,28 +1,25 @@
-//Wallet connector + Contract connector + Axios lib + React states
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import {tokenAddress, marketAddress} from "../config";
 import Web3Modal from "web3modal";
 import {ethers} from "ethers";
-
-//Contracts
+import {marketAddress, tokenAddress} from "../config";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
-
-//Design
 import "antd/dist/antd.css";
-import {Space, Typography} from "antd";
-import Head from "next/head"
+import {Button, Card, Image, Space, Typography} from "antd";
+import {CenterWrapper} from "../components";
+import {useTranslation} from "../utils/use-translations";
 
-const {Title} = Typography;
+const {Meta} = Card;
+const {t} = useTranslation()
 
 export default function Home() {
     const [NFTs, setNFTs] = useState([])
     const [loadState, setLoadState] = useState("not-loaded")
 
-    /*useEffect(() => {
+    useEffect(() => {
         (async () => await fetchNFTs())();
-    }, [])*/
+    }, [])
 
     async function fetchNFTs() {
         //Get RPC provider and contracts
@@ -55,38 +52,53 @@ export default function Home() {
         setLoadState("loaded")
     }
 
-    /* Unfinished
     async function buyNFT(token) {
         //Create Web3Modal connection
         const web3Modal = new Web3Modal()
         const web3connection = await web3Modal.connect()
         const provider = new ethers.providers.Web3Provider(web3connection)
 
-        //Fetch contract
+        //Fetch contract and price
         const signer = provider.getSigner()
-        const contract = new ethers.Contract(marketAddress, JohnyMarket.abi, signer)
-
+        const marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, signer)
         const tokenPrice = ethers.utils.parseUnits(token.price.toString(), "ether")
+
+        //Create Sale -> after that reload NFT page
+        const saleTransaction = await marketContract.createMarketNFTSale(tokenAddress, token.tokenID, {value: tokenPrice})
+        await saleTransaction.wait()
+        await fetchNFTs()
     }
-    */
+
 
     //If no NFTs exists
     if (loadState === "loaded" && NFTs.length <= 0) {
         return (
-            <Space direction="horizontal" style={{width: "100%", justifyContent: "center"}}>
-                <Typography>
-                    <Title>Welcome to Johny NFT Marketplace</Title>
-                </Typography>
-            </Space>
+            <CenterWrapper>
+                <Space direction={"vertical"} size={100}>
+                    <Typography.Title level={3} style={{margin: 0}}>
+                        No NFTs to display...
+                    </Typography.Title>
+                </Space>
+            </CenterWrapper>
         )
     }
 
     return (
-        <div>
-            <Head>
-                <title>Johny Marketplace</title>
-                <link rel="shortcut icon" href="favicon.ico"/>
-            </Head>
-        </div>
+        NFTs.map((NFT, index) => (
+            <Card
+                hoverable
+                style={{width: 300}}
+                cover={<Image src={NFT.image} alt={"NFT Image"}/>}
+                extra={
+                    <Button type="primary" size={150} onClick={() => buyNFT(NFT)}>
+                        {t("Buy!")}
+                    </Button>
+                }
+            >
+                <Meta title={NFT.name} description={NFT.description} tags={NFT.tags}/>
+                <p>{NFT.price} {t("Matic")}</p>
+
+            </Card>
+        ))
     )
 }

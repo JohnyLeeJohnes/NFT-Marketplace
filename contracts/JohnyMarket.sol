@@ -23,21 +23,21 @@ contract JohnyMarket is ReentrancyGuard {
     //Mapper -> from number (index) we get MarketNFT struct
     mapping(uint256 => SharedStructs.MarketNFT) private tokenToMarket;
 
-    /*
+    /**
      * Get token price
      * @return uint256 token price
-    */
+     */
     function getTokenPrice() public view returns (uint256){
         return tokenPrice;
     }
 
-    /*
+    /**
      * Create new NFT object -> deploy to blockchain
      * @param NFTContract - adress of the market contract
      * @param NFTID - ID of the NFT on blockchain for further reference
      * @param price - price of the created NFT
      * nonReentrant makes it safe from reentrance attack
-    */
+     */
     function createMarketNFT(address NFTContract, uint256 NFTID, uint256 price) public payable nonReentrant {
         //Price checks
         require(price > 0, "Price of the NFT cannot be less than once");
@@ -65,12 +65,12 @@ contract JohnyMarket is ReentrancyGuard {
         emit SharedEvents.MarketNFTCreated(tokenID, NFTID, NFTContract, msg.sender, address(0), price, false);
     }
 
-    /*
+    /**
      * Create sale of the NFT on the MarketPlace
      * @param NFTContract - adress of the market contract
      * @param tokenID -internal ID of created token
      * nonReentrant makes it safe from reentrance attack
-    */
+     */
     function createMarketNFTSale(address NFTContract, uint256 tokenID) public payable nonReentrant {
         uint NFTPrice = tokenToMarket[tokenID].price;
         uint NFTID = tokenToMarket[tokenID].tokenID;
@@ -93,10 +93,10 @@ contract JohnyMarket is ReentrancyGuard {
         payable(owner).transfer(tokenPrice);
     }
 
-    /*
+    /**
      * Fetch all NFTs on the Market Place
      * @return list of NFTs
-    */
+     */
     function getListedNFTs() public view returns (SharedStructs.MarketNFT[] memory){
         uint NFTCount = tokenIDs.current();
         uint unsoldNFTCount = tokenIDs.current() - tokenSold.current();
@@ -115,10 +115,10 @@ contract JohnyMarket is ReentrancyGuard {
         return NFTs;
     }
 
-    /*
+    /**
      * Fetch all NFTs that I (the user) owns
      * @return list of NFTs
-    */
+     */
     function getUserNFTs() public view returns (SharedStructs.MarketNFT[] memory){
         uint NFTTotalCount = tokenIDs.current();
         uint NFTUserCount = 0;
@@ -144,10 +144,10 @@ contract JohnyMarket is ReentrancyGuard {
         return NFTs;
     }
 
-    /*
+    /**
      * Fetch all NFTs that I (the user) created
      * @return list of NFTs
-    */
+     */
     function getCreatedNFTs() public view returns (SharedStructs.MarketNFT[] memory){
         uint NFTTotalCount = tokenIDs.current();
         uint NFTUserCount = 0;
