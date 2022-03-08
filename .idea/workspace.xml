@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51296dfb-b6b2-4ee0-8361-248576646103" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,7 @@
       <workItem from="1646649594962" duration="1719000" />
       <workItem from="1646651375568" duration="27000" />
       <workItem from="1646651418428" duration="29965000" />
-      <workItem from="1646748552382" duration="166000" />
+      <workItem from="1646748552382" duration="458000" />
     </task>
     <task id="LOCAL-00001" summary="Minor changes, added Secret to hardhat config">
       <created>1646336378155</created>
@@ -178,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646684314688</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Dockerfile fix">
+      <created>1646748888961</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1646748888961</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +202,8 @@
     <MESSAGE value="Moved tests to separate file&#10;Moved shared contracts to separate directory&#10;Added Logic to index.js -&gt; fetchNFTs and BuyNFT(unfinished)&#10;New icon&#10;Added file to utils/use-translation -&gt; ready for translation now&#10;Created minifier in next.config.mjs -&gt; less space on server" />
     <MESSAGE value="Update - so he won't shout on the server" />
     <MESSAGE value="Added logo - Updated Dockerfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logo - Updated Dockerfile" />
+    <MESSAGE value="Dockerfile fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dockerfile fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

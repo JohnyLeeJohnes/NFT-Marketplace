@@ -28,7 +28,6 @@ ENV \
 
 WORKDIR /opt/app
 
-COPY artifacts artifacts
 COPY contracts contracts
 COPY config.js config.js
 COPY pages pages
