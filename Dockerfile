@@ -28,11 +28,14 @@ ENV \
 
 WORKDIR /opt/app
 
+COPY artifacts artifacts
 COPY contracts contracts
+COPY config.js config.js
 COPY pages pages
 COPY public public
 COPY scripts scripts
 COPY styles styles
+COPY utils utils
 COPY .eslintrc.json .eslintrc.json
 COPY next.config.mjs next.config.mjs
 COPY hardhat.config.js hardhat.config.js
@@ -67,7 +70,7 @@ COPY --chown=app:app hardhat.config.js hardhat.config.js
 COPY --chown=app:app public public
 COPY --chown=app:app package.json package-lock.json ./
 COPY --from=prod-deps --chown=app:app /opt/app/node_modules ./node_modules
-COPY --from=builder --chown=app:app /opt/app/pages ./artifacts
+COPY --from=builder --chown=app:app /opt/app/artifacts ./artifacts
 COPY --from=builder --chown=app:app /opt/app/.next ./.next
 
 EXPOSE 3000

@@ -18,7 +18,7 @@ function App({Component, pageProps}) {
                     <Title>Welcome to Johny NFT Marketplace</Title>
                 </Typography>
             </Space>
-            <Image width={100} src={logo}/>
+            <Image width={100} src={logo} alt={""}/>
 
             <Menu mode="horizontal" style={{justifyContent: 'center'}}>
                 <Menu.Item key="home" icon={<HomeOutlined/>}>
