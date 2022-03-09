@@ -1,111 +1,123 @@
-import {useState} from "react";
-import {create as ihttpc} from "ipfs-http-client";
+import React, {useState} from "react";
+import {create as ipfsHttpClient} from "ipfs-http-client";
 import {useRouter} from "next/router";
 import {ethers} from "ethers";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import Web3Modal from "web3modal";
 import {marketAddress, tokenAddress} from "../config";
-import {Button, Form, Input, InputNumber, Upload, message } from 'antd';
+import {Button, Form, Input, InputNumber, message} from 'antd';
 import 'antd/dist/antd.css';
 import {useTranslation} from "../utils/use-translations";
-import {InboxOutlined} from "@ant-design/icons";
+import {FaEthereum} from 'react-icons/fa';
 
-const {Dragger} = Upload;
-
-const client = ihttpc("https://ipfs.infura.io:5001/api/v0")
+const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 export default function Create() {
     const [fileURL, setFileURL] = useState(null)
     const [formInput, updateFormInput] = useState({price: "", name: "", description: ""})
     const router = useRouter()
+    const {t} = useTranslation()
 
     async function onChange(e) {
         const file = e.target.files[0]
         try {
-            const addedFile = await client.add(file, {
-                progress: (p) => console.log(`recieved: ${p}`)
-            })
-            const ipfsFileUrl = `https://ipfs.infura.io:5001/ipfs/${addedFile.path}`
-            setFileURL(ipfsFileUrl)
-        } catch (e) {
-            console.log(e)
+            const added = await client.add(file)
+            const url = `https://ipfs.infura.io/ipfs/${added.path}`
+            message.success(`File ${file.name} was uploaded successfully!`)
+            setFileURL(url)
+        } catch (error) {
+            console.log(error)
+            message.error('Error uploading file')
         }
     }
 
-    async function createNFT() {
+    async function uploadImageToIPSF() {
         //Validate form data
-        const {name, descrtiption, price} = formInput
-        if (!name || !descrtiption || !price || !fileURL) return
+        const {name, description, price} = formInput
+        if (!name) {
+            message.error("NFT Name is missing");
+            return;
+        }
+        if (!description) {
+            message.error("Description is missing");
+            return;
+        }
+        if (!price) {
+            message.error("NFT Price is missing");
+            return;
+        }
+        if (!fileURL) {
+            message.error("Image is missing");
+            return;
+        }
 
         //Stringify data from JSON
         const data = JSON.stringify({
-            name, descrtiption, image: fileURL
+            name, description, image: fileURL
         })
 
         //Get file from IPFS URL -> create sale
         try {
             const addedFile = await client.add(data)
-            const ipfsFileUrl = `https://ipfs.infura.io:5001/ipfs/${addedFile.path}`
-            await createNFTSale(ipfsFileUrl)
+            const ipfsFileUrl = `https://ipfs.infura.io/ipfs/${addedFile.path}`
+            return ipfsFileUrl;
         } catch (e) {
             console.log(e)
         }
     }
 
-    async function createNFTSale(ipfsFileUrl) {
-        //Connect to W3Modal and get signer of the contract
-        const w3mConnection = new Web3Modal().connect()
-        const signer = new ethers.providers.Web3Provider(w3mConnection).getSigner()
+    async function createNFTSale() {
+        //Get uploaded file URl
+        try {
+            const ipfsFileUrl = await uploadImageToIPSF()
 
-        //Connect to token contract -> mind new token from the URL
-        let tokenContract = new ethers.Contract(tokenAddress, Token.abi, signer)
-        let transaction = await tokenContract.mintToken(ipfsFileUrl)
-        let transactionOutput = await transaction.wait()
+            //Connect to Web3Modal -> get signer
+            const w3m = new Web3Modal()
+            const w3mConnection = await w3m.connect()
+            const w3mProvider = new ethers.providers.Web3Provider(w3mConnection)
+            const w3mSigner = w3mProvider.getSigner()
 
-        //Get token & price from the transaction
-        let tokenID = transactionOutput.event[0].args[2].toNumber()
-        const price = ethers.utils.parseUnits(formInput.price, 'ether')
+            //Connect to token contract -> mint new token from the URL -> get the token
+            let tokenContract = new ethers.Contract(tokenAddress, Token.abi, w3mSigner)
+            let transaction = await tokenContract.mintToken(ipfsFileUrl)
+            let transactionOutput = await transaction.wait()
+            let tokenID = ((transactionOutput.events[0]).args[2]).toNumber()
 
-        //Connect to market contract -> get default token price
-        let marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, signer)
-        let tokenPrice = await marketContract.getTokenPrice()
-        tokenPrice = tokenPrice.toString()
+            //Get listed price from Form
+            const price = ethers.utils.parseUnits(formInput.price, 'ether')
 
-        //Deploy NFT to Market
-        transaction = await marketContract.createMarketNFT(
-            tokenAddress, tokenID, price, {value: tokenPrice}
-        )
+            //Connect to market contract -> get default token price
+            let marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, w3mSigner)
+            let tokenPrice = await marketContract.getTokenPrice()
+            tokenPrice = tokenPrice.toString()
 
-        //Reroute back to dashboard
-        await transaction.wait()
-        await router.push('/')
+            //Deploy NFT to Market
+            transaction = await marketContract.createMarketNFT(
+                tokenAddress, tokenID, price, {value: tokenPrice}
+            )
+
+            //Reroute back to dashboard
+            await transaction.wait()
+            await router.push('/')
+        } catch (e) {
+            console.log(e)
+        }
     }
-
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
-
-    const {t} = useTranslation()
 
     return (
         <Form
             name="basic"
             labelCol={{span: 8}}
             wrapperCol={{span: 10}}
-            initialValues={{remember: true}}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             autoComplete={"off"}>
+
             <Form.Item
                 name={"nft-name"}
                 label={t("Name")}
                 rules={[{required: true, message: 'Please input NFT name!'}]}>
-                <Input/>
+                <Input
+                    onChange={e => updateFormInput({...formInput, name: e.target.value})}/>
             </Form.Item>
 
             <Form.Item
@@ -113,6 +125,9 @@ export default function Create() {
                 label={t("Description")}
                 rules={[{required: true, message: 'Please insert description of NFT!'}]}>
                 <Input.TextArea
+                    onChange={e => {
+                        updateFormInput({...formInput, description: e.target.value})
+                    }}
                     autoSize={{minRows: 2, maxRows: 6}}/>
             </Form.Item>
 
@@ -121,6 +136,10 @@ export default function Create() {
                 label="Price"
                 rules={[{required: true, min: 1.0, message: 'Price cannot empty!'}]}>
                 <InputNumber
+                    onChange={e => {
+                        updateFormInput({...formInput, price: e})
+                    }}
+                    prefix={<FaEthereum/>}
                     style={{width: 300}}
                     min={0}
                     step={0.1}
@@ -128,41 +147,22 @@ export default function Create() {
                 />
             </Form.Item>
 
-            <Form.Item
-                name={"nft-image"}
-                label={t("Image")}>
-                <Dragger
-                    name={"file"}
-                    multiple={false}
-                    onChange={ (info) => {
-                        const { status } = info.file;
-                        if (status !== 'uploading') {
-                            console.log(info.file, info.fileList);
-                        }
-                        if (status === 'done') {
-                            message.success(`${info.file.name} file uploaded successfully.`);
 
-                        } else if (status === 'error') {
-                            message.error(`${info.file.name} file upload failed.`);
-                        }
-
-                    }}
-                    onDrop={ (e) => {
-                        console.log('Dropped files', e.dataTransfer.files);
-                    }}>
-                    <p className="ant-upload-drag-icon">
-                        <InboxOutlined/>
-                    </p>
-
-                </Dragger>
+            <Form.Item label={"nft-img"}>
+                <input
+                    type={"file"}
+                    name={"nft-img"}
+                    onChange={onChange}
+                />
+                {fileURL && (<img width={"350"} style={{marginTop: 10}} src={fileURL}/>)}
             </Form.Item>
 
+
             <Form.Item wrapperCol={{offset: 8, span: 16}}>
-                <Button type="primary" htmlType="submit">
-                    Submit
+                <Button type="primary" onClick={createNFTSale}>
+                    Create NFT
                 </Button>
             </Form.Item>
         </Form>
-    )
-        ;
+    );
 }

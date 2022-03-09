@@ -17,15 +17,17 @@ export default function Home() {
     const [NFTs, setNFTs] = useState([])
     const [loadState, setLoadState] = useState("not-loaded")
 
-    /* useEffect(() => {
+    useEffect(() => {
         (async () => await fetchNFTs())();
-    }, [])*/
+    }, [])
 
     async function fetchNFTs() {
         //Get RPC provider and contracts
         const provider = new ethers.providers.JsonRpcProvider()
         const tokenContract = new ethers.Contract(tokenAddress, Token.abi, provider)
         const marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, provider)
+
+        console.log("tu")
 
         //Get NFTs from Market contract
         const NFTListData = await marketContract.getListedNFTs()
@@ -34,7 +36,7 @@ export default function Home() {
         const NFTs = await Promise.all(
             NFTListData.map(async item => {
                 const tokenURI = await tokenContract.tokenURI(item.tokenID)
-                const tokenMetaData = await axios.get(tokenURI)
+                const tokenMetaData = await axios.post(tokenURI)
                 let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
                 return {
                     tokenID: item.tokenID.toNumber(),
@@ -85,20 +87,7 @@ export default function Home() {
 
     return (
         NFTs.map((NFT, index) => (
-            <Card
-                hoverable
-                style={{width: 300}}
-                cover={<Image src={NFT.image} alt={"NFT Image"}/>}
-                extra={
-                    <Button type="primary" size={150} onClick={() => buyNFT(NFT)}>
-                        {t("Buy!")}
-                    </Button>
-                }
-            >
-                <Meta title={NFT.name} description={NFT.description} tags={NFT.tags}/>
-                <p>{NFT.price} {t("Matic")}</p>
-
-            </Card>
+            NFT.name
         ))
     )
 }

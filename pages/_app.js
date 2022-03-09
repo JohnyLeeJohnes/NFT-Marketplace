@@ -22,7 +22,7 @@ function App({Component, pageProps}) {
         <Layout style={{minHeight: '100vh'}}>
 
             <Header style={{background: '#fff'}}>
-                <div className="logo">
+                <div className={"logo"}>
                     <img className={"img"} src={logo} alt={"logo"}/>
                 </div>
 

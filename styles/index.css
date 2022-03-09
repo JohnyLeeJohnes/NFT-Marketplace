@@ -3,22 +3,13 @@
     padding: 24px;
     background: #fff;
 }
-.logo {
-    float: left;
-    width: 120px;
-    height: 80px;
 
+.site-layout-background {
+    background: #fff;
 }
 
-img{
-    width: 80%;
-    max-width: 100%;
-    object-fit:cover;
-}
-
-.ant-row-rtl {
-    float: right;
-    margin: 16px 0 16px 24px;
+.site-layout-sub-header-background {
+    background: #fff;
 }
 
 #components-layout-demo-responsive .logo {
@@ -27,10 +18,31 @@ img{
     background: rgba(255, 255, 255, 0.2);
 }
 
-.site-layout-sub-header-background {
-    background: #fff;
+
+.logo {
+    float: left;
+    width: 120px;
+    height: 80px;
+
 }
 
-.site-layout-background {
-    background: #fff;
+.img {
+    width: 80%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.ant-row-rtl {
+    float: right;
+    margin: 16px 0 16px 24px;
+}
+
+.upload-list-inline .ant-upload-list-item {
+    float: left;
+    width: 200px;
+    margin-right: 8px;
+}
+
+.upload-list-inline [class*='-upload-list-rtl'] .ant-upload-list-item {
+    float: right;
 }

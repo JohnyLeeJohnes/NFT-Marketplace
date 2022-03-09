@@ -3,7 +3,7 @@ import React from "react";
 
 export function CenterWrapper({children}) {
     return (
-        <Row class={"center-wrapper"}>
+        <Row className={"center-wrapper"}>
             <Col>
                 {children}
             </Col>

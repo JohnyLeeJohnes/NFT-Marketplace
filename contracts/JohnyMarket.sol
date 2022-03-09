@@ -104,11 +104,12 @@ contract JohnyMarket is ReentrancyGuard {
 
         SharedStructs.MarketNFT[] memory NFTs = new SharedStructs.MarketNFT[](unsoldNFTCount);
         for (uint i = 0; i < NFTCount; i++) {
-            if (tokenToMarket[i + 1].owner == address(0)) {
+            if (tokenToMarket[i + 1].owner == address(this)) {
                 //If NFT has empty owner -> is on sale on market
                 uint currID = tokenToMarket[i + 1].itemID;
                 SharedStructs.MarketNFT storage currentItem = tokenToMarket[currID];
-                NFTs[index++] = currentItem;
+                NFTs[index] = currentItem;
+                index += 1;
             }
         }
 

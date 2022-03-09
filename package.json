@@ -19,12 +19,13 @@
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.5.4",
     "hardhat": "^2.8.4",
-    "ipfs-http-client": "^56.0.1",
+    "ipfs-http-client": "^50.1.2",
     "next": "12.1.0",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
     "web3modal": "^1.9.5"
   },
   "devDependencies": {
