@@ -6,16 +6,18 @@ import {marketAddress, tokenAddress} from "../config";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import "antd/dist/antd.css";
-import {Button, Card, Image, Space, Typography} from "antd";
-import {CenterWrapper} from "../components";
+import {Button, Card, Divider, Image, Space, Spin, Typography} from "antd";
+import {CenterWrapper, useMenuSelectionContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
 
 const {Meta} = Card;
-const {t} = useTranslation()
+
 
 export default function Home() {
     const [NFTs, setNFTs] = useState([])
-    const [loadState, setLoadState] = useState("not-loaded")
+    const [loadState, setLoadState] = useState(false)
+    const {t} = useTranslation()
+    useMenuSelectionContext().useSelection(["/"])
 
     useEffect(() => {
         (async () => await fetchNFTs())();
@@ -27,8 +29,6 @@ export default function Home() {
         const tokenContract = new ethers.Contract(tokenAddress, Token.abi, provider)
         const marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, provider)
 
-        console.log("tu")
-
         //Get NFTs from Market contract
         const NFTListData = await marketContract.getListedNFTs()
 
@@ -36,14 +36,14 @@ export default function Home() {
         const NFTs = await Promise.all(
             NFTListData.map(async item => {
                 const tokenURI = await tokenContract.tokenURI(item.tokenID)
-                const tokenMetaData = await axios.post(tokenURI)
+                const tokenMetaData = await axios.get(tokenURI)
                 let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
                 return {
                     tokenID: item.tokenID.toNumber(),
                     seller: item.seller,
                     owner: item.owner,
                     image: tokenMetaData.data.image,
-                    name: tokenMetaData.data.image,
+                    name: tokenMetaData.data.name,
                     tags: tokenMetaData.data.tags,
                     description: tokenMetaData.data.description,
                     price: tokenPrice
@@ -51,7 +51,7 @@ export default function Home() {
             })
         )
         setNFTs(NFTs)
-        setLoadState("loaded")
+        setLoadState(true)
     }
 
     async function buyNFT(token) {
@@ -73,7 +73,7 @@ export default function Home() {
 
 
     //If no NFTs exists
-    if (loadState === "loaded" && NFTs.length <= 0) {
+    if (loadState && NFTs.length <= 0) {
         return (
             <CenterWrapper>
                 <Space direction={"vertical"} size={100}>
@@ -86,8 +86,24 @@ export default function Home() {
     }
 
     return (
-        NFTs.map((NFT, index) => (
-            NFT.name
-        ))
+        <Spin style={{height: "100vh"}} spinning={!loadState}>
+            {
+                NFTs.map((NFT, index) => (
+                    <Card
+                        key={index}
+                        hoverable
+                        style={{width: 300}}
+                        cover={<Image src={NFT.image} alt={"NFT Image"}/>}
+                    >
+                        <Meta title={NFT.name} description={NFT.description} tags={NFT.tags}/>
+                        <Divider/>
+                        <h2 style={{marginRight: 'auto'}}>{NFT.price} {t("Matic")}</h2>
+                        <Button type="primary" style={{width: "100%"}} onClick={() => buyNFT(NFT)}>
+                            {t("Buy!")}
+                        </Button>
+                    </Card>
+                ))
+            }
+        </Spin>
     )
 }
