@@ -6,9 +6,11 @@ import {marketAddress, tokenAddress} from "../config";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import "antd/dist/antd.css";
-import {Button, Card, Divider, Image, Space, Spin, Typography} from "antd";
+import {Button, Card, Col, Divider, Image, Row, Space, Typography} from "antd";
 import {CenterWrapper, useMenuSelectionContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
+import {FaEthereum} from "react-icons/fa";
+
 
 const {Meta} = Card;
 
@@ -19,39 +21,47 @@ export default function Home() {
     const {t} = useTranslation()
     useMenuSelectionContext().useSelection(["/"])
 
-    useEffect(() => {
+    /*useEffect(() => {
         (async () => await fetchNFTs())();
-    }, [])
+    }, [])*/
 
     async function fetchNFTs() {
-        //Get RPC provider and contracts
-        const provider = new ethers.providers.JsonRpcProvider()
-        const tokenContract = new ethers.Contract(tokenAddress, Token.abi, provider)
-        const marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, provider)
+        try {
+            const provider = new ethers.providers.JsonRpcProvider()
+            if (provider.anyNetwork) {
+                //Load contracts
+                const tokenContract = new ethers.Contract(tokenAddress, Token.abi, provider)
+                const marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, provider)
 
-        //Get NFTs from Market contract
-        const NFTListData = await marketContract.getListedNFTs()
+                //Get NFTs from Market contract
+                const NFTListData = await marketContract.getListedNFTs()
 
-        //Map items
-        const NFTs = await Promise.all(
-            NFTListData.map(async item => {
-                const tokenURI = await tokenContract.tokenURI(item.tokenID)
-                const tokenMetaData = await axios.get(tokenURI)
-                let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
-                return {
-                    tokenID: item.tokenID.toNumber(),
-                    seller: item.seller,
-                    owner: item.owner,
-                    image: tokenMetaData.data.image,
-                    name: tokenMetaData.data.name,
-                    tags: tokenMetaData.data.tags,
-                    description: tokenMetaData.data.description,
-                    price: tokenPrice
-                }
-            })
-        )
-        setNFTs(NFTs)
-        setLoadState(true)
+                //Map items
+                const NFTs = await Promise.all(
+                    NFTListData.map(async item => {
+                        const tokenURI = await tokenContract.tokenURI(item.tokenID)
+                        const tokenMetaData = await axios.get(tokenURI)
+                        let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
+                        return {
+                            tokenID: item.tokenID.toNumber(),
+                            seller: item.seller,
+                            owner: item.owner,
+                            image: tokenMetaData.data.image,
+                            name: tokenMetaData.data.name,
+                            tags: tokenMetaData.data.tags,
+                            description: tokenMetaData.data.description,
+                            price: tokenPrice
+                        }
+                    })
+                )
+                setNFTs(NFTs)
+                setLoadState(true)
+            } else {
+                console.log("No network!")
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     async function buyNFT(token) {
@@ -71,7 +81,6 @@ export default function Home() {
         await fetchNFTs()
     }
 
-
     //If no NFTs exists
     if (loadState && NFTs.length <= 0) {
         return (
@@ -86,24 +95,43 @@ export default function Home() {
     }
 
     return (
-        <Spin style={{height: "100vh"}} spinning={!loadState}>
-            {
-                NFTs.map((NFT, index) => (
+        <Row gutter={16}>
+            {NFTs.map((NFT, index) => (
+                <Col
+                    className="gutter-row"
+                    span={6}
+                    key={index}>
                     <Card
                         key={index}
                         hoverable
-                        style={{width: 300}}
-                        cover={<Image src={NFT.image} alt={"NFT Image"}/>}
+                        cover={
+                            <Image
+                                style={{
+                                    width: "100%",
+                                    height: "30vh",
+                                    resizeMode: 'stretch'
+                                }}
+                                src={NFT.image}
+                                alt={"nft-image"}
+                            />
+                        }
                     >
-                        <Meta title={NFT.name} description={NFT.description} tags={NFT.tags}/>
+                        <Meta
+                            title="Card title"
+                            description="This is the description"
+                        />
                         <Divider/>
-                        <h2 style={{marginRight: 'auto'}}>{NFT.price} {t("Matic")}</h2>
+                        <Space align={"baseline"} direction={"horizontal"}>
+                            <FaEthereum/>
+                            <h2 style={{marginRight: 'auto'}}>{NFT.price} {t("Matic")}</h2>
+                        </Space>
                         <Button type="primary" style={{width: "100%"}} onClick={() => buyNFT(NFT)}>
                             {t("Buy!")}
                         </Button>
                     </Card>
-                ))
-            }
-        </Spin>
-    )
+                </Col>
+            ))}
+        </Row>
+    );
+
 }

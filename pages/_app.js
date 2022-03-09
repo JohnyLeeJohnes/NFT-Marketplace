@@ -6,6 +6,7 @@ import '../styles/index.css';
 import logo from "../public/logo-black.svg"
 import {MenuSelectionProvider} from "../components";
 import {MenuComponent} from "../components/MenuComponent";
+import Image from "next/image"
 
 const {Header, Content, Footer} = Layout;
 
@@ -18,7 +19,7 @@ function App({Component, pageProps}) {
             <Layout style={{minHeight: '100vh'}}>
                 <Header style={{background: '#fff'}}>
                     <div className={"logo"}>
-                        <img className={"img"} src={logo} alt={"logo"}/>
+                        <Image width={150} height={80} src={logo} alt={"logo"}/>
                     </div>
                     <MenuComponent/>
                 </Header>

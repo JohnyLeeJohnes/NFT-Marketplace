@@ -6,11 +6,12 @@ import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import Web3Modal from "web3modal";
 import {marketAddress, tokenAddress} from "../config";
-import {Button, Form, Input, InputNumber, message, Upload} from 'antd';
+import {Button, Form, Image, Input, InputNumber, message, Upload} from 'antd';
 import 'antd/dist/antd.css';
 import {useTranslation} from "../utils/use-translations";
 import {FaEthereum} from 'react-icons/fa';
 import {useMenuSelectionContext} from "../components";
+import {InboxOutlined} from "@ant-design/icons";
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 const {Dragger} = Upload;
@@ -30,16 +31,18 @@ export default function Create() {
 
     //Upload uploaded file to IPFS
     async function onChange(e) {
-        try {
-            const img = e.fileList[0].originFileObj
-            const addedImage = await client.add(img)
-            const imageURL = `https://ipfs.infura.io/ipfs/${addedImage.path}`
-            setFileURL(imageURL)
-            message.success(`File ${e.name} was uploaded successfully!`)
-            console.log(imageURL)
-        } catch (error) {
-            message.error('Error uploading file')
-            console.log(error)
+        if (e.fileList && e.fileList.length > 0) {
+            try {
+                const img = e.fileList[0].originFileObj
+                const addedImage = await client.add(img)
+                const imageURL = `https://ipfs.infura.io/ipfs/${addedImage.path}`
+                setFileURL(imageURL)
+                message.success(`${e.fileList[0].originFileObj.name} was uploaded successfully!`)
+                console.log(imageURL)
+            } catch (error) {
+                message.error('Error uploading file')
+                console.log(error)
+            }
         }
     }
 
@@ -62,6 +65,7 @@ export default function Create() {
         }
     }
 
+    //Upload NFT to market contract
     async function createNFTSale(values) {
         //Get uploaded file URl
         try {
@@ -102,14 +106,14 @@ export default function Create() {
         }
     }
 
-
+    //Validate form items
     async function validateForm(values) {
         return !(!values["nft-name"] || !values["nft-description"] || !values["nft-price"]);
     }
 
     return (
         <Form
-            name="basic"
+            name={"basic"}
             labelCol={{span: 8}}
             wrapperCol={{span: 10}}
             autoComplete={"off"}
@@ -156,17 +160,27 @@ export default function Create() {
                 name={'nft-image'}
                 label={"NFT Image"}
                 getValueFromEvent={getFile}
+                rules={[{required: true, message: 'Please insert description of NFT!'}]}
             >
                 <Dragger
-                    listType="picture"
+                    listType={"text"}
                     maxCount={1}
                     beforeUpload={() => false}
                     onChange={onChange}
+                    onPreview={() => false}
                 >
-                    Upload
+                    <p className="ant-upload-drag-icon">
+                        <InboxOutlined/>
+                    </p>
+                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
                 </Dragger>
             </Form.Item>
 
+            {fileURL && (
+                <Form.Item label={"Image preview"}>
+                    <Image width={"350"} style={{marginTop: 10}} src={fileURL} alt={"nft-image"}/>
+                </Form.Item>
+            )}
 
             <Form.Item wrapperCol={{offset: 8, span: 16}}>
                 <Button type="primary" htmlType="submit">
