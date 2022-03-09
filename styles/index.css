@@ -7,7 +7,7 @@
     float: left;
     width: 120px;
     height: 80px;
-    background: rgba(255, 255, 255, 0.3);
+
 }
 
 img{
@@ -16,11 +16,21 @@ img{
     object-fit:cover;
 }
 
-.ant-row-rtl .logo {
+.ant-row-rtl {
     float: right;
     margin: 16px 0 16px 24px;
 }
 
-[data-theme="dark"] .site-layout-content {
-    background: #141414;
+#components-layout-demo-responsive .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.site-layout-sub-header-background {
+    background: #fff;
+}
+
+.site-layout-background {
+    background: #fff;
 }

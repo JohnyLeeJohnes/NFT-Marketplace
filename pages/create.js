@@ -6,8 +6,12 @@ import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import Web3Modal from "web3modal";
 import {marketAddress, tokenAddress} from "../config";
-import {Button, Checkbox, Form, Input,} from 'antd';
+import {Button, Form, Input, InputNumber, Upload, message } from 'antd';
 import 'antd/dist/antd.css';
+import {useTranslation} from "../utils/use-translations";
+import {InboxOutlined} from "@ant-design/icons";
+
+const {Dragger} = Upload;
 
 const client = ihttpc("https://ipfs.infura.io:5001/api/v0")
 
@@ -86,34 +90,71 @@ export default function Create() {
         console.log('Failed:', errorInfo);
     };
 
+    const {t} = useTranslation()
+
     return (
         <Form
             name="basic"
             labelCol={{span: 8}}
-            wrapperCol={{span: 16}}
+            wrapperCol={{span: 10}}
             initialValues={{remember: true}}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            autoComplete="off"
-        >
+            autoComplete={"off"}>
             <Form.Item
-                label="Username"
-                name="username"
-                rules={[{required: true, message: 'Please input your username!'}]}
-            >
+                name={"nft-name"}
+                label={t("Name")}
+                rules={[{required: true, message: 'Please input NFT name!'}]}>
                 <Input/>
             </Form.Item>
 
             <Form.Item
-                label="Password"
-                name="password"
-                rules={[{required: true, message: 'Please input your password!'}]}
-            >
-                <Input.Password/>
+                name={"nft-description"}
+                label={t("Description")}
+                rules={[{required: true, message: 'Please insert description of NFT!'}]}>
+                <Input.TextArea
+                    autoSize={{minRows: 2, maxRows: 6}}/>
             </Form.Item>
 
-            <Form.Item name="remember" valuePropName="checked" wrapperCol={{offset: 8, span: 16}}>
-                <Checkbox>Remember me</Checkbox>
+            <Form.Item
+                name={"nft-price"}
+                label="Price"
+                rules={[{required: true, min: 1.0, message: 'Price cannot empty!'}]}>
+                <InputNumber
+                    style={{width: 300}}
+                    min={0}
+                    step={0.1}
+                    stringMode
+                />
+            </Form.Item>
+
+            <Form.Item
+                name={"nft-image"}
+                label={t("Image")}>
+                <Dragger
+                    name={"file"}
+                    multiple={false}
+                    onChange={ (info) => {
+                        const { status } = info.file;
+                        if (status !== 'uploading') {
+                            console.log(info.file, info.fileList);
+                        }
+                        if (status === 'done') {
+                            message.success(`${info.file.name} file uploaded successfully.`);
+
+                        } else if (status === 'error') {
+                            message.error(`${info.file.name} file upload failed.`);
+                        }
+
+                    }}
+                    onDrop={ (e) => {
+                        console.log('Dropped files', e.dataTransfer.files);
+                    }}>
+                    <p className="ant-upload-drag-icon">
+                        <InboxOutlined/>
+                    </p>
+
+                </Dragger>
             </Form.Item>
 
             <Form.Item wrapperCol={{offset: 8, span: 16}}>
@@ -122,5 +163,6 @@ export default function Create() {
                 </Button>
             </Form.Item>
         </Form>
-    );
+    )
+        ;
 }
