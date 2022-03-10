@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/hardhat.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/hardhat.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +68,7 @@
       <workItem from="1646902077853" duration="400000" />
       <workItem from="1646902526380" duration="1150000" />
       <workItem from="1646922771161" duration="20840000" />
-      <workItem from="1646944531726" duration="1322000" />
+      <workItem from="1646944531726" duration="1741000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -132,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646946776696</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Testing MetaMask key">
+      <created>1646946838548</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1646946838548</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

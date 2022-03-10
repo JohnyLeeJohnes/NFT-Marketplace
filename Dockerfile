@@ -35,6 +35,7 @@ COPY public public
 COPY scripts scripts
 COPY styles styles
 COPY utils utils
+COPY .env .env
 COPY .eslintrc.json .eslintrc.json
 COPY next.config.mjs next.config.mjs
 COPY hardhat.config.js hardhat.config.js
