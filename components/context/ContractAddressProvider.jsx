@@ -5,6 +5,7 @@ export const ContractAddressProvider = ({...props}) => {
         value={{
             marketAddress: process.env.NEXT_PUBLIC_MARKET_ADDRESS,
             tokenAddress: process.env.NEXT_PUBLIC_TOKEN_ADDRESS,
+            metaMask: process.env.NEXT_PUBLIC_METAMASK_KEY,
         }}
         {...props}
     />;

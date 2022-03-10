@@ -88,6 +88,9 @@ export default function Home() {
     if (loadState && NFTs.length <= 0) {
         return (
             <CenterWrapper>
+                {contractAddress.marketAddress}<br/>
+                {contractAddress.tokenAddress}<br/>
+                {contractAddress.metaMask}<br/>
                 <Space direction={"vertical"} size={100}>
                     <Typography.Title level={3} style={{margin: 0}}>
                         No NFTs on the market!
