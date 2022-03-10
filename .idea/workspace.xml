@@ -68,7 +68,7 @@
       <workItem from="1646902077853" duration="400000" />
       <workItem from="1646902526380" duration="1150000" />
       <workItem from="1646922771161" duration="20840000" />
-      <workItem from="1646944531726" duration="1741000" />
+      <workItem from="1646944531726" duration="2511000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -140,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646946838548</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Testing MetaMask key">
+      <created>1646947269751</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1646947269751</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
