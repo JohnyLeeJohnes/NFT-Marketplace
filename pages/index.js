@@ -2,15 +2,13 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Web3Modal from "web3modal";
 import {ethers} from "ethers";
-import {marketAddress, tokenAddress} from "../config";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import "antd/dist/antd.css";
 import {Button, Card, Col, Divider, Image, Row, Space, Typography} from "antd";
-import {CenterWrapper, useMenuSelectionContext} from "../components";
+import {CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
 import {FaEthereum} from "react-icons/fa";
-
 
 const {Meta} = Card;
 
@@ -19,46 +17,43 @@ export default function Home() {
     const [NFTs, setNFTs] = useState([])
     const [loadState, setLoadState] = useState(false)
     const {t} = useTranslation()
+    const contractAddress = useContractAddressContext()
     useMenuSelectionContext().useSelection(["/"])
 
-    /*useEffect(() => {
+    useEffect(() => {
         (async () => await fetchNFTs())();
-    }, [])*/
+    }, [])
 
     async function fetchNFTs() {
         try {
+            //Load contracts
             const provider = new ethers.providers.JsonRpcProvider()
-            if (provider.anyNetwork) {
-                //Load contracts
-                const tokenContract = new ethers.Contract(tokenAddress, Token.abi, provider)
-                const marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, provider)
+            const tokenContract = new ethers.Contract(contractAddress.tokenAddress, Token.abi, provider)
+            const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, provider)
 
-                //Get NFTs from Market contract
-                const NFTListData = await marketContract.getListedNFTs()
+            //Get NFTs from Market contract
+            const NFTListData = await marketContract.getListedNFTs()
 
-                //Map items
-                const NFTs = await Promise.all(
-                    NFTListData.map(async item => {
-                        const tokenURI = await tokenContract.tokenURI(item.tokenID)
-                        const tokenMetaData = await axios.get(tokenURI)
-                        let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
-                        return {
-                            tokenID: item.tokenID.toNumber(),
-                            seller: item.seller,
-                            owner: item.owner,
-                            image: tokenMetaData.data.image,
-                            name: tokenMetaData.data.name,
-                            tags: tokenMetaData.data.tags,
-                            description: tokenMetaData.data.description,
-                            price: tokenPrice
-                        }
-                    })
-                )
-                setNFTs(NFTs)
-                setLoadState(true)
-            } else {
-                console.log("No network!")
-            }
+            //Map items
+            const NFTs = await Promise.all(
+                NFTListData.map(async item => {
+                    const tokenURI = await tokenContract.tokenURI(item.tokenID)
+                    const tokenMetaData = await axios.get(tokenURI)
+                    let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
+                    return {
+                        tokenID: item.tokenID.toNumber(),
+                        seller: item.seller,
+                        owner: item.owner,
+                        image: tokenMetaData.data.image,
+                        name: tokenMetaData.data.name,
+                        tags: tokenMetaData.data.tags,
+                        description: tokenMetaData.data.description,
+                        price: tokenPrice
+                    }
+                })
+            )
+            setNFTs(NFTs)
+            setLoadState(true)
         } catch (e) {
             console.log(e)
         }

@@ -1,4 +1,7 @@
 const hre = require("hardhat");
+const fs = require('fs');
+const envfile = require('envfile')
+const sourcePath = '.env'
 
 async function main() {
     //Deploy Market-contract
@@ -12,10 +15,15 @@ async function main() {
     const TokenDeploy = await Token.deploy(JohnyMarketDeploy.address);
     await TokenDeploy.deployed();
     console.log("Token deployed to:", TokenDeploy.address)
+
+
+    //Write addresses to .env file
+    let parsedFile = envfile.parse(fs.readFileSync(sourcePath));
+    parsedFile.NEXT_PUBLIC_MARKET_ADDRESS = JohnyMarketDeploy.address
+    parsedFile.NEXT_PUBLIC_TOKEN_ADDRESS = TokenDeploy.address
+    fs.writeFileSync('.env', envfile.stringify(parsedFile));
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 main()
     .then(() => process.exit(0))
     .catch((error) => {

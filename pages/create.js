@@ -5,12 +5,11 @@ import {ethers} from "ethers";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import Web3Modal from "web3modal";
-import {marketAddress, tokenAddress} from "../config";
 import {Button, Form, Image, Input, InputNumber, message, Upload} from 'antd';
 import 'antd/dist/antd.css';
 import {useTranslation} from "../utils/use-translations";
 import {FaEthereum} from 'react-icons/fa';
-import {useMenuSelectionContext} from "../components";
+import {useContractAddressContext, useMenuSelectionContext} from "../components";
 import {InboxOutlined} from "@ant-design/icons";
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
@@ -18,6 +17,7 @@ const {Dragger} = Upload;
 
 export default function Create() {
     useMenuSelectionContext().useSelection(["/create"])
+    const contractAddress = useContractAddressContext()
     const [fileURL, setFileURL] = useState(null)
     //const [formInput, updateFormInput] = useState({price: "", name: "", description: ""})
     const router = useRouter()
@@ -38,7 +38,6 @@ export default function Create() {
                 const imageURL = `https://ipfs.infura.io/ipfs/${addedImage.path}`
                 setFileURL(imageURL)
                 message.success(`${e.fileList[0].originFileObj.name} was uploaded successfully!`)
-                console.log(imageURL)
             } catch (error) {
                 message.error('Error uploading file')
                 console.log(error)
@@ -79,7 +78,7 @@ export default function Create() {
             const w3mSigner = w3mProvider.getSigner()
 
             //Connect to token contract -> mint new token from the URL -> get the token
-            let tokenContract = new ethers.Contract(tokenAddress, Token.abi, w3mSigner)
+            let tokenContract = new ethers.Contract(contractAddress.tokenAddress, Token.abi, w3mSigner)
             let transaction = await tokenContract.mintToken(ipfsUrl)
             let transactionOutput = await transaction.wait()
             let tokenID = ((transactionOutput.events[0]).args[2]).toNumber()
@@ -88,7 +87,7 @@ export default function Create() {
             const price = ethers.utils.parseUnits(values["nft-price"], 'ether')
 
             //Connect to market contract -> get default token price
-            let marketContract = new ethers.Contract(marketAddress, JohnyMarket.abi, w3mSigner)
+            let marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, w3mSigner)
             let tokenPrice = await marketContract.getTokenPrice()
             tokenPrice = tokenPrice.toString()
 
@@ -126,6 +125,7 @@ export default function Create() {
                 }
             }}
         >
+            {process.env.NEXT_PUBLIC_METAMASK_KEY}
             <Form.Item
                 name={"nft-name"}
                 label={t("Name")}
@@ -178,7 +178,7 @@ export default function Create() {
 
             {fileURL && (
                 <Form.Item label={"Image preview"}>
-                    <Image width={"350"} style={{marginTop: 10}} src={fileURL} alt={"nft-image"}/>
+                    <Image width={"350"} src={fileURL} alt={"nft-image"}/>
                 </Form.Item>
             )}
 
@@ -188,5 +188,7 @@ export default function Create() {
                 </Button>
             </Form.Item>
         </Form>
+
+
     );
 }

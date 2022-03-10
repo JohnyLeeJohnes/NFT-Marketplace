@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Fixed card design">
-      <change afterPath="$PROJECT_DIR$/public/matic.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/matic.svg" afterDir="false" />
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation">
+      <change afterPath="$PROJECT_DIR$/components/context/ContractAddressContext.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/context/ContractAddressProvider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/context/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/context/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/deploy.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +52,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/components/context" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="D:\Programs\JetBrains - toolbox\apps\IDEA-U\ch-0\213.6777.52\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -53,8 +62,8 @@
   </component>
   <component name="RunManager" selected="npm.RUN">
     <list>
-      <item itemvalue="npm.RUN" />
       <item itemvalue="npm.INSTALL" />
+      <item itemvalue="npm.RUN" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -65,7 +74,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646837156619</updated>
-      <workItem from="1646837160465" duration="16387000" />
+      <workItem from="1646837160465" duration="16664000" />
+      <workItem from="1646867928522" duration="16000" />
+      <workItem from="1646869705187" duration="138000" />
+      <workItem from="1646902077853" duration="400000" />
+      <workItem from="1646902526380" duration="1150000" />
+      <workItem from="1646922771161" duration="4308000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -74,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646844283584</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation">
+      <created>1646867769902</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646867769902</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -83,6 +104,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works" />
+    <MESSAGE value="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation" />
   </component>
 </project>

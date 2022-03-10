@@ -30,7 +30,6 @@ WORKDIR /opt/app
 
 COPY contracts contracts
 COPY components components
-COPY config.js config.js
 COPY pages pages
 COPY public public
 COPY scripts scripts
