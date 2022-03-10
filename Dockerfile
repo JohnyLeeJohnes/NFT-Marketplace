@@ -44,7 +44,6 @@ COPY package-lock.json package-lock.json
 
 COPY --from=dev-deps /opt/app/node_modules ./node_modules
 RUN echo "NEXT_PUBLIC_BUILD=$BUILD" >> .env.local
-RUN echo "NEXT_PUBLIC_BUILD=$BUILD" >> .env
 
 RUN npx hardhat compile
 RUN npm run build

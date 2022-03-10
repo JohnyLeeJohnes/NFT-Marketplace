@@ -60,6 +60,7 @@ export default function CreatePage() {
             const addedFile = await client.add(data)
             return `https://ipfs.infura.io/ipfs/${addedFile.path}`;
         } catch (e) {
+            setLoadState(true)
             console.log(e)
         }
     }
