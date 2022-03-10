@@ -4,7 +4,7 @@
 This is the project, to make decentralized WebApp using **Next.js** and **React**. 
 Contracts are written using **Solidity** with **HardHat framework**
 
-##Getting started
+## Getting started
 After cloning the project, to build the project on the local server `run these commands:`
 
 ```bash
@@ -27,7 +27,6 @@ npx hardhat node
 npx hardhat run scripts/deploy.js --network localhost
 ```
 
-
-##Connecting wallet
+## Connecting wallet
 To properly test the network, you need to create **MetaMask** wallet and import some testing account from 
 ```npm hardhat node``` command. Select your desirable ***Private key*** address and import it in your wallet.

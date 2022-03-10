@@ -67,7 +67,7 @@
       <workItem from="1646869705187" duration="138000" />
       <workItem from="1646902077853" duration="400000" />
       <workItem from="1646902526380" duration="1150000" />
-      <workItem from="1646922771161" duration="20579000" />
+      <workItem from="1646922771161" duration="20694000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -104,7 +104,21 @@
       <option name="project" value="LOCAL" />
       <updated>1646942960456</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="README.md updated">
+      <created>1646943751681</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646943751681</updated>
+    </task>
+    <task id="LOCAL-00007" summary="README.md updated">
+      <created>1646943795922</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646943795922</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +131,7 @@
     <MESSAGE value="Fixed deploy addressess" />
     <MESSAGE value="Icon and title" />
     <MESSAGE value="All pages working&#10;-Market page working&#10;-Create NFT page working&#10;-Owned NFTs working&#10;-Created NFTs working&#10;Minor changes to design" />
-    <option name="LAST_COMMIT_MESSAGE" value="All pages working&#10;-Market page working&#10;-Create NFT page working&#10;-Owned NFTs working&#10;-Created NFTs working&#10;Minor changes to design" />
+    <MESSAGE value="README.md updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="README.md updated" />
   </component>
 </project>
