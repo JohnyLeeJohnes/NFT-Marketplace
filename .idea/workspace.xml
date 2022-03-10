@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/_document.jsx" afterDir="false" />
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="All pages working&#10;-Market page working&#10;-Create NFT page working&#10;-Owned NFTs working&#10;-Created NFTs working&#10;Minor changes to design">
+      <change afterPath="$PROJECT_DIR$/pages/collection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MenuComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MenuComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/context/ContractAddressProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/context/ContractAddressProvider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/logo.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/matic.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/matic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/matic.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +80,7 @@
       <workItem from="1646869705187" duration="138000" />
       <workItem from="1646902077853" duration="400000" />
       <workItem from="1646902526380" duration="1150000" />
-      <workItem from="1646922771161" duration="5455000" />
+      <workItem from="1646922771161" duration="19810000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -93,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646927155962</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Icon and title">
+      <created>1646928307231</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646928307231</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,6 +121,8 @@
     <MESSAGE value="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works" />
     <MESSAGE value="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation" />
     <MESSAGE value="Fixed deploy addressess" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed deploy addressess" />
+    <MESSAGE value="Icon and title" />
+    <MESSAGE value="All pages working&#10;-Market page working&#10;-Create NFT page working&#10;-Owned NFTs working&#10;-Created NFTs working&#10;Minor changes to design" />
+    <option name="LAST_COMMIT_MESSAGE" value="All pages working&#10;-Market page working&#10;-Create NFT page working&#10;-Owned NFTs working&#10;-Created NFTs working&#10;Minor changes to design" />
   </component>
 </project>

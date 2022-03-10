@@ -20,14 +20,7 @@ export function MenuComponent(props) {
                 key={"/"}
                 icon={<HomeOutlined/>}>
                 <Link href={"/"}>
-                    <a>{t("My NFTs")}</a>
-                </Link>
-            </Menu.Item>
-            <Menu.Item
-                key={"/dashboard"}
-                icon={<DashboardOutlined/>}>
-                <Link href={"/dashboard"}>
-                    <a>{t("NFT Dashboard")}</a>
+                    <a>{t("Market")}</a>
                 </Link>
             </Menu.Item>
             <Menu.Item
@@ -41,7 +34,14 @@ export function MenuComponent(props) {
                 key={"/collection"}
                 icon={<UnorderedListOutlined/>}>
                 <Link href={"/collection"}>
-                    <a>{t("My NFTs")}</a>
+                    <a>{t("Owned NFTs")}</a>
+                </Link>
+            </Menu.Item>
+            <Menu.Item
+                key={"/dashboard"}
+                icon={<DashboardOutlined/>}>
+                <Link href={"/dashboard"}>
+                    <a>{t("Created NFTs")}</a>
                 </Link>
             </Menu.Item>
         </Menu>

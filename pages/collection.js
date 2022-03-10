@@ -1,42 +1,47 @@
-import axios from "axios";
 import React, {useEffect, useState} from "react";
-import Web3Modal from "web3modal";
 import {ethers} from "ethers";
+import Web3Modal from "web3modal";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
-import "antd/dist/antd.css";
-import {Button, Card, Col, Divider, Image, Row, Space, Spin, Typography} from "antd";
+import {Card, Col, Divider, Image, Row, Space, Spin, Typography} from 'antd';
+import 'antd/dist/antd.css';
 import {CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
+import axios from "axios";
 import {useTranslation} from "../utils/use-translations";
-import matic from "../public/matic.svg"
+import matic from "../public/matic.svg";
 
 const {Meta} = Card;
 const {Text} = Typography;
 
-export default function Home() {
+export default function CreateCollection() {
     const [NFTs, setNFTs] = useState([])
     const [loadState, setLoadState] = useState(false)
     const contractAddress = useContractAddressContext()
     const {t} = useTranslation()
-    useMenuSelectionContext().useSelection(["/"])
+    useMenuSelectionContext().useSelection(["/collection"])
     useEffect(() => {
-        (async () => await fetchNFTs())();
+        (async () => await fetchMyNFTs())();
     }, [])
 
-    //Get all available NFTs on the blockchain
-    async function fetchNFTs() {
+    //Get Owned NFTs by current user
+    async function fetchMyNFTs() {
         try {
+            //Get signer and provider from Web3Modal -> because we need to know from who to display NFTs
+            const w3Modal = new Web3Modal()
+            const w3ModalConnection = await w3Modal.connect()
+            const provider = new ethers.providers.Web3Provider(w3ModalConnection)
+            const signer = provider.getSigner()
+
             //Load contracts
-            const provider = new ethers.providers.JsonRpcProvider()
-            const tokenContract = new ethers.Contract(contractAddress.tokenAddress, Token.abi, provider)
-            const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, provider)
+            const tokenContract = new ethers.Contract(contractAddress.tokenAddress, Token.abi, signer)
+            const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, signer)
 
             //Get NFTs from Market contract
-            const NFTListData = await marketContract.getListedNFTs()
+            const myNFTs = await marketContract.getUserNFTs()
 
-            //Map items
+            //Map created items
             const NFTs = await Promise.all(
-                NFTListData.map(async item => {
+                myNFTs.map(async item => {
                     const tokenURI = await tokenContract.tokenURI(item.tokenID)
                     const tokenMetaData = await axios.get(tokenURI)
                     let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
@@ -46,7 +51,7 @@ export default function Home() {
                         owner: item.owner,
                         image: tokenMetaData.data.image,
                         name: tokenMetaData.data.name,
-                        author: tokenMetaData.data.author ? tokenMetaData.data.author : "Anonym",
+                        author: tokenMetaData.data.author,
                         description: tokenMetaData.data.description,
                         price: tokenPrice
                     }
@@ -60,37 +65,13 @@ export default function Home() {
         }
     }
 
-    //On click Event -> buy clicked NFT
-    async function buyNFT(token) {
-        //Create Web3Modal connection
-        try {
-            setLoadState(false)
-            const web3Modal = new Web3Modal()
-            const web3connection = await web3Modal.connect()
-            const provider = new ethers.providers.Web3Provider(web3connection)
-
-            //Fetch contract and price
-            const signer = provider.getSigner()
-            const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, signer)
-            const tokenPrice = ethers.utils.parseUnits(token.price.toString(), "ether")
-
-            //Create Sale -> after that reload NFT page
-            const saleTransaction = await marketContract.createMarketNFTSale(contractAddress.tokenAddress, token.tokenID, {value: tokenPrice})
-            await saleTransaction.wait()
-            await fetchNFTs()
-        } catch (e) {
-            setLoadState(true)
-            console.log(e)
-        }
-    }
-
-    //If no NFTs loaded
+    //If no NFTs exists
     if (loadState && NFTs.length <= 0) {
         return (
             <CenterWrapper>
                 <Space direction={"vertical"} size={100}>
                     <Typography.Title level={3} style={{margin: 0}}>
-                        No NFTs on the market!
+                        No NFTs owned
                     </Typography.Title>
                 </Space>
             </CenterWrapper>
@@ -125,18 +106,16 @@ export default function Home() {
                                 description={NFT.description}
                             />
                             <Divider/>
-                            <Typography.Title level={4} style={{marginBottom: 10}}>
-                                <Text>{`${NFT.price} MATIC`}</Text>
+                            <Typography.Title level={4} style={{margin: 0}}>
+                                <Text type={"success"}>
+                                    {`Bought for: ${NFT.price} MATIC`}
+                                </Text>
                                 <img width={25} src={matic} alt={"MATIC"} style={{float: "right"}}/>
                             </Typography.Title>
-                            <Button type="primary" style={{width: "100%"}} onClick={() => buyNFT(NFT)}>
-                                {t("Buy!")}
-                            </Button>
                         </Card>
                     </Col>
                 ))}
             </Row>
         </Spin>
-    );
-
+    )
 }
