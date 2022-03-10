@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation">
-      <change afterPath="$PROJECT_DIR$/components/context/ContractAddressContext.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/context/ContractAddressProvider.jsx" afterDir="false" />
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/_document.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/context/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/context/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/deploy.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +70,7 @@
       <workItem from="1646869705187" duration="138000" />
       <workItem from="1646902077853" duration="400000" />
       <workItem from="1646902526380" duration="1150000" />
-      <workItem from="1646922771161" duration="4308000" />
+      <workItem from="1646922771161" duration="5455000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -95,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646867769902</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixed deploy addressess">
+      <created>1646927155961</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646927155962</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,6 +103,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works" />
     <MESSAGE value="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation" />
+    <MESSAGE value="Fixed deploy addressess" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed deploy addressess" />
   </component>
 </project>

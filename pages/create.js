@@ -125,7 +125,6 @@ export default function Create() {
                 }
             }}
         >
-            {process.env.NEXT_PUBLIC_METAMASK_KEY}
             <Form.Item
                 name={"nft-name"}
                 label={t("Name")}
