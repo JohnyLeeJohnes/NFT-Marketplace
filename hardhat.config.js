@@ -2,6 +2,9 @@ require("@nomiclabs/hardhat-waffle");
 
 //const infuraId = "44c7220a91f547cb81c8905063bccee1"
 
+console.log(process.env)
+console.log(process.env.METAMASK_KEY)
+
 module.exports = {
     defaultNetwork: "hardhat",
     networks: {
