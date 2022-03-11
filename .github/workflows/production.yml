@@ -65,7 +65,7 @@ jobs:
             BUILD=${{ steps.prepare.outputs.version }}
             PROFILE=nectar
             ARG2=test
-            METAMASK_KEY="ASD"
+            METAMASK_KEY=ASD
 
       - name: Image digest
         run: echo ${{ steps.build.outputs.digest }}
