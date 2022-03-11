@@ -6,6 +6,7 @@ import '../styles/index.css';
 import logo from "../public/logo-black.svg"
 import Image from "next/image"
 import {ContractAddressProvider, MenuComponent, MenuSelectionProvider} from "../components";
+import Head from "next/head";
 
 const {Header, Content, Footer} = Layout;
 
@@ -16,6 +17,9 @@ function App({Component, pageProps}) {
     return (
         <ContractAddressProvider>
             <MenuSelectionProvider>
+                <Head>
+                    <title>Johny NFT Marketplace</title>
+                </Head>
                 <Layout style={{minHeight: '100vh'}}>
                     <Header style={{background: '#fff'}}>
                         <div className={"logo"}>

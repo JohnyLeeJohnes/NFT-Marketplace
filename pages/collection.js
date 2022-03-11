@@ -5,7 +5,7 @@ import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import {Card, Col, Divider, Image, Row, Space, Spin, Typography} from 'antd';
 import 'antd/dist/antd.css';
-import {CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
+import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
 import axios from "axios";
 import {useTranslation} from "../utils/use-translations";
 import matic from "../public/matic.svg";
@@ -94,7 +94,7 @@ export default function CreateCollection() {
                                     style={{
                                         width: "100%",
                                         height: "30vh",
-                                        resizeMode: 'stretch'
+                                        objectFit: "contain",
                                     }}
                                     src={NFT.image}
                                     alt={"nft-image"}
@@ -106,12 +106,7 @@ export default function CreateCollection() {
                                 description={NFT.description}
                             />
                             <Divider/>
-                            <Typography.Title level={4} style={{margin: 0}}>
-                                <Text type={"success"}>
-                                    {`Bought for: ${NFT.price} MATIC`}
-                                </Text>
-                                <img width={25} src={matic} alt={"MATIC"} style={{float: "right"}}/>
-                            </Typography.Title>
+                            <BottomCardComponent type={"success"} bottomText={`Bought for: ${NFT.price} MATIC`}/>
                         </Card>
                     </Col>
                 ))}

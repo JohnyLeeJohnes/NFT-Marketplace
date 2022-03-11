@@ -3,12 +3,13 @@ import {ethers} from "ethers";
 import Web3Modal from "web3modal";
 import {Card, Col, Divider, Image, Row, Spin, Typography} from 'antd';
 import 'antd/dist/antd.css';
-import {useContractAddressContext, useMenuSelectionContext} from "../components";
+import {BottomCardComponent, useContractAddressContext, useMenuSelectionContext} from "../components";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import axios from "axios";
 import {useTranslation} from "../utils/use-translations";
 import matic from "../public/matic.svg";
+import Picture from "next/image"
 
 const {Meta} = Card;
 const {Text} = Typography;
@@ -92,7 +93,7 @@ export default function CreateDashboard() {
                                             style={{
                                                 width: "100%",
                                                 height: "25vh",
-                                                resizeMode: 'stretch'
+                                                objectFit: "contain",
                                             }}
                                             src={NFT.image}
                                             alt={"nft-image"}
@@ -104,12 +105,7 @@ export default function CreateDashboard() {
                                         description={NFT.description}
                                     />
                                     <Divider/>
-                                    <Typography.Title level={4} style={{margin: 0}}>
-                                        <Text type={"warning"}>
-                                            {`Listed for: ${NFT.price} MATIC`}
-                                        </Text>
-                                        <img width={25} src={matic} alt={"MATIC"} style={{float: "right"}}/>
-                                    </Typography.Title>
+                                    <BottomCardComponent type={"warning"} bottomText={`Listed for: ${NFT.price} MATIC`}/>
                                 </Card>
                             </Col>
                         ))}
@@ -131,7 +127,7 @@ export default function CreateDashboard() {
                                             style={{
                                                 width: "100%",
                                                 height: "25vh",
-                                                resizeMode: 'stretch'
+                                                objectFit: "contain",
                                             }}
                                             src={NFT.image}
                                             alt={"nft-image"}
@@ -143,12 +139,7 @@ export default function CreateDashboard() {
                                         description={NFT.description}
                                     />
                                     <Divider/>
-                                    <Typography.Title level={4} style={{margin: 0}}>
-                                        <Text type={"danger"}>
-                                            {`Sold for: ${NFT.price} MATIC`}
-                                        </Text>
-                                        <img width={25} src={matic} alt={"MATIC"} style={{float: "right"}}/>
-                                    </Typography.Title>
+                                    <BottomCardComponent type={"danger"} bottomText={`Sold for: ${NFT.price} MATIC`}/>
                                 </Card>
                             </Col>
                         ))}

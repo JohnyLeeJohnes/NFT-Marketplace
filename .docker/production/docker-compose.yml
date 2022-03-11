@@ -1,9 +1,11 @@
 version: '3.4'
 services:
-    johny-marketplace-staging:
+    johny-marketplace-production:
         image: johnymarketplace/nft-vsfs-market:latest
         networks:
             - web
+        environment:
+            - METAMASK_KEY=$METAMASK_KEY
         labels:
             - 'traefik.enable=true'
             # http stuff
@@ -22,3 +24,4 @@ services:
 networks:
     web:
         external: true
+

@@ -6,9 +6,8 @@ import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import "antd/dist/antd.css";
 import {Button, Card, Col, Divider, Image, Row, Space, Spin, Typography} from "antd";
-import {CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
+import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
-import matic from "../public/matic.svg"
 
 const {Meta} = Card;
 const {Text} = Typography;
@@ -23,7 +22,7 @@ export default function Home() {
         (async () => await fetchNFTs())();
     }, [])
 
-    console.log("ENV Vars:",contractAddress)
+    console.log("ENV Vars:", contractAddress)
 
     //Get all available NFTs on the blockchain
     async function fetchNFTs() {
@@ -115,7 +114,7 @@ export default function Home() {
                                     style={{
                                         width: "100%",
                                         height: "30vh",
-                                        resizeMode: 'stretch'
+                                        objectFit: "contain",
                                     }}
                                     src={NFT.image}
                                     alt={"nft-image"}
@@ -127,10 +126,7 @@ export default function Home() {
                                 description={NFT.description}
                             />
                             <Divider/>
-                            <Typography.Title level={4} style={{marginBottom: 10}}>
-                                <Text>{`${NFT.price} MATIC`}</Text>
-                                <img width={25} src={matic} alt={"MATIC"} style={{float: "right"}}/>
-                            </Typography.Title>
+                            <BottomCardComponent bottomText={`${NFT.price} MATIC`}/>
                             <Button type="primary" style={{width: "100%"}} onClick={() => buyNFT(NFT)}>
                                 {t("Buy!")}
                             </Button>

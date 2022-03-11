@@ -5,7 +5,6 @@ class Document extends CoolDocument {
         return (
             <Html>
                 <Head>
-                    <title>Johny NFT Marketplace</title>
                     <link rel={"shortcut icon"} href={"favicon.ico"}/>
                 </Head>
                 <body>
