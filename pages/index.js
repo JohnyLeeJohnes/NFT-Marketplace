@@ -10,7 +10,6 @@ import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSe
 import {useTranslation} from "../utils/use-translations";
 
 const {Meta} = Card;
-const {Text} = Typography;
 
 export default function Home() {
     const [NFTs, setNFTs] = useState([])
@@ -21,8 +20,6 @@ export default function Home() {
     useEffect(() => {
         (async () => await fetchNFTs())();
     }, [])
-
-    console.log("ENV Vars:", contractAddress)
 
     //Get all available NFTs on the blockchain
     async function fetchNFTs() {
