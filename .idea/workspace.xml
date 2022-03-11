@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Deploys">
-      <change afterPath="$PROJECT_DIR$/components/BottomCardComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.docker/production/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.docker/production/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/RUN.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/RUN.xml" afterDir="false" />
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_document.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/collection.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/collection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +80,7 @@
       <workItem from="1646990718238" duration="28000" />
       <workItem from="1646990774376" duration="61000" />
       <workItem from="1646990858560" duration="165000" />
-      <workItem from="1646991050624" duration="4310000" />
+      <workItem from="1646991050624" duration="5427000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -188,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646993693784</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Deploys">
+      <created>1646995495328</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1646995495328</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
