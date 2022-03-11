@@ -56,9 +56,9 @@ export default function CreateCollection() {
                 })
             )
             setNFTs(NFTs)
-            setLoadState(true)
         } catch (e) {
             console.log(e)
+        } finally {
             setLoadState(true)
         }
     }
@@ -69,7 +69,7 @@ export default function CreateCollection() {
             <CenterWrapper>
                 <Space direction={"vertical"} size={100}>
                     <Typography.Title level={3} style={{margin: 0}}>
-                        No NFTs owned
+                        {t("No NFTs owned")}
                     </Typography.Title>
                 </Space>
             </CenterWrapper>

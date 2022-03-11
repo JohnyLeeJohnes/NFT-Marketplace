@@ -101,11 +101,11 @@ export default function CreatePage() {
 
             //Reroute back to dashboard
             await transaction.wait()
-            setLoadState(true)
             await router.push('/')
         } catch (e) {
-            setLoadState(true)
             console.log(e)
+        } finally {
+            setLoadState(true)
         }
     }
 
@@ -119,7 +119,7 @@ export default function CreatePage() {
             <Row justify="center">
                 <Col span={8}>
                     <Typography.Title level={3} style={{marginBottom: 20}}>
-                        Create and Sell your NFT
+                        {t("Create and Sell your NFT")}
                     </Typography.Title>
                 </Col>
             </Row>
@@ -164,7 +164,7 @@ export default function CreatePage() {
 
                 <Form.Item
                     name={"nft-price"}
-                    label={"Price"}
+                    label={t("Price")}
                     rules={[{required: true, min: 0.01, message: 'Price cannot be empty!'}]}
                 >
                     <InputNumber
@@ -179,7 +179,7 @@ export default function CreatePage() {
 
                 <Form.Item
                     name={'nft-image'}
-                    label={"NFT Image"}
+                    label={t("NFT Image")}
                     getValueFromEvent={getFile}
                     rules={[{required: true, message: 'You have to upload image to create NFT!'}]}
                 >
@@ -193,19 +193,19 @@ export default function CreatePage() {
                         <p className="ant-upload-drag-icon">
                             <InboxOutlined/>
                         </p>
-                        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                        <p className="ant-upload-text">{t("Click or drag file to this area to upload")}</p>
                     </Dragger>
                 </Form.Item>
 
                 {fileURL && (
-                    <Form.Item label={"Image preview"}>
+                    <Form.Item label={t("Image preview")}>
                         <Image width={"350"} src={fileURL} alt={"nft-image"}/>
                     </Form.Item>
                 )}
 
                 <Form.Item wrapperCol={{offset: 8, span: 16}}>
                     <Button type="primary" htmlType="submit">
-                        Create NFT
+                        {t("Create NFT")}
                     </Button>
                 </Form.Item>
             </Form>

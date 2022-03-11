@@ -64,9 +64,9 @@ export default function CreateDashboard() {
             //Set to global variable
             setActiveNFTs(activeCreatedNFTs)
             setSoldNFTs(soldCreatedNFTs)
-            setLoadState(true)
         } catch (e) {
             console.log(e)
+        } finally {
             setLoadState(true)
         }
     }

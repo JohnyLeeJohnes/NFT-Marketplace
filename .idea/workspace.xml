@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Renaming to jsx -&gt; removed API cause its not needed now&#10;Finished translation template">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/hello.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/hello.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/collection.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/collection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/collection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/collection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +98,7 @@
       <workItem from="1646990718238" duration="28000" />
       <workItem from="1646990774376" duration="61000" />
       <workItem from="1646990858560" duration="165000" />
-      <workItem from="1646991050624" duration="12598000" />
+      <workItem from="1646991050624" duration="13946000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -354,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647003601502</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Renaming to jsx -&gt; removed API cause its not needed now">
+      <created>1647003807252</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1647003807252</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -373,6 +378,8 @@
     <MESSAGE value="Deploys" />
     <MESSAGE value="Testing .env" />
     <MESSAGE value="Minor image fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor image fixes" />
+    <MESSAGE value="Renaming to jsx -&gt; removed API cause its not needed now" />
+    <MESSAGE value="Renaming to jsx -&gt; removed API cause its not needed now&#10;Finished translation template" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renaming to jsx -&gt; removed API cause its not needed now&#10;Finished translation template" />
   </component>
 </project>

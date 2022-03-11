@@ -51,9 +51,9 @@ export default function Home() {
                 })
             )
             setNFTs(NFTs)
-            setLoadState(true)
         } catch (e) {
             console.log(e)
+        } finally {
             setLoadState(true)
         }
     }
@@ -88,7 +88,7 @@ export default function Home() {
             <CenterWrapper>
                 <Space direction={"vertical"} size={100}>
                     <Typography.Title level={3} style={{margin: 0}}>
-                        No NFTs on the market!
+                        {t("No NFTs on the market!")}
                     </Typography.Title>
                 </Space>
             </CenterWrapper>
