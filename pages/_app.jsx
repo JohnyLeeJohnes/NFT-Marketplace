@@ -1,7 +1,7 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {ethers} from "ethers";
 import 'antd/dist/antd.css';
-import {Button, Layout, Typography} from 'antd';
+import {Button, Layout, message, Typography} from 'antd';
 import {useTranslation} from "../utils/use-translations";
 import '../styles/index.css';
 import logo from "../public/logo-black.svg"
@@ -16,6 +16,9 @@ const {Header, Content, Footer} = Layout;
 function App({Component, pageProps}) {
     const [account, setAccount] = useState([])
     const {t} = useTranslation()
+    useEffect(() => {
+        (async () => await getWalletAddress())();
+    }, [])
 
     async function getWalletAddress() {
         try {
@@ -26,6 +29,12 @@ function App({Component, pageProps}) {
             const signer = provider.getSigner();
             const address = await signer.getAddress()
             setAccount(address)
+            message.success({
+                content: `You are logged in with: ${address}`,
+                duration: 3,
+                style: {marginTop: '6.5vh'}
+            });
+
         } catch (e) {
             console.log(e)
         }
@@ -43,9 +52,10 @@ function App({Component, pageProps}) {
                             <Image width={150} height={80} src={logo} alt={"logo"}/>
                         </div>
                         <div className={"address"}>
-                            <Typography.Title level={3} style={{align: "right"}}>
-                                <Button onClick={getWalletAddress} shape="round"
-                                        danger>{t("Login to MetaMask")}</Button>
+                            <Typography.Title level={5} style={{align: "right"}}>
+                                <Button onClick={getWalletAddress} shape="round" danger>
+                                    {t("Login to MetaMask")}
+                                </Button>
                             </Typography.Title>
                         </div>
                         <MenuComponent/>

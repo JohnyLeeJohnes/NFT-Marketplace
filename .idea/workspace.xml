@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Added login account button&#10;Changed RPC">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hardhat.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/hardhat.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/_app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +101,8 @@
       <workItem from="1646990858560" duration="165000" />
       <workItem from="1646991050624" duration="14121000" />
       <workItem from="1647014569052" duration="3713000" />
-      <workItem from="1647029644802" duration="993000" />
+      <workItem from="1647029644802" duration="1049000" />
+      <workItem from="1647038105401" duration="2180000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -367,7 +370,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647005238998</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Added login account button&#10;Changed RPC">
+      <created>1647030678635</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1647030678635</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
