@@ -47,6 +47,7 @@ RUN echo "NEXT_PUBLIC_BUILD=$BUILD" >> .env.local
 
 RUN npx hardhat compile
 RUN npm run build
+#RUN npx hardhat run scripts/deploy.js --network mumbai
 
 FROM alpine:3.15 as runtime
 
@@ -73,5 +74,6 @@ COPY --chown=app:app package.json package-lock.json ./
 COPY --from=prod-deps --chown=app:app /opt/app/node_modules ./node_modules
 COPY --from=builder --chown=app:app /opt/app/artifacts ./artifacts
 COPY --from=builder --chown=app:app /opt/app/.next ./.next
+COPY --from=builder --chown=app:app /opt/app/.env ./.env
 
 EXPOSE 3000

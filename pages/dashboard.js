@@ -58,7 +58,6 @@ export default function CreateDashboard() {
                     }
                 })
             )
-            console.log(mappedCreatedNFTs)
 
             //Filter only sold ones
             const activeCreatedNFTs = mappedCreatedNFTs.filter(i => !i.sold)

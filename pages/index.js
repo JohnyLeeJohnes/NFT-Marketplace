@@ -23,11 +23,13 @@ export default function Home() {
         (async () => await fetchNFTs())();
     }, [])
 
+    console.log("ENV Vars:",contractAddress)
+
     //Get all available NFTs on the blockchain
     async function fetchNFTs() {
         try {
             //Load contracts
-            const provider = new ethers.providers.JsonRpcProvider()
+            const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/44c7220a91f547cb81c8905063bccee1")
             const tokenContract = new ethers.Contract(contractAddress.tokenAddress, Token.abi, provider)
             const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, provider)
 

@@ -108,6 +108,8 @@ jobs:
         steps:
             -   name: Deploy Application
                 uses: appleboy/ssh-action@master
+                env:
+                    METAMASK_KEY: ${{ secrets.METAMASK_KEY }}
                 with:
                     username: root
                     host: ${{ secrets.HOST }}

@@ -98,10 +98,9 @@ export default function CreatePage() {
                 contractAddress.tokenAddress, tokenID, price, {value: tokenPrice}
             )
 
-            setLoadState(true)
-
             //Reroute back to dashboard
             await transaction.wait()
+            setLoadState(true)
             await router.push('/')
         } catch (e) {
             setLoadState(true)
