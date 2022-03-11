@@ -115,9 +115,6 @@ jobs:
           script_stop: true
           script: |
             cd /opt/app/.docker/production
-            touch .env
-            echo METAMASK_KEY=${{ secrets.METAMASK_KEY }} >> .env
-            cat .env            
             docker system prune -f --all
             docker compose pull
             docker compose down

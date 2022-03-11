@@ -4,8 +4,6 @@ services:
         image: johnymarketplace/nft-vsfs-market:latest
         networks:
             - web
-        env_file:
-            - .env
         labels:
             - 'traefik.enable=true'
             # http stuff
