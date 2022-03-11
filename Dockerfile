@@ -20,7 +20,7 @@ RUN \
 
 FROM node:16 as builder
 ARG BUILD=edge
-ARG METAMASK_KEY=none
+ARG METAMASK_KEY=${METAMASK_KEY}
 
 ENV \
 	NODE_ENV=production \
