@@ -61,7 +61,7 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prepare.outputs.tags }}
-          build-args: BUILD=${{ steps.prepare.outputs.version }}
+          build-args: BUILD=${{ steps.prepare.outputs.version }},METAMASK_KEY=${{ secrets.METAMASK_KEY }}
 
       - name: Image digest
         run: echo ${{ steps.build.outputs.digest }}
