@@ -11,6 +11,7 @@ import {useContractAddressContext, useMenuSelectionContext} from "../components"
 import {InboxOutlined} from "@ant-design/icons";
 import {useTranslation} from "../utils/use-translations";
 import matic from "../public/matic.svg"
+import Picture from "next/image";
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 const {Dragger} = Upload;
@@ -167,7 +168,7 @@ export default function CreatePage() {
                     rules={[{required: true, min: 0.01, message: 'Price cannot be empty!'}]}
                 >
                     <InputNumber
-                        prefix={<img width={15} src={matic} alt={"MATIC"}/>}
+                        prefix={<Picture width={15} height={15} src={matic} alt={"MATIC"}/>}
                         style={{width: 250, maxWidth: 250}}
                         min={0.01}
                         step={0.01}

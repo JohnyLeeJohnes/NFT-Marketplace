@@ -8,10 +8,8 @@ import 'antd/dist/antd.css';
 import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
 import axios from "axios";
 import {useTranslation} from "../utils/use-translations";
-import matic from "../public/matic.svg";
 
 const {Meta} = Card;
-const {Text} = Typography;
 
 export default function CreateCollection() {
     const [NFTs, setNFTs] = useState([])

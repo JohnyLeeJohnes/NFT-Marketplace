@@ -8,11 +8,8 @@ import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import axios from "axios";
 import {useTranslation} from "../utils/use-translations";
-import matic from "../public/matic.svg";
-import Picture from "next/image"
 
 const {Meta} = Card;
-const {Text} = Typography;
 
 export default function CreateDashboard() {
     const [activeNFTs, setActiveNFTs] = useState([])
@@ -105,7 +102,8 @@ export default function CreateDashboard() {
                                         description={NFT.description}
                                     />
                                     <Divider/>
-                                    <BottomCardComponent type={"warning"} bottomText={`Listed for: ${NFT.price} MATIC`}/>
+                                    <BottomCardComponent type={"warning"}
+                                                         bottomText={`Listed for: ${NFT.price} MATIC`}/>
                                 </Card>
                             </Col>
                         ))}

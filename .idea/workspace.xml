@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/production.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/production.yml" afterDir="false" />
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Minor image fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardhat.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/hardhat.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/collection.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/collection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +98,7 @@
       <workItem from="1646990718238" duration="28000" />
       <workItem from="1646990774376" duration="61000" />
       <workItem from="1646990858560" duration="165000" />
-      <workItem from="1646991050624" duration="11767000" />
+      <workItem from="1646991050624" duration="12433000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -336,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647002615342</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Testing .env">
+      <created>1647002956566</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1647002956566</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,6 +363,7 @@
     <MESSAGE value="Minor changes" />
     <MESSAGE value="Deploys" />
     <MESSAGE value="Testing .env" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing .env" />
+    <MESSAGE value="Minor image fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor image fixes" />
   </component>
 </project>
