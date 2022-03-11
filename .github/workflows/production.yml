@@ -108,17 +108,16 @@ jobs:
         steps:
             -   name: Deploy Application
                 uses: appleboy/ssh-action@master
-                env:
-                    METAMASK_KEY: "1234"
-                    FOO: "ahoj"
                 with:
                     username: root
                     host: ${{ secrets.HOST }}
                     key: ${{ secrets.SSHKEY }}
                     script_stop: true
                     script: |
-                        printenv
                         cd /opt/app/.docker/production
+                        touch .env
+                        echo METAMASK_KEY=${{ secrets.METAMASK_KEY } >> .env
+                        cat .env
                         docker system prune -f --all
                         docker compose pull
                         docker compose down
