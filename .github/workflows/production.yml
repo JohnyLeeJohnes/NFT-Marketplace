@@ -63,9 +63,7 @@ jobs:
           tags: ${{ steps.prepare.outputs.tags }}
           build-args: | 
             BUILD=${{ steps.prepare.outputs.version }}
-            PROFILE=nectar
-            ARG2=test
-            METAMASK_KEY=ASD
+            METAMASK_KEY=${{ secrets.METAMASK_KEY }}
 
       - name: Image digest
         run: echo ${{ steps.build.outputs.digest }}
