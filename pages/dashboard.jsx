@@ -51,6 +51,7 @@ export default function CreateDashboard() {
                         sold: item.sold,
                         image: tokenMetaData.data.image,
                         name: tokenMetaData.data.name,
+                        author: tokenMetaData.data.author ? tokenMetaData.data.author : "Anonym",
                         description: tokenMetaData.data.description,
                         price: tokenPrice
                     }

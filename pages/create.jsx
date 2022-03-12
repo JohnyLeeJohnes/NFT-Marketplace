@@ -144,14 +144,14 @@ export default function CreatePage() {
                     label={t("Name")}
                     rules={[{required: true, message: 'NFT Name cannot be empty'}]}
                 >
-                    <Input/>
+                    <Input maxLength={25}/>
                 </Form.Item>
 
                 <Form.Item
                     name={"nft-author"}
                     label={t("Author")}
                 >
-                    <Input/>
+                    <Input maxLength={25}/>
                 </Form.Item>
 
                 <Form.Item
@@ -159,7 +159,7 @@ export default function CreatePage() {
                     label={t("Description")}
                     rules={[{required: true, message: 'NFT Description cannot be empty!'}]}
                 >
-                    <Input.TextArea autoSize={{minRows: 2, maxRows: 6}}/>
+                    <Input.TextArea maxLength={150} autoSize={{minRows: 2, maxRows: 6}}/>
                 </Form.Item>
 
                 <Form.Item
@@ -170,6 +170,7 @@ export default function CreatePage() {
                     <InputNumber
                         prefix={<Picture width={15} height={15} src={matic} alt={"MATIC"}/>}
                         style={{width: 250, maxWidth: 250}}
+                        max={10}
                         min={0.01}
                         step={0.01}
                         stringMode

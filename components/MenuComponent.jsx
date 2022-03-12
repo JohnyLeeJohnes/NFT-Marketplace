@@ -1,8 +1,10 @@
 import {Menu} from "antd";
-import {DashboardOutlined, HomeOutlined, UnorderedListOutlined, WalletOutlined} from "@ant-design/icons";
+import {DashboardOutlined, HomeOutlined, PlusOutlined, UnorderedListOutlined} from "@ant-design/icons";
 import Link from "next/link";
 import {useTranslation} from "../utils/use-translations";
 import {useMenuSelectionContext} from "./context";
+import {FaExchangeAlt} from 'react-icons/fa';
+
 
 export function MenuComponent(props) {
     const {t} = useTranslation()
@@ -20,12 +22,19 @@ export function MenuComponent(props) {
                 key={"/"}
                 icon={<HomeOutlined/>}>
                 <Link href={"/"}>
-                    <a>{t("Market")}</a>
+                    <a>{t("Home")}</a>
+                </Link>
+            </Menu.Item>
+            <Menu.Item
+                key={"/market"}
+                icon={<FaExchangeAlt/>}>
+                <Link href={"/market"}>
+                    <a>{t("NFT Market")}</a>
                 </Link>
             </Menu.Item>
             <Menu.Item
                 key={"/create"}
-                icon={<WalletOutlined/>}>
+                icon={<PlusOutlined/>}>
                 <Link href={"/create"}>
                     <a>{t("Create NFT")}</a>
                 </Link>
@@ -41,7 +50,7 @@ export function MenuComponent(props) {
                 key={"/dashboard"}
                 icon={<DashboardOutlined/>}>
                 <Link href={"/dashboard"}>
-                    <a>{t("Created NFTs")}</a>
+                    <a>{t("Creators Dashboard")}</a>
                 </Link>
             </Menu.Item>
         </Menu>

@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component, useState} from 'react';
 import {ethers} from "ethers";
 import 'antd/dist/antd.css';
 import {Button, Layout, message, Typography} from 'antd';
@@ -12,20 +12,16 @@ import Web3Modal from "web3modal";
 
 const {Header, Content, Footer} = Layout;
 
-
 function App({Component, pageProps}) {
     const [account, setAccount] = useState([])
     const {t} = useTranslation()
-    useEffect(() => {
-        (async () => await getWalletAddress())();
-    }, [])
 
+    //Ping users wallet -> connect with webapp
     async function getWalletAddress() {
         try {
-            const w3m = new Web3Modal()
-            const w3mConnection = await w3m.connect()
-            const provider = new ethers.providers.Web3Provider(w3mConnection)
-            await provider.send("eth_requestAccounts", []);
+            const web3Modal = new Web3Modal()
+            const instance = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(instance);
             const signer = provider.getSigner();
             const address = await signer.getAddress()
             setAccount(address)
@@ -34,9 +30,26 @@ function App({Component, pageProps}) {
                 duration: 3,
                 style: {marginTop: '6.5vh'}
             });
-
         } catch (e) {
             console.log(e)
+        }
+    }
+
+    //Hook to show "Login to MetaMask" button
+    const Wallet = () => {
+        if (!account.length) {
+            console.log(!account.length)
+            return (
+                <div className={"address"}>
+                    <Typography.Title level={5} style={{align: "right"}}>
+                        <Button onClick={getWalletAddress} shape="round" danger>
+                            {t("Login to MetaMask")}
+                        </Button>
+                    </Typography.Title>
+                </div>
+            )
+        } else {
+            return (<div/>)
         }
     }
 
@@ -44,20 +57,14 @@ function App({Component, pageProps}) {
         <ContractAddressProvider>
             <MenuSelectionProvider>
                 <Head>
-                    <title>Johny NFT Marketplace</title>
+                    <title>{t("Johny NFT Marketplace")}</title>
                 </Head>
                 <Layout style={{minHeight: '100vh'}}>
                     <Header style={{background: '#fff'}}>
                         <div className={"logo"}>
                             <Image width={150} height={80} src={logo} alt={"logo"}/>
                         </div>
-                        <div className={"address"}>
-                            <Typography.Title level={5} style={{align: "right"}}>
-                                <Button onClick={getWalletAddress} shape="round" danger>
-                                    {t("Login to MetaMask")}
-                                </Button>
-                            </Typography.Title>
-                        </div>
+                        <Wallet/>
                         <MenuComponent/>
                     </Header>
 
