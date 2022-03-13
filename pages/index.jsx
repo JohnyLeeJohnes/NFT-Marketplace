@@ -63,8 +63,9 @@ export default function Home() {
                         </Paragraph>
                         After connecting to the Test Network, you need some first matic to start using this app! I
                         recomend to use
-                        <Link src={"https://faucet.matic.network/"}
-                              target={"new"}> https://faucet.matic.network/. </Link> You can get <Text strong>0.5
+                        <Link target={"new"}
+                              href={"https://faucet.matic.network/"}> https://faucet.matic.network/. </Link> You can
+                        get <Text strong>0.5
                         MATIC</Text> every minute after you fill some Captcha.
                     </Typography>
                 </Col>

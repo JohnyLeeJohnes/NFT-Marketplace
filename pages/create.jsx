@@ -101,7 +101,7 @@ export default function CreatePage() {
 
             //Reroute back to dashboard
             await transaction.wait()
-            await router.push('/')
+            await router.push('/market')
         } catch (e) {
             console.log(e)
         } finally {
