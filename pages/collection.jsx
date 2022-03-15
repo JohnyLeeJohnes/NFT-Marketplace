@@ -45,7 +45,7 @@ export default function CreateCollection() {
                     let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
                     return {
                         tokenID: item.tokenID.toNumber(),
-                        seller: item.seller,
+                        creator: item.creator,
                         owner: item.owner,
                         image: tokenMetaData.data.image,
                         name: tokenMetaData.data.name,
@@ -104,7 +104,7 @@ export default function CreateCollection() {
                                 description={NFT.description}
                             />
                             <Divider/>
-                            <BottomCardComponent type={"success"} bottomText={`Bought for: ${NFT.price} MATIC`}/>
+                            <BottomCardComponent type={"success"} bottomText={`Market price: ${NFT.price} MATIC`}/>
                         </Card>
                     </Col>
                 ))}

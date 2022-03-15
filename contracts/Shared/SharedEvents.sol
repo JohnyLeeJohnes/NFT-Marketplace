@@ -7,8 +7,8 @@ library SharedEvents {
         uint indexed itemID,
         uint256 indexed tokenID,
         address indexed tokenContract,
-        address seller,
         address owner,
+        address creator,
         uint256 price,
         bool sold
     );

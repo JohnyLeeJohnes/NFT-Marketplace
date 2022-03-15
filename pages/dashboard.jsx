@@ -46,7 +46,7 @@ export default function CreateDashboard() {
                     let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
                     return {
                         tokenID: item.tokenID.toNumber(),
-                        seller: item.seller,
+                        creator: item.creator,
                         owner: item.owner,
                         sold: item.sold,
                         image: tokenMetaData.data.image,
@@ -138,7 +138,7 @@ export default function CreateDashboard() {
                                         description={NFT.description}
                                     />
                                     <Divider/>
-                                    <BottomCardComponent type={"danger"} bottomText={`Sold for: ${NFT.price} MATIC`}/>
+                                    <BottomCardComponent type={"danger"} bottomText={`Market price: ${NFT.price} MATIC`}/>
                                 </Card>
                             </Col>
                         ))}

@@ -10,10 +10,10 @@ library SharedStructs{
         uint256 tokenID;
         //Address of the contract that deployed the NFT
         address tokenContract;
-        //Who is selling it
-        address payable seller;
         //Who owns it
         address payable owner;
+        //Who created the token
+        address creator;
         //Price in ether -> later matic
         uint256 price;
         //If NFT is sold

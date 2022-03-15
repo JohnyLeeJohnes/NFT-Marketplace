@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.docker/staging/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.docker/staging/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +13,11 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -106,7 +109,10 @@
       <workItem from="1647105342168" duration="25000" />
       <workItem from="1647105999779" duration="1824000" />
       <workItem from="1647113923489" duration="6318000" />
-      <workItem from="1647200031914" duration="225000" />
+      <workItem from="1647200031914" duration="418000" />
+      <workItem from="1647201013228" duration="71000" />
+      <workItem from="1647269688921" duration="6045000" />
+      <workItem from="1647358242595" duration="6313000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -395,7 +401,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647120211544</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Fixed link and rerouting">
+      <created>1647200287141</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1647200287141</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Complete remodeling of contract - NFT can be bought infinite times">
+      <created>1647364238581</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1647364238581</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,6 +439,8 @@
     <MESSAGE value="Added login account button&#10;Changed RPC" />
     <MESSAGE value="Added login account button - Changed RPC" />
     <MESSAGE value="Created Home page -&gt; market relocated to own page&#10;Fixed login to metamask button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Home page -&gt; market relocated to own page&#10;Fixed login to metamask button" />
+    <MESSAGE value="Fixed link and rerouting" />
+    <MESSAGE value="Complete remodeling of contract - NFT can be bought infinite times" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete remodeling of contract - NFT can be bought infinite times" />
   </component>
 </project>

@@ -10,11 +10,10 @@ import "./Shared/SharedEvents.sol";
 contract JohnyMarket is ReentrancyGuard {
     using Counters for Counters.Counter;
     Counters.Counter private tokenIDs;
-    Counters.Counter private tokenSold;
 
     //Owner of the market contract
     address payable owner;
-    //This will be matic thanks to API -> so 0.01 Matic
+    //This will be matic thanks to API -> so 0.02 Matic
     uint256 tokenPrice = 0.02 ether;
 
     //Set owner of the Contract
@@ -39,30 +38,27 @@ contract JohnyMarket is ReentrancyGuard {
      * nonReentrant makes it safe from reentrance attack
      */
     function createMarketNFT(address NFTContract, uint256 NFTID, uint256 price) public payable nonReentrant {
-        //Price checks
+        //Checks - price is not null and equal to the listed price
         require(price > 0, "Price of the NFT cannot be less than once");
-        require(msg.value == tokenPrice, "Inconsistenci in NFT price");
+        require(msg.value == tokenPrice, "Inconsistency in NFT price");
 
         //Increment tokenIDs and get current ID
         tokenIDs.increment();
         uint256 tokenID = tokenIDs.current();
 
-        //Create object -> add to mapper - Seller is the sender and owner is empty beacuse its created
+        //Create object of NFT
         tokenToMarket[tokenID] = SharedStructs.MarketNFT(
             tokenID,
             NFTID,
             NFTContract,
             payable(msg.sender),
-            payable(address(0)),
+            payable(msg.sender),
             price,
             false
         );
 
-        //Take the NFT and transfer it ot the owner(this address) from seller
-        IERC721(NFTContract).transferFrom(msg.sender, address(this), tokenID);
-
         //Emit Event that NFT has been deployed to the blockchain
-        emit SharedEvents.MarketNFTCreated(tokenID, NFTID, NFTContract, msg.sender, address(0), price, false);
+        emit SharedEvents.MarketNFTCreated(tokenID, NFTID, NFTContract, msg.sender, msg.sender, price, false);
     }
 
     /**
@@ -74,23 +70,25 @@ contract JohnyMarket is ReentrancyGuard {
     function createMarketNFTSale(address NFTContract, uint256 tokenID) public payable nonReentrant {
         uint NFTPrice = tokenToMarket[tokenID].price;
         uint NFTID = tokenToMarket[tokenID].tokenID;
+        address tokenOwner = tokenToMarket[tokenID].owner;
 
         //The price of the NFT has to be met
         require(msg.value == NFTPrice, "Please submit the asking price");
 
-        //Transfer money to the sellers account
-        tokenToMarket[tokenID].seller.transfer(msg.value);
 
-        //Transfer token to the buyers collection
-        IERC721(NFTContract).transferFrom(address(this), msg.sender, NFTID);
-
-        //Set the owner of the NFT -> increment number of sold tokens
+        //Set owner to the new one and increse price
+        uint newPrice = (tokenToMarket[tokenID].price * 6) / 5;
         tokenToMarket[tokenID].owner = payable(msg.sender);
+        tokenToMarket[tokenID].price = newPrice;
         tokenToMarket[tokenID].sold = true;
-        tokenSold.increment();
 
-        //Pay the owner of the contract Fee
+        //Transfer token to the new owner -> sender
+        IERC721(NFTContract).transferFrom(tokenOwner, msg.sender, NFTID);
+
+        //Transfer money to the owner of the contract
         payable(owner).transfer(tokenPrice);
+        //Transfer money to the seller of the token
+        payable(tokenOwner).transfer(msg.value);
     }
 
     /**
@@ -99,18 +97,13 @@ contract JohnyMarket is ReentrancyGuard {
      */
     function getListedNFTs() public view returns (SharedStructs.MarketNFT[] memory){
         uint NFTCount = tokenIDs.current();
-        uint unsoldNFTCount = tokenIDs.current() - tokenSold.current();
         uint index = 0;
 
-        SharedStructs.MarketNFT[] memory NFTs = new SharedStructs.MarketNFT[](unsoldNFTCount);
+        SharedStructs.MarketNFT[] memory NFTs = new SharedStructs.MarketNFT[](NFTCount);
         for (uint i = 0; i < NFTCount; i++) {
-            if (tokenToMarket[i + 1].owner == address(0)) {
-                //If NFT has empty owner -> is on sale on market
-                uint currID = tokenToMarket[i + 1].itemID;
-                SharedStructs.MarketNFT storage currentItem = tokenToMarket[currID];
-                NFTs[index] = currentItem;
-                index += 1;
-            }
+            uint currID = tokenToMarket[i + 1].itemID;
+            SharedStructs.MarketNFT storage currentItem = tokenToMarket[currID];
+            NFTs[index++] = currentItem;
         }
 
         return NFTs;
@@ -156,7 +149,7 @@ contract JohnyMarket is ReentrancyGuard {
 
         //Get count of owned NFTs
         for (uint i = 0; i < NFTTotalCount; i++) {
-            if (tokenToMarket[i + 1].seller == msg.sender) {
+            if (tokenToMarket[i + 1].creator == msg.sender) {
                 NFTUserCount ++;
             }
         }
@@ -164,7 +157,7 @@ contract JohnyMarket is ReentrancyGuard {
         //Get all NFTs to array, beacuse we have size of array
         SharedStructs.MarketNFT[] memory NFTs = new SharedStructs.MarketNFT[](NFTUserCount);
         for (uint i = 0; i < NFTTotalCount; i++) {
-            if (tokenToMarket[i + 1].seller == msg.sender) {
+            if (tokenToMarket[i + 1].creator == msg.sender) {
                 uint currID = tokenToMarket[i + 1].itemID;
                 SharedStructs.MarketNFT storage currentItem = tokenToMarket[currID];
                 NFTs[index++] = currentItem;
