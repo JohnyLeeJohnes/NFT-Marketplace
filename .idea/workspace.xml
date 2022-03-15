@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/staging.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/staging.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/JohnyMarket.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/JohnyMarket.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/Shared/SharedEvents.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Shared/SharedEvents.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/Shared/SharedStructs.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Shared/SharedStructs.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardhat.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/hardhat.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/collection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/collection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/market.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/contract-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/contract-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.docker/staging/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.docker/staging/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +112,7 @@
       <workItem from="1647200031914" duration="418000" />
       <workItem from="1647201013228" duration="71000" />
       <workItem from="1647269688921" duration="6045000" />
-      <workItem from="1647358242595" duration="5740000" />
+      <workItem from="1647358242595" duration="6313000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -420,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647200287141</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Complete remodeling of contract - NFT can be bought infinite times">
+      <created>1647364238581</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1647364238581</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,6 +440,7 @@
     <MESSAGE value="Added login account button - Changed RPC" />
     <MESSAGE value="Created Home page -&gt; market relocated to own page&#10;Fixed login to metamask button" />
     <MESSAGE value="Fixed link and rerouting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed link and rerouting" />
+    <MESSAGE value="Complete remodeling of contract - NFT can be bought infinite times" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete remodeling of contract - NFT can be bought infinite times" />
   </component>
 </project>

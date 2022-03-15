@@ -1,7 +1,7 @@
 version: '3.4'
 services:
     johny-marketplace-staging:
-        image: johnymarketplace/nft-vsfs-market:edge
+        image: johnymarketplace/nft-vsfs-market:staging
         networks:
             - web
         labels:
