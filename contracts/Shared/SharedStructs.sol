@@ -13,7 +13,7 @@ library SharedStructs{
         //Who owns it
         address payable owner;
         //Who created the token
-        address creator;
+        address payable creator;
         //Price in ether -> later matic
         uint256 price;
         //If NFT is sold

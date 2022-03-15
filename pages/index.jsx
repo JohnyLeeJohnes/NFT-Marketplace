@@ -69,7 +69,7 @@ export default function Home() {
                         MATIC</Text> every minute after you fill some Captcha.
                     </Typography>
                 </Col>
-                <Divider type="vertical" style={{height: "53vh"}}/>
+                <Divider type="vertical" style={{height: 500}}/>
                 <Col span={11} style={{marginLeft: 40, marginTop: 20, marginBottom: 20}}>
                     <Typography>
                         <Title level={3}><Link href={"/market"}>Buy NFTs!</Link></Title>

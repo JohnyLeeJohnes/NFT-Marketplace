@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.docker/staging/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.docker/staging/docker-compose.yml" afterDir="false" />
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Fixed minor issues">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/Shared/SharedStructs.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Shared/SharedStructs.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
