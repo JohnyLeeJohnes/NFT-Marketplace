@@ -38,7 +38,6 @@ function App({Component, pageProps}) {
     //Hook to show "Login to MetaMask" button
     const Wallet = () => {
         if (!account.length) {
-            console.log(!account.length)
             return (
                 <div className={"address"}>
                     <Typography.Title level={5} style={{align: "right"}}>

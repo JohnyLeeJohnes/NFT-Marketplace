@@ -40,7 +40,7 @@ export default function Home() {
                     let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
                     return {
                         tokenID: item.tokenID.toNumber(),
-                        seller: item.seller,
+                        creator: item.creator,
                         owner: item.owner,
                         image: tokenMetaData.data.image,
                         name: tokenMetaData.data.name,

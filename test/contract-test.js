@@ -41,7 +41,7 @@ describe("Contract tests", function () {
         //Get default token price & offer price
         let tokenPrice = await marketContract.getTokenPrice()
         tokenPrice = tokenPrice.toString()
-        const offerPrice = ethers.utils.parseUnits('1', 'ether')
+        const offerPrice = ethers.utils.parseUnits('0.1', 'ether')
 
         //In the market contract - create market NFT
         await marketContract.createMarketNFT(tokenContractAddress, 1, offerPrice, {value: tokenPrice})
@@ -61,8 +61,8 @@ describe("Contract tests", function () {
             return {
                 tokenID: item.tokenID.toString(),
                 price: item.price.toString(),
-                seller: item.seller,
                 owner: item.owner,
+                creator: item.creator,
                 tokenURI
             }
         }))
