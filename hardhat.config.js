@@ -8,12 +8,12 @@ module.exports = {
         },
         mumbai: {
             //url: `https://polygon-mumbai.infura.io/v3/44c7220a91f547cb81c8905063bccee1`,
-            url: "https://rpc-mumbai.matic.today",
+            url: "https://rpc-mumbai.maticvigil.com",
             accounts: [process.env.METAMASK_KEY]
         },
         matic: {
             //url: `https://polygon-mainnet.infura.io/v3/44c7220a91f547cb81c8905063bccee1`,
-            url: "https://rpc-mainnet.matic.network",
+            url: "https://rpc-mainnet.maticvigil.com",
             accounts: [process.env.METAMASK_KEY]
         }
     },
