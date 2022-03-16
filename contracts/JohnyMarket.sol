@@ -13,8 +13,8 @@ contract JohnyMarket is ReentrancyGuard {
 
     //Owner of the market contract
     address payable owner;
-    //This will be matic thanks to API -> so 0.02 Matic
-    uint256 tokenPrice = 0.02 ether;
+    //This will be MATIC thanks to API -> so 0.05 Matic
+    uint256 contractFee = 0.05 ether;
 
     //Set owner of the Contract
     constructor() {owner = payable(msg.sender);}
@@ -26,8 +26,8 @@ contract JohnyMarket is ReentrancyGuard {
      * Get token price
      * @return uint256 token price
      */
-    function getTokenPrice() public view returns (uint256){
-        return tokenPrice;
+    function getContractFee() public view returns (uint256){
+        return contractFee;
     }
 
     /**
@@ -40,22 +40,17 @@ contract JohnyMarket is ReentrancyGuard {
     function createMarketNFT(address NFTContract, uint256 NFTID, uint256 price) public payable nonReentrant {
         //Checks - price is not null and equal to the listed price
         require(price > 0, "Price of the NFT cannot be less than once");
-        require(msg.value == tokenPrice, "Inconsistency in NFT price");
+        require(msg.value == contractFee, "Inconsistency in Fee price");
 
         //Increment tokenIDs and get current ID
         tokenIDs.increment();
         uint256 tokenID = tokenIDs.current();
 
         //Create object of NFT
-        tokenToMarket[tokenID] = SharedStructs.MarketNFT(
-            tokenID,
-            NFTID,
-            NFTContract,
-            payable(msg.sender),
-            payable(msg.sender),
-            price,
-            false
-        );
+        tokenToMarket[tokenID] = SharedStructs.MarketNFT(tokenID, NFTID, NFTContract, payable(msg.sender), payable(msg.sender), price, false);
+
+        //Take the NFT and transfer it ot the owner(this address) from seller
+        IERC721(NFTContract).transferFrom(msg.sender, address(this), tokenID);
 
         //Emit Event that NFT has been deployed to the blockchain
         emit SharedEvents.MarketNFTCreated(tokenID, NFTID, NFTContract, msg.sender, msg.sender, price, false);
@@ -63,32 +58,37 @@ contract JohnyMarket is ReentrancyGuard {
 
     /**
      * Create sale of the NFT on the MarketPlace
-     * @param NFTContract - adress of the market contract
-     * @param tokenID -internal ID of created token
+     * @param tokenID - internal ID of created token
      * nonReentrant makes it safe from reentrance attack
      */
-    function createMarketNFTSale(address NFTContract, uint256 tokenID) public payable nonReentrant {
+    function createMarketNFTSale(uint256 tokenID) public payable nonReentrant {
         uint NFTPrice = tokenToMarket[tokenID].price;
-        uint NFTID = tokenToMarket[tokenID].tokenID;
-        address tokenOwner = tokenToMarket[tokenID].owner;
 
         //The price of the NFT has to be met
         require(msg.value == NFTPrice, "Please submit the asking price");
+        require(tokenToMarket[tokenID].owner != msg.sender, "Buyer cannot buy his own token");
 
+        //Transfer price -> NFT owner
+        tokenToMarket[tokenID].owner.transfer(msg.value);
+        //Transfer fee -> NFT creator
+        if (tokenToMarket[tokenID].owner != tokenToMarket[tokenID].creator) {
+            tokenToMarket[tokenID].creator.transfer(contractFee);
+        }
 
-        //Set owner to the new one and increse price
-        uint newPrice = (tokenToMarket[tokenID].price * 6) / 5;
+        //Set owner to the new one -> new token price = 1.2 times bigger
         tokenToMarket[tokenID].owner = payable(msg.sender);
-        tokenToMarket[tokenID].price = newPrice;
+        tokenToMarket[tokenID].price = (NFTPrice * 6) / 5;
         tokenToMarket[tokenID].sold = true;
 
-        //Transfer token to the new owner -> sender
-        IERC721(NFTContract).transferFrom(tokenOwner, msg.sender, NFTID);
+        //Pay the owner of the contract Fee
+        payable(owner).transfer(contractFee);
 
-        //Transfer money to the owner of the contract
-        payable(owner).transfer(tokenPrice);
-        //Transfer money to the seller of the token
-        payable(tokenOwner).transfer(msg.value);
+        //Pay for the token to the owner
+        /*payable(tokenOwner).transfer(msg.value);
+        //Transfer fee to the NFT creator -> if not the same person
+        if (tokenOwner != tokenCreator) {
+            payable(tokenCreator).transfer(contractFee);
+        }*/
     }
 
     /**

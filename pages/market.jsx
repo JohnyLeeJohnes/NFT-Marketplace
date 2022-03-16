@@ -73,8 +73,8 @@ export default function Home() {
             const tokenPrice = ethers.utils.parseUnits(token.price.toString(), "ether")
 
             //Create Sale -> after that reload NFT page
-            const saleTransaction = await marketContract.createMarketNFTSale(contractAddress.tokenAddress, token.tokenID, {value: tokenPrice})
-            await saleTransaction.wait()
+            const saleTransaction = await marketContract.createMarketNFTSale(token.tokenID, {value: tokenPrice})
+            await saleTransaction.wait();
             await fetchNFTs()
         } catch (e) {
             setLoadState(true)

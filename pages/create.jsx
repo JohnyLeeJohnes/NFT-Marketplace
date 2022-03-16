@@ -90,13 +90,13 @@ export default function CreatePage() {
 
             //Connect to market contract -> get default token price
             let marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, w3mSigner)
-            let tokenPrice = await marketContract.getTokenPrice()
-            tokenPrice = tokenPrice.toString()
+            let contractFee = await marketContract.getContractFee()
+            contractFee = contractFee.toString()
 
             //Deploy NFT to Market
 
             transaction = await marketContract.createMarketNFT(
-                contractAddress.tokenAddress, tokenID, price, {value: tokenPrice}
+                contractAddress.tokenAddress, tokenID, price, {value: contractFee}
             )
 
             //Reroute back to dashboard

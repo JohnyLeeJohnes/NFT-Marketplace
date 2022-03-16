@@ -16,12 +16,12 @@ async function main() {
     await TokenDeploy.deployed();
     console.log("Token deployed to:", TokenDeploy.address)
 
-
     //Write addresses to .env file
     let parsedFile = envfile.parse(fs.readFileSync(sourcePath));
     parsedFile.NEXT_PUBLIC_MARKET_ADDRESS = JohnyMarketDeploy.address
     parsedFile.NEXT_PUBLIC_TOKEN_ADDRESS = TokenDeploy.address
-    fs.writeFileSync('.env', envfile.stringify(parsedFile));
+    await fs.writeFileSync('.env', envfile.stringify(parsedFile));
+    console.log("Addresses written to .env")
 }
 
 main()

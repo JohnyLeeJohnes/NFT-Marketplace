@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Moved to private RPC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/JohnyMarket.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/JohnyMarket.sol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hardhat.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/hardhat.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/market.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/deploy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/contract-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/contract-test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +119,9 @@
       <workItem from="1647201013228" duration="71000" />
       <workItem from="1647269688921" duration="6045000" />
       <workItem from="1647358242595" duration="6313000" />
+      <workItem from="1647386014103" duration="1004000" />
+      <workItem from="1647450269103" duration="10415000" />
+      <workItem from="1647461007355" duration="4604000" />
     </task>
     <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
       <created>1646844283584</created>
@@ -438,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647381920015</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Moved to private RPC">
+      <created>1647382581110</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1647382581110</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
