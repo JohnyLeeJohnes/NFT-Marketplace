@@ -25,7 +25,7 @@ export default function Home() {
     async function fetchNFTs() {
         try {
             //Load contracts
-            const provider = new ethers.providers.JsonRpcProvider("https://matic-mainnet-full-rpc.bwarelabs.com")
+            const provider = new ethers.providers.JsonRpcProvider()
             const tokenContract = new ethers.Contract(contractAddress.tokenAddress, Token.abi, provider)
             const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, provider)
 
@@ -52,7 +52,7 @@ export default function Home() {
             )
             setNFTs(NFTs)
         } catch (e) {
-            console.log(e)
+            console.log(e.message)
         } finally {
             setLoadState(true)
         }
@@ -70,10 +70,14 @@ export default function Home() {
             //Fetch contract and price
             const signer = provider.getSigner()
             const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, signer)
-            const tokenPrice = ethers.utils.parseUnits(token.price.toString(), "ether")
+
+            //Get contract fee
+            let contractFee = await marketContract.getContractFee()
+            const tokenPriceFee = ethers.utils.parseUnits((token.price + (contractFee*2)).toString(), "ether")
+            console.log(tokenPriceFee.toString());
 
             //Create Sale -> after that reload NFT page
-            const saleTransaction = await marketContract.createMarketNFTSale(token.tokenID, {value: tokenPrice})
+            const saleTransaction = await marketContract.createMarketNFTSale(token.tokenID, {value: tokenPriceFee})
             await saleTransaction.wait();
             await fetchNFTs()
         } catch (e) {
@@ -124,6 +128,8 @@ export default function Home() {
                             />
                             <Divider/>
                             <BottomCardComponent bottomText={`${NFT.price} MATIC`}/>
+                            {NFT.creator}<br/>
+                            {NFT.owner}
                             <Button type="primary" style={{width: "100%"}} onClick={() => buyNFT(NFT)}>
                                 {t("Buy!")}
                             </Button>

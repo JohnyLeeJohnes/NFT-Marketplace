@@ -41,9 +41,10 @@ describe("Contract tests", function () {
         //Get default token price & offer price
         let contractFee = await marketContract.getContractFee()
         contractFee = contractFee.toString()
-        const offerPrice1 = ethers.utils.parseUnits('0.1', 'ether')
-        const offerPrice2 = ethers.utils.parseUnits('0.12', 'ether')
-        const offerPrice3 = ethers.utils.parseUnits('0.144', 'ether')
+        const offerPrice1 = ethers.utils.parseUnits('1', 'ether')
+        const offerPrice8 = ethers.utils.parseUnits('1.1', 'ether')
+        const offerPrice2 = ethers.utils.parseUnits('1.2', 'ether')
+        const offerPrice3 = ethers.utils.parseUnits('1.44', 'ether')
 
         //In the market contract - create market NFT
         await marketContract.createMarketNFT(tokenContractAddress, 1, offerPrice1, {value: contractFee})
@@ -52,9 +53,9 @@ describe("Contract tests", function () {
 
         //Connect to contract with buyer address -> sell him the NFT with ID 1 and rebuy it again
         const [, buyerAddress1, buyerAddress2, buyerAddress3] = await ethers.getSigners()
-        await marketContract.connect(buyerAddress1).createMarketNFTSale(1, {value: offerPrice1})
-        await marketContract.connect(buyerAddress2).createMarketNFTSale(1, {value: offerPrice2})
-        await marketContract.connect(buyerAddress3).createMarketNFTSale(1, {value: offerPrice3})
+        console.log(await marketContract.connect(buyerAddress1).createMarketNFTSale(1, {value: offerPrice8}));
+       // await marketContract.connect(buyerAddress2).createMarketNFTSale(1, {value: offerPrice2+contractFee})
+       // await marketContract.connect(buyerAddress3).createMarketNFTSale(1, {value: offerPrice3+contractFee})
     });
 
     it('should list all offered NFTs on the market', async function () {

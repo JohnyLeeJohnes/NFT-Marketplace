@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./Shared/SharedStructs.sol";
 import "./Shared/SharedEvents.sol";
+import "hardhat/console.sol";
 
 contract JohnyMarket is ReentrancyGuard {
     using Counters for Counters.Counter;
@@ -56,6 +57,8 @@ contract JohnyMarket is ReentrancyGuard {
         emit SharedEvents.MarketNFTCreated(tokenID, NFTID, NFTContract, msg.sender, msg.sender, price, false);
     }
 
+
+    event MyEventWithData(uint256, uint256);
     /**
      * Create sale of the NFT on the MarketPlace
      * @param tokenID - internal ID of created token
@@ -63,32 +66,25 @@ contract JohnyMarket is ReentrancyGuard {
      */
     function createMarketNFTSale(uint256 tokenID) public payable nonReentrant {
         uint NFTPrice = tokenToMarket[tokenID].price;
+        uint256 fprice = tokenToMarket[tokenID].price + (contractFee * 2);
 
-        //The price of the NFT has to be met
-        require(msg.value == NFTPrice, "Please submit the asking price");
+        console.log("%s", fprice);
+
+        emit MyEventWithData(msg.value, fprice);
+        require(msg.value == fprice, "Please submit the asking price");
         require(tokenToMarket[tokenID].owner != msg.sender, "Buyer cannot buy his own token");
 
-        //Transfer price -> NFT owner
-        tokenToMarket[tokenID].owner.transfer(msg.value);
-        //Transfer fee -> NFT creator
-        if (tokenToMarket[tokenID].owner != tokenToMarket[tokenID].creator) {
-            tokenToMarket[tokenID].creator.transfer(contractFee);
-        }
+        //Pay PRICE to the owner of NFT
+        tokenToMarket[tokenID].owner.call{value : (msg.value - (contractFee * 2))}("");
+        //Pay FEE to the creator of NFT
+        tokenToMarket[tokenID].creator.call{value : contractFee}("");
+        //Pay FEE to owner of the contract
+        payable(owner).call{value : contractFee}("");
 
         //Set owner to the new one -> new token price = 1.2 times bigger
         tokenToMarket[tokenID].owner = payable(msg.sender);
         tokenToMarket[tokenID].price = (NFTPrice * 6) / 5;
         tokenToMarket[tokenID].sold = true;
-
-        //Pay the owner of the contract Fee
-        payable(owner).transfer(contractFee);
-
-        //Pay for the token to the owner
-        /*payable(tokenOwner).transfer(msg.value);
-        //Transfer fee to the NFT creator -> if not the same person
-        if (tokenOwner != tokenCreator) {
-            payable(tokenCreator).transfer(contractFee);
-        }*/
     }
 
     /**
@@ -166,6 +162,4 @@ contract JohnyMarket is ReentrancyGuard {
 
         return NFTs;
     }
-
-
 }
