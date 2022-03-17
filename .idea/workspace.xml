@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Removed unnecessary import&#10;New README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/JohnyMarket.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/JohnyMarket.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,14 +121,9 @@
       <workItem from="1647507487313" duration="11532000" />
       <workItem from="1647541331754" duration="4000" />
       <workItem from="1647541368488" duration="3002000" />
-      <workItem from="1647547669959" duration="1290000" />
-    </task>
-    <task id="LOCAL-00003" summary="Fixed deploy addressess">
-      <created>1646927155961</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1646927155962</updated>
+      <workItem from="1647547669959" duration="1343000" />
+      <workItem from="1647549676310" duration="896000" />
+      <workItem from="1647550670188" duration="79000" />
     </task>
     <task id="LOCAL-00004" summary="Icon and title">
       <created>1646928307231</created>
@@ -467,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647547711875</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Removed unnecessary import&#10;New README.md">
+      <created>1647549017093</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1647549017093</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,6 +500,7 @@
     <MESSAGE value="Fixed fees in buying and creating NFT&#10;Modified test" />
     <MESSAGE value="Added second owner of the contract - minor changes" />
     <MESSAGE value="Fixed test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed test" />
+    <MESSAGE value="Removed unnecessary import&#10;New README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary import&#10;New README.md" />
   </component>
 </project>

@@ -49,7 +49,7 @@ export default function Home() {
                                 </li>
                                 <li>
                                     <Text strong>New RPC URL</Text> - fill with <Text
-                                    code>https://rpc-mainnet.maticvigil.com</Text>
+                                    code>https://rpc-mumbai.maticvigil.com</Text>
                                 </li>
                                 <li>
                                     <Text strong>Chain ID</Text> - fill with <Text code>80001</Text>
