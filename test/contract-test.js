@@ -30,7 +30,6 @@ describe("Contract tests", function () {
         //Create testing tokens
         await tokenContract.mintToken("https://www.test-token-1.cz")
         await tokenContract.mintToken("https://www.test-token-2.cz")
-        await tokenContract.mintToken("https://www.test-token-3.cz")
     });
 
     it('should create market offer and sell one NFTs', async function () {

@@ -4,8 +4,9 @@
     <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Added second owner of the contract - minor changes">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/JohnyMarket.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/JohnyMarket.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hardhat.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/hardhat.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/market.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/contract-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/contract-test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,14 +121,9 @@
       <workItem from="1647450269103" duration="10415000" />
       <workItem from="1647461007355" duration="4793000" />
       <workItem from="1647466803001" duration="7538000" />
-      <workItem from="1647507487313" duration="10920000" />
-    </task>
-    <task id="LOCAL-00001" summary="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works">
-      <created>1646844283584</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1646844283584</updated>
+      <workItem from="1647507487313" duration="11532000" />
+      <workItem from="1647541331754" duration="4000" />
+      <workItem from="1647541368488" duration="3002000" />
     </task>
     <task id="LOCAL-00002" summary="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation">
       <created>1646867769902</created>
@@ -465,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647516217115</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Added second owner of the contract - minor changes">
+      <created>1647520421237</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1647520421238</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
