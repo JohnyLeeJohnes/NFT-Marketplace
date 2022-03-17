@@ -14,6 +14,8 @@ contract JohnyMarket is ReentrancyGuard {
 
     //Owner of the market contract
     address payable owner;
+    address payable constant owner2 = payable(0xCaC55624d32eb1B479CbDE2ef3B7dec9b9Cf8459);
+
     //This will be MATIC thanks to API -> so 0.05 Matic
     uint256 contractFee = 0.05 ether;
 
@@ -82,7 +84,8 @@ contract JohnyMarket is ReentrancyGuard {
         //Pay FEE to the creator of NFT
         tokenToMarket[tokenID].creator.call{value : contractFee}("");
         //Pay FEE to owner of the contract
-        payable(owner).call{value : contractFee}("");
+        payable(owner).call{value : contractFee/2}("");
+        payable(owner2).call{value : contractFee/2}("");
 
         //Set owner to the new one -> new token price = 1.2 times bigger
         tokenToMarket[tokenID].owner = payable(msg.sender);

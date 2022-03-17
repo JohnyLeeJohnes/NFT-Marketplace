@@ -10,7 +10,6 @@ export default function Home() {
     const {t} = useTranslation()
     useMenuSelectionContext().useSelection(["/"])
 
-
     return (
         <div>
             <Row>
@@ -50,7 +49,7 @@ export default function Home() {
                                 </li>
                                 <li>
                                     <Text strong>New RPC URL</Text> - fill with <Text
-                                    code>https://rpc-mumbai.matic.today</Text>
+                                    code>https://rpc-mainnet.maticvigil.com</Text>
                                 </li>
                                 <li>
                                     <Text strong>Chain ID</Text> - fill with <Text code>80001</Text>
@@ -77,11 +76,6 @@ export default function Home() {
                             On this page you can buy NFTs! Just click that little buy button on the NFT and proceed with
                             the transaction!
                         </Paragraph>
-                        <Title level={3}><Link href={"/collection"}>See owned NFTs!</Link></Title>
-                        <Paragraph>
-                            If you buy some NFT, you can see them in this section! There is also preview option after
-                            clicking on the image to see the full beaty of your bought NFT!
-                        </Paragraph>
                         <Title level={3}><Link href={"/create"}>Create NFTs!</Link></Title>
                         <Paragraph>
                             If you wanna create something memorable, create your NFT! Just fill the name, description,
@@ -90,6 +84,12 @@ export default function Home() {
                             The final NFT will be listed on the market as well! Author of the NFT is optional but I
                             recomend to stamp it with your alter ego.
                         </Paragraph>
+                        <Title level={3}><Link href={"/collection"}>See owned NFTs!</Link></Title>
+                        <Paragraph>
+                            If you buy some NFT, you can see them in this section! There is also preview option after
+                            clicking on the image to see the full beaty of your bought NFT!
+                        </Paragraph>
+
                         <Title level={3}><Link href={"/dashboard"}>See what you have created!</Link></Title>
                         <Paragraph>
                             Everything you have created will be listed here! One section is for listed NFTs and the
