@@ -5,10 +5,11 @@ import {ethers} from "ethers";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import "antd/dist/antd.css";
-import {Button, Card, Col, Divider, Image, Row, Space, Spin, Typography} from "antd";
+import {Button, Card, Col, Divider, Image, message, Row, Space, Spin, Typography} from "antd";
 import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
 
+const {Text} = Typography;
 const {Meta} = Card;
 
 export default function Home() {
@@ -25,7 +26,7 @@ export default function Home() {
     async function fetchNFTs() {
         try {
             //Load contracts
-            const provider = new ethers.providers.JsonRpcProvider()
+            const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticvigil.com")
             const tokenContract = new ethers.Contract(contractAddress.tokenAddress, Token.abi, provider)
             const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, provider)
 
@@ -37,7 +38,6 @@ export default function Home() {
                 NFTListData.map(async item => {
                     const tokenURI = await tokenContract.tokenURI(item.tokenID)
                     const tokenMetaData = await axios.get(tokenURI)
-                    let tokenPrice = ethers.utils.formatUnits(item.price.toString(), "ether")
                     return {
                         tokenID: item.tokenID.toNumber(),
                         creator: item.creator,
@@ -46,7 +46,8 @@ export default function Home() {
                         name: tokenMetaData.data.name,
                         author: tokenMetaData.data.author ? tokenMetaData.data.author : "Anonym",
                         description: tokenMetaData.data.description,
-                        price: tokenPrice
+                        price: ethers.utils.formatUnits(item.price.toString(), "ether"),
+                        fullPrice: ethers.utils.formatUnits(await marketContract.getPrice(item.price.toString()), "ether")
                     }
                 })
             )
@@ -71,13 +72,19 @@ export default function Home() {
             const signer = provider.getSigner()
             const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, signer)
 
-            //Get contract fee
-            let contractFee = await marketContract.getContractFee()
-            const tokenPriceFee = ethers.utils.parseUnits((token.price + (contractFee*2)).toString(), "ether")
-            console.log(tokenPriceFee.toString());
+            //Check, if signer owns token
+            if (await signer.getAddress() === token.owner) {
+                message.error("Cannot buy your own token")
+                setLoadState(true)
+                return
+            }
+
+            //Calculate final price
+            const tokenPriceFee = ethers.utils.parseUnits(token.price.toString(), "ether")
+            const finalPrice = await marketContract.getPrice(tokenPriceFee)
 
             //Create Sale -> after that reload NFT page
-            const saleTransaction = await marketContract.createMarketNFTSale(token.tokenID, {value: tokenPriceFee})
+            const saleTransaction = await marketContract.createMarketNFTSale(token.tokenID, {value: finalPrice})
             await saleTransaction.wait();
             await fetchNFTs()
         } catch (e) {
@@ -128,9 +135,8 @@ export default function Home() {
                             />
                             <Divider/>
                             <BottomCardComponent bottomText={`${NFT.price} MATIC`}/>
-                            {NFT.creator}<br/>
-                            {NFT.owner}
-                            <Button type="primary" style={{width: "100%"}} onClick={() => buyNFT(NFT)}>
+                            <Text italic>{`(${NFT.fullPrice} including fee)`}</Text>
+                            <Button type="primary" style={{width: "100%", marginTop: 5}} onClick={() => buyNFT(NFT)}>
                                 {t("Buy!")}
                             </Button>
                         </Card>

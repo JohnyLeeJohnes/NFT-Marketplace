@@ -39,23 +39,25 @@ describe("Contract tests", function () {
         await tokenContract.deployed()
 
         //Get default token price & offer price
-        let contractFee = await marketContract.getContractFee()
-        contractFee = contractFee.toString()
+        let contractFee = (await marketContract.getContractFee()).toString()
         const offerPrice1 = ethers.utils.parseUnits('1', 'ether')
-        const offerPrice8 = ethers.utils.parseUnits('1.1', 'ether')
         const offerPrice2 = ethers.utils.parseUnits('1.2', 'ether')
-        const offerPrice3 = ethers.utils.parseUnits('1.44', 'ether')
 
         //In the market contract - create market NFT
         await marketContract.createMarketNFT(tokenContractAddress, 1, offerPrice1, {value: contractFee})
         await marketContract.createMarketNFT(tokenContractAddress, 2, offerPrice1, {value: contractFee})
-        await marketContract.createMarketNFT(tokenContractAddress, 3, offerPrice1, {value: contractFee})
 
         //Connect to contract with buyer address -> sell him the NFT with ID 1 and rebuy it again
-        const [, buyerAddress1, buyerAddress2, buyerAddress3] = await ethers.getSigners()
-        console.log(await marketContract.connect(buyerAddress1).createMarketNFTSale(1, {value: offerPrice8}));
-       // await marketContract.connect(buyerAddress2).createMarketNFTSale(1, {value: offerPrice2+contractFee})
-       // await marketContract.connect(buyerAddress3).createMarketNFTSale(1, {value: offerPrice3+contractFee})
+        const [owner, buyer1, buyer2] = await ethers.getSigners()
+        await marketContract.connect(buyer1).createMarketNFTSale(1, {value: marketContract.getPrice(offerPrice1)});
+        await marketContract.connect(buyer2).createMarketNFTSale(1, {value: marketContract.getPrice(offerPrice2)});
+
+        //Write balances
+        console.log("Accounts", {
+            balanceAfter: ethers.utils.formatUnits((await owner.getBalance()).toString(), "ether"),
+            balanceAfter1: ethers.utils.formatUnits((await buyer1.getBalance()).toString(), "ether"),
+            balanceAfter2: ethers.utils.formatUnits((await buyer2.getBalance()).toString(), "ether"),
+        });
     });
 
     it('should list all offered NFTs on the market', async function () {

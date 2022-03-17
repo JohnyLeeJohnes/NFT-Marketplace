@@ -94,7 +94,6 @@ export default function CreatePage() {
             contractFee = contractFee.toString()
 
             //Deploy NFT to Market
-
             transaction = await marketContract.createMarketNFT(
                 contractAddress.tokenAddress, tokenID, price, {value: contractFee}
             )

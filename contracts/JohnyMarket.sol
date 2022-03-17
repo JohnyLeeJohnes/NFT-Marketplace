@@ -31,6 +31,11 @@ contract JohnyMarket is ReentrancyGuard {
         return contractFee;
     }
 
+    function getPrice(uint256 nftPrice) public view returns (uint256){
+        uint256 finalPrice = nftPrice + (contractFee * 2);
+        return finalPrice;
+    }
+
     /**
      * Create new NFT object -> deploy to blockchain
      * @param NFTContract - adress of the market contract
@@ -53,12 +58,13 @@ contract JohnyMarket is ReentrancyGuard {
         //Take the NFT and transfer it ot the owner(this address) from seller
         IERC721(NFTContract).transferFrom(msg.sender, address(this), tokenID);
 
+        //Pay the owner of the contract fee
+        payable(owner).call{value : contractFee}("");
+
         //Emit Event that NFT has been deployed to the blockchain
         emit SharedEvents.MarketNFTCreated(tokenID, NFTID, NFTContract, msg.sender, msg.sender, price, false);
     }
 
-
-    event MyEventWithData(uint256, uint256);
     /**
      * Create sale of the NFT on the MarketPlace
      * @param tokenID - internal ID of created token
@@ -66,11 +72,8 @@ contract JohnyMarket is ReentrancyGuard {
      */
     function createMarketNFTSale(uint256 tokenID) public payable nonReentrant {
         uint NFTPrice = tokenToMarket[tokenID].price;
-        uint256 fprice = tokenToMarket[tokenID].price + (contractFee * 2);
+        uint256 fprice = getPrice(NFTPrice);
 
-        console.log("%s", fprice);
-
-        emit MyEventWithData(msg.value, fprice);
         require(msg.value == fprice, "Please submit the asking price");
         require(tokenToMarket[tokenID].owner != msg.sender, "Buyer cannot buy his own token");
 

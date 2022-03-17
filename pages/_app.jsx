@@ -27,8 +27,7 @@ function App({Component, pageProps}) {
             setAccount(address)
             message.success({
                 content: `You are logged in with: ${address}`,
-                duration: 3,
-                style: {marginTop: '6.5vh'}
+                duration: 3
             });
         } catch (e) {
             console.log(e)
