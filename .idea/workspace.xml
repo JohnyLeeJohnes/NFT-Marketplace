@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Added second owner of the contract - minor changes">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardhat.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/hardhat.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/market.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/contract-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/contract-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/JohnyMarket.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/JohnyMarket.sol" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,13 +122,7 @@
       <workItem from="1647507487313" duration="11532000" />
       <workItem from="1647541331754" duration="4000" />
       <workItem from="1647541368488" duration="3002000" />
-    </task>
-    <task id="LOCAL-00002" summary="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation">
-      <created>1646867769902</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1646867769902</updated>
+      <workItem from="1647547669959" duration="1290000" />
     </task>
     <task id="LOCAL-00003" summary="Fixed deploy addressess">
       <created>1646927155961</created>
@@ -468,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647520421238</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Fixed test">
+      <created>1647547711874</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1647547711875</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,6 +498,7 @@
     <MESSAGE value="Changed marketplace contract&#10;- Soo fees are paid to creator and contract owner&#10;- Minor changes&#10;Changed test - better testing" />
     <MESSAGE value="Fixed fees in buying and creating NFT&#10;Modified test" />
     <MESSAGE value="Added second owner of the contract - minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added second owner of the contract - minor changes" />
+    <MESSAGE value="Fixed test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed test" />
   </component>
 </project>

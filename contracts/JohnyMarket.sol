@@ -6,7 +6,6 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./Shared/SharedStructs.sol";
 import "./Shared/SharedEvents.sol";
-import "hardhat/console.sol";
 
 contract JohnyMarket is ReentrancyGuard {
     using Counters for Counters.Counter;
