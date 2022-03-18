@@ -7,11 +7,11 @@ module.exports = {
             chainId: 1337
         },
         mumbai: {
-            url: "https://rpc-mumbai.maticvigil.com",
+            url: "https://rpc-mumbai.matic.today",
             accounts: [process.env.METAMASK_KEY]
         },
         matic: {
-            url: "https://rpc-mainnet.maticvigil.com",
+            url: "https://rpc-mainnet.matic.network",
             accounts: [process.env.METAMASK_KEY]
         }
     },
