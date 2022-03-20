@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="Removed unnecessary import&#10;New README.md">
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.docker/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/home/metamask_mumbai.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/contract-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/contract-test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/context" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Downloads/OpravaUkolJarnaky" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
@@ -123,14 +126,15 @@
       <workItem from="1647541368488" duration="3002000" />
       <workItem from="1647547669959" duration="1343000" />
       <workItem from="1647549676310" duration="896000" />
-      <workItem from="1647550670188" duration="79000" />
-    </task>
-    <task id="LOCAL-00004" summary="Icon and title">
-      <created>1646928307231</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1646928307231</updated>
+      <workItem from="1647550670188" duration="141000" />
+      <workItem from="1647631989153" duration="3058000" />
+      <workItem from="1647678482763" duration="48000" />
+      <workItem from="1647678564428" duration="871000" />
+      <workItem from="1647679656582" duration="152000" />
+      <workItem from="1647696610427" duration="13595000" />
+      <workItem from="1647730377589" duration="626000" />
+      <workItem from="1647778774155" duration="163000" />
+      <workItem from="1647778960316" duration="432000" />
     </task>
     <task id="LOCAL-00005" summary="All pages working&#10;-Market page working&#10;-Create NFT page working&#10;-Owned NFTs working&#10;-Created NFTs working&#10;Minor changes to design">
       <created>1646942960456</created>
@@ -468,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647549017093</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Fixed home page">
+      <created>1647550802704</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1647550802704</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +487,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Major update&#10;- menu now works&#10;- there are loading spinners&#10;- selling nft and listing now works" />
     <MESSAGE value="Fixed card design&#10;Fixed creating NFT -&gt; better upload, validation" />
     <MESSAGE value="Fixed deploy addressess" />
     <MESSAGE value="Icon and title" />
@@ -501,6 +511,7 @@
     <MESSAGE value="Added second owner of the contract - minor changes" />
     <MESSAGE value="Fixed test" />
     <MESSAGE value="Removed unnecessary import&#10;New README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary import&#10;New README.md" />
+    <MESSAGE value="Fixed home page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed home page" />
   </component>
 </project>
