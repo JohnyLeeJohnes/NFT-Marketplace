@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/api/nft/fetch/market.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/nft/fetch/owned.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="created global spinner">
+      <change afterPath="$PROJECT_DIR$/components/context/SpinnerContext.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/context/SpinnerProvider.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/context/ContractAddressProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/context/ContractAddressProvider.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/JohnyMarket.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/JohnyMarket.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/context/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/context/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/collection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/collection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/market.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,17 +48,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Codes/Java/IdeaTest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\Programs\\JetBrains - toolbox\\apps\\IDEA-U\\ch-0\\221.5080.210\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Codes/Java/IdeaTest",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "ts.external.directory.path": "D:\\Programs\\JetBrains - toolbox\\apps\\IDEA-U\\ch-0\\221.5080.210\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Johny\nft-vsfs-market\components\context" />
@@ -145,14 +150,7 @@
       <workItem from="1650827230886" duration="571000" />
       <workItem from="1650831123376" duration="22000" />
       <workItem from="1650913238617" duration="56000" />
-      <workItem from="1651741609153" duration="5849000" />
-    </task>
-    <task id="LOCAL-00006" summary="README.md updated">
-      <created>1646943751681</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1646943751681</updated>
+      <workItem from="1651741609153" duration="10629000" />
     </task>
     <task id="LOCAL-00007" summary="README.md updated">
       <created>1646943795922</created>
@@ -490,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647779598689</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Removed some files">
+      <created>1651753079534</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1651753079534</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed deploy addressess" />
     <MESSAGE value="Icon and title" />
     <MESSAGE value="All pages working&#10;-Market page working&#10;-Create NFT page working&#10;-Owned NFTs working&#10;-Created NFTs working&#10;Minor changes to design" />
     <MESSAGE value="README.md updated" />
@@ -523,7 +527,8 @@
     <MESSAGE value="Removed unnecessary import&#10;New README.md" />
     <MESSAGE value="Fixed home page" />
     <MESSAGE value="Removed some files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed some files" />
+    <MESSAGE value="created global spinner" />
+    <option name="LAST_COMMIT_MESSAGE" value="created global spinner" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,7 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import {Col, Divider, Row, Typography} from "antd";
-import {useMenuSelectionContext} from "../components";
+import {useMenuSelectionContext, useSpinnerContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
 
 const {Title, Paragraph, Text, Link} = Typography;
@@ -9,6 +9,7 @@ const {Title, Paragraph, Text, Link} = Typography;
 export default function Home() {
     const {t} = useTranslation()
     useMenuSelectionContext().useSelection(["/"])
+    useSpinnerContext().useSpinning(false)
 
     return (
         <div>

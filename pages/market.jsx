@@ -2,11 +2,16 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Web3Modal from "web3modal";
 import {ethers} from "ethers";
-import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import "antd/dist/antd.css";
-import {Button, Card, Col, Divider, Image, message, Row, Space, Spin, Typography} from "antd";
-import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
+import {Button, Card, Col, Divider, Image, message, Row, Space, Typography} from "antd";
+import {
+    BottomCardComponent,
+    CenterWrapper,
+    useContractAddressContext,
+    useMenuSelectionContext,
+    useSpinnerContext
+} from "../components";
 import {useTranslation} from "../utils/use-translations";
 
 const {Text} = Typography;
@@ -14,9 +19,9 @@ const {Meta} = Card;
 
 export default function Home() {
     const [NFTs, setNFTs] = useState([])
-    const [loadState, setLoadState] = useState(false)
     const [loadError, setLoadError] = useState(false)
     const contractAddress = useContractAddressContext()
+    const globalSpinner = useSpinnerContext()
     const {t} = useTranslation()
     useMenuSelectionContext().useSelection(["/market"])
     useEffect(() => {
@@ -26,7 +31,7 @@ export default function Home() {
 
     //Get all available NFTs on the blockchain
     async function loadNFTs() {
-        setLoadState(false)
+        globalSpinner.setSpinning(true)
         try {
             const nfts = (await axios.get('/api/nft/fetch/market')).data
             setNFTs(nfts)
@@ -35,7 +40,7 @@ export default function Home() {
             console.error(e)
             setLoadError(true)
         } finally {
-            setLoadState(true)
+            globalSpinner.setSpinning(false)
         }
     }
 
@@ -43,7 +48,7 @@ export default function Home() {
     async function buyNFT(token) {
         //Create Web3Modal connection
         try {
-            setLoadState(false)
+            globalSpinner.setSpinning(true)
             const web3Modal = new Web3Modal()
             const web3connection = await web3Modal.connect()
             const provider = new ethers.providers.Web3Provider(web3connection)
@@ -55,7 +60,7 @@ export default function Home() {
             //Check, if signer owns token
             if (await signer.getAddress() === token.owner) {
                 message.error("Cannot buy your own token")
-                setLoadState(true)
+                globalSpinner.setSpinning(true)
                 return
             }
 
@@ -68,7 +73,7 @@ export default function Home() {
             await saleTransaction.wait();
             await loadNFTs()
         } catch (e) {
-            setLoadState(true)
+            globalSpinner.setSpinning(false)
             console.log(e)
         }
     }
@@ -77,20 +82,18 @@ export default function Home() {
     if (loadError) {
         return (
             <CenterWrapper>
-                <Space direction={"vertical"} size={100}>
-                    <Typography.Title level={3} style={{margin: 0}}>
-                        {t("asdasd")}
-                        <Button onClick={()=>loadNFTs()} shape="round" danger>
-                            {t("asdasd")}
-                        </Button>
-                    </Typography.Title>
-                </Space>
+                <Typography.Title level={3} style={{marginBottom: 20}}>
+                    {t("RPC is currently busy! Try again later!")}
+                </Typography.Title>
+                <Button onClick={() => loadNFTs()} shape={"round"} size={"large"} danger>
+                    {t("Refresh")}
+                </Button>
             </CenterWrapper>
         )
     }
 
     //If no NFTs loaded
-    if (loadState && NFTs.length <= 0) {
+    if (!globalSpinner.spinning && NFTs.length <= 0) {
         return (
             <CenterWrapper>
                 <Space direction={"vertical"} size={100}>
@@ -103,43 +106,41 @@ export default function Home() {
     }
 
     return (
-        <Spin style={{height: "100vh"}} spinning={!loadState}>
-            <Row gutter={[16, 16]}>
-                {NFTs.map((NFT, index) => (
-                    <Col
-                        className="gutter-row"
-                        span={6}
-                        key={index}>
-                        <Card
-                            key={index}
-                            hoverable
-                            cover={
-                                <Image
-                                    style={{
-                                        width: "100%",
-                                        height: "30vh",
-                                        objectFit: "contain",
-                                    }}
-                                    src={NFT.image}
-                                    alt={"nft-image"}
-                                />
-                            }
-                        >
-                            <Meta
-                                title={`${NFT.name} [ by ${NFT.author} ]`}
-                                description={NFT.description}
+        <Row gutter={[16, 16]}>
+            {NFTs.map((NFT, index) => (
+                <Col
+                    className="gutter-row"
+                    span={6}
+                    key={index}>
+                    <Card
+                        key={index}
+                        hoverable
+                        cover={
+                            <Image
+                                style={{
+                                    width: "100%",
+                                    height: "30vh",
+                                    objectFit: "contain",
+                                }}
+                                src={NFT.image}
+                                alt={"nft-image"}
                             />
-                            <Divider/>
-                            <BottomCardComponent bottomText={`${NFT.price} MATIC`}/>
-                            <Text italic>{`(${NFT.fullPrice} including fee)`}</Text>
-                            <Button type="primary" style={{width: "100%", marginTop: 5}} onClick={() => buyNFT(NFT)}>
-                                {t("Buy!")}
-                            </Button>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-        </Spin>
+                        }
+                    >
+                        <Meta
+                            title={`${NFT.name} [ by ${NFT.author} ]`}
+                            description={NFT.description}
+                        />
+                        <Divider/>
+                        <BottomCardComponent bottomText={`${NFT.price} MATIC`}/>
+                        <Text italic>{`(${NFT.fullPrice} including fee)`}</Text>
+                        <Button type="primary" style={{width: "100%", marginTop: 5}} onClick={() => buyNFT(NFT)}>
+                            {t("Buy!")}
+                        </Button>
+                    </Card>
+                </Col>
+            ))}
+        </Row>
     );
 
 }
