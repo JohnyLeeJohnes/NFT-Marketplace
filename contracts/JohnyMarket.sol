@@ -45,24 +45,23 @@ contract JohnyMarket is ReentrancyGuard {
      * nonReentrant makes it safe from reentrance attack
      */
     function createMarketNFT(address NFTContract, uint256 NFTID, uint256 price) public payable nonReentrant {
-        //Checks - price is not null and equal to the listed price
         require(price > 0, "Price of the NFT cannot be less than once");
         require(msg.value == contractFee, "Inconsistency in Fee price");
 
-        //Increment tokenIDs and get current ID
         tokenIDs.increment();
         uint256 tokenID = tokenIDs.current();
 
-        //Create object of NFT
-        tokenToMarket[tokenID] = SharedStructs.MarketNFT(tokenID, NFTID, NFTContract, payable(msg.sender), payable(msg.sender), price, false);
+        tokenToMarket[tokenID] = SharedStructs.MarketNFT(
+            tokenID,
+            NFTID,
+            NFTContract,
+            payable(msg.sender),
+            payable(msg.sender),
+            price,
+            false);
 
-        //Take the NFT and transfer it ot the owner(this address) from seller
         IERC721(NFTContract).transferFrom(msg.sender, address(this), tokenID);
-
-        //Pay the owner of the contract fee
         payable(owner).call{value : contractFee}("");
-
-        //Emit Event that NFT has been deployed to the blockchain
         emit SharedEvents.MarketNFTCreated(tokenID, NFTID, NFTContract, msg.sender, msg.sender, price, false);
     }
 
@@ -83,8 +82,8 @@ contract JohnyMarket is ReentrancyGuard {
         //Pay FEE to the creator of NFT
         tokenToMarket[tokenID].creator.call{value : contractFee}("");
         //Pay FEE to owner of the contract
-        payable(owner).call{value : contractFee/2}("");
-        payable(owner2).call{value : contractFee/2}("");
+        payable(owner).call{value : contractFee / 2}("");
+        payable(owner2).call{value : contractFee / 2}("");
 
         //Set owner to the new one -> new token price = 1.2 times bigger
         tokenToMarket[tokenID].owner = payable(msg.sender);

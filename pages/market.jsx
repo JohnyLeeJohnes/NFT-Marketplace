@@ -15,45 +15,25 @@ const {Meta} = Card;
 export default function Home() {
     const [NFTs, setNFTs] = useState([])
     const [loadState, setLoadState] = useState(false)
+    const [loadError, setLoadError] = useState(false)
     const contractAddress = useContractAddressContext()
     const {t} = useTranslation()
     useMenuSelectionContext().useSelection(["/market"])
     useEffect(() => {
-        (async () => await fetchNFTs())();
+        (async () => await loadNFTs())();
     }, [])
 
+
     //Get all available NFTs on the blockchain
-    async function fetchNFTs() {
+    async function loadNFTs() {
+        setLoadState(false)
         try {
-            //Load contracts
-            const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.matic.today")
-            const tokenContract = new ethers.Contract(contractAddress.tokenAddress, Token.abi, provider)
-            const marketContract = new ethers.Contract(contractAddress.marketAddress, JohnyMarket.abi, provider)
-
-            //Get NFTs from Market contract
-            const NFTListData = await marketContract.getListedNFTs()
-
-            //Map items
-            const NFTs = await Promise.all(
-                NFTListData.map(async item => {
-                    const tokenURI = await tokenContract.tokenURI(item.tokenID)
-                    const tokenMetaData = await axios.get(tokenURI)
-                    return {
-                        tokenID: item.tokenID.toNumber(),
-                        creator: item.creator,
-                        owner: item.owner,
-                        image: tokenMetaData.data.image,
-                        name: tokenMetaData.data.name,
-                        author: tokenMetaData.data.author ? tokenMetaData.data.author : "Anonym",
-                        description: tokenMetaData.data.description,
-                        price: ethers.utils.formatUnits(item.price.toString(), "ether"),
-                        fullPrice: ethers.utils.formatUnits(await marketContract.getPrice(item.price.toString()), "ether")
-                    }
-                })
-            )
-            setNFTs(NFTs)
+            const nfts = (await axios.get('/api/nft/fetch/market')).data
+            setNFTs(nfts)
+            setLoadError(false)
         } catch (e) {
-            console.log(e.message)
+            console.error(e)
+            setLoadError(true)
         } finally {
             setLoadState(true)
         }
@@ -86,11 +66,27 @@ export default function Home() {
             //Create Sale -> after that reload NFT page
             const saleTransaction = await marketContract.createMarketNFTSale(token.tokenID, {value: finalPrice})
             await saleTransaction.wait();
-            await fetchNFTs()
+            await loadNFTs()
         } catch (e) {
             setLoadState(true)
             console.log(e)
         }
+    }
+
+    //If error while fetching data
+    if (loadError) {
+        return (
+            <CenterWrapper>
+                <Space direction={"vertical"} size={100}>
+                    <Typography.Title level={3} style={{margin: 0}}>
+                        {t("asdasd")}
+                        <Button onClick={()=>loadNFTs()} shape="round" danger>
+                            {t("asdasd")}
+                        </Button>
+                    </Typography.Title>
+                </Space>
+            </CenterWrapper>
+        )
     }
 
     //If no NFTs loaded
