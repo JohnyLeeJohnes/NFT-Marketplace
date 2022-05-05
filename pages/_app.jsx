@@ -1,12 +1,12 @@
 import React, {Component, useState} from 'react';
 import {ethers} from "ethers";
 import 'antd/dist/antd.css';
-import {Button, Layout, message, Typography} from 'antd';
+import {Button, Layout, message, Spin, Typography} from 'antd';
 import {useTranslation} from "../utils/use-translations";
 import '../styles/index.css';
 import logo from "../public/logo-black.svg"
 import Image from "next/image"
-import {ContractAddressProvider, MenuComponent, MenuSelectionProvider} from "../components";
+import {ContractAddressProvider, MenuComponent, MenuSelectionProvider, SpinnerContext, SpinnerProvider} from "../components";
 import Head from "next/head";
 import Web3Modal from "web3modal";
 
@@ -53,29 +53,36 @@ function App({Component, pageProps}) {
 
     return (
         <ContractAddressProvider>
-            <MenuSelectionProvider>
-                <Head>
-                    <title>{t("Johny NFT Marketplace")}</title>
-                </Head>
-                <Layout style={{minHeight: '100vh'}}>
-                    <Header style={{background: '#fff'}}>
-                        <div className={"logo"}>
-                            <Image width={150} height={80} src={logo} alt={"logo"}/>
-                        </div>
-                        <Wallet/>
-                        <MenuComponent/>
-                    </Header>
+            <SpinnerProvider>
+                <MenuSelectionProvider>
+                    <Head>
+                        <title>{t("Johny NFT Marketplace")}</title>
+                    </Head>
+                    <Layout style={{minHeight: '100vh'}}>
+                        <Header style={{background: '#fff'}}>
+                            <div className={"logo"}>
+                                <Image width={150} height={80} src={logo} alt={"logo"}/>
+                            </div>
+                            <Wallet/>
+                            <MenuComponent/>
+                        </Header>
 
-                    <Content style={{padding: '0 50px', marginTop: 64}}>
-                        <div style={{background: '#fff', padding: 24, minHeight: 380}}><Component {...pageProps} />
-                        </div>
-                    </Content>
+                        <Content style={{padding: '0 50px', marginTop: 64}}>
+                            <div style={{background: '#fff', padding: 24, minHeight: 380}}>
+                                <SpinnerContext.Consumer>
+                                    {SpinnerContext => <Spin style={{height: "100vh"}} spinning={SpinnerContext.spinning}>
+                                        <Component {...pageProps} />
+                                    </Spin>}
+                                </SpinnerContext.Consumer>
+                            </div>
+                        </Content>
 
-                    <Footer style={{textAlign: 'center'}}>
-                        {t("Johny NFT Market ©2022 Created by Jan Pavlát")}
-                    </Footer>
-                </Layout>
-            </MenuSelectionProvider>
+                        <Footer style={{textAlign: 'center'}}>
+                            {t("Johny NFT Market ©2022 Created by Jan Pavlát")}
+                        </Footer>
+                    </Layout>
+                </MenuSelectionProvider>
+            </SpinnerProvider>
         </ContractAddressProvider>
     );
 }

@@ -3,9 +3,9 @@ import {ethers} from "ethers";
 import Web3Modal from "web3modal";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
-import {Card, Col, Divider, Image, Row, Space, Spin, Typography} from 'antd';
+import {Card, Col, Divider, Image, Row, Space, Typography} from 'antd';
 import 'antd/dist/antd.css';
-import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext} from "../components";
+import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext, useSpinnerContext} from "../components";
 import axios from "axios";
 import {useTranslation} from "../utils/use-translations";
 
@@ -13,8 +13,8 @@ const {Meta} = Card;
 
 export default function CreateCollection() {
     const [NFTs, setNFTs] = useState([])
-    const [loadState, setLoadState] = useState(false)
     const contractAddress = useContractAddressContext()
+    const globalSpinner = useSpinnerContext()
     const {t} = useTranslation()
     useMenuSelectionContext().useSelection(["/collection"])
     useEffect(() => {
@@ -23,6 +23,7 @@ export default function CreateCollection() {
 
     //Get Owned NFTs by current user
     async function fetchMyNFTs() {
+        globalSpinner.setSpinning(true)
         try {
             //Get signer and provider from Web3Modal -> because we need to know from who to display NFTs
             const w3Modal = new Web3Modal()
@@ -59,12 +60,12 @@ export default function CreateCollection() {
         } catch (e) {
             console.log(e)
         } finally {
-            setLoadState(true)
+            globalSpinner.setSpinning(false)
         }
     }
 
     //If no NFTs exists
-    if (loadState && NFTs.length <= 0) {
+    if (!globalSpinner.spinning && NFTs.length <= 0) {
         return (
             <CenterWrapper>
                 <Space direction={"vertical"} size={100}>
@@ -77,38 +78,36 @@ export default function CreateCollection() {
     }
 
     return (
-        <Spin style={{height: "100vh"}} spinning={!loadState}>
-            <Row gutter={[16, 16]}>
-                {NFTs.map((NFT, index) => (
-                    <Col
-                        className="gutter-row"
-                        span={6}
-                        key={index}>
-                        <Card
-                            key={index}
-                            hoverable
-                            cover={
-                                <Image
-                                    style={{
-                                        width: "100%",
-                                        height: "30vh",
-                                        objectFit: "contain",
-                                    }}
-                                    src={NFT.image}
-                                    alt={"nft-image"}
-                                />
-                            }
-                        >
-                            <Meta
-                                title={`${NFT.name} [ by ${NFT.author} ]`}
-                                description={NFT.description}
+        <Row gutter={[16, 16]}>
+            {NFTs.map((NFT, index) => (
+                <Col
+                    className="gutter-row"
+                    span={6}
+                    key={index}>
+                    <Card
+                        key={index}
+                        hoverable
+                        cover={
+                            <Image
+                                style={{
+                                    width: "100%",
+                                    height: "30vh",
+                                    objectFit: "contain",
+                                }}
+                                src={NFT.image}
+                                alt={"nft-image"}
                             />
-                            <Divider/>
-                            <BottomCardComponent type={"success"} bottomText={`Market price: ${NFT.price} MATIC`}/>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-        </Spin>
+                        }
+                    >
+                        <Meta
+                            title={`${NFT.name} [ by ${NFT.author} ]`}
+                            description={NFT.description}
+                        />
+                        <Divider/>
+                        <BottomCardComponent type={"success"} bottomText={`Market price: ${NFT.price} MATIC`}/>
+                    </Card>
+                </Col>
+            ))}
+        </Row>
     )
 }

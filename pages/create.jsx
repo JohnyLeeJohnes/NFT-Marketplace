@@ -5,9 +5,9 @@ import {ethers} from "ethers";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import Web3Modal from "web3modal";
-import {Button, Col, Form, Image, Input, InputNumber, message, Row, Spin, Typography, Upload} from 'antd';
+import {Button, Col, Form, Image, Input, InputNumber, message, Row, Typography, Upload} from 'antd';
 import 'antd/dist/antd.css';
-import {useContractAddressContext, useMenuSelectionContext} from "../components";
+import {useContractAddressContext, useMenuSelectionContext, useSpinnerContext} from "../components";
 import {InboxOutlined} from "@ant-design/icons";
 import {useTranslation} from "../utils/use-translations";
 import matic from "../public/matic.svg"
@@ -17,9 +17,9 @@ const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 const {Dragger} = Upload;
 
 export default function CreatePage() {
-    const [loadState, setLoadState] = useState(true)
     const [fileURL, setFileURL] = useState(null)
     const contractAddress = useContractAddressContext()
+    const globalSpinner = useSpinnerContext()
     const router = useRouter()
     const {t} = useTranslation()
     const getFile = (e) => {
@@ -29,9 +29,11 @@ export default function CreatePage() {
         return e && e.fileList;
     };
     useMenuSelectionContext().useSelection(["/create"])
+    useSpinnerContext().useSpinning(false)
 
     //Upload uploaded file to IPFS
     async function onChange(e) {
+        globalSpinner.setSpinning(true)
         if (e.fileList && e.fileList.length > 0) {
             try {
                 const img = e.fileList[0].originFileObj
@@ -44,6 +46,7 @@ export default function CreatePage() {
                 console.log(error)
             }
         }
+        globalSpinner.setSpinning(false)
     }
 
     //Upload form data to IPFS
@@ -61,7 +64,7 @@ export default function CreatePage() {
             const addedFile = await client.add(data)
             return `https://ipfs.infura.io/ipfs/${addedFile.path}`;
         } catch (e) {
-            setLoadState(true)
+            globalSpinner.setSpinning(false)
             console.log(e)
         }
     }
@@ -104,7 +107,7 @@ export default function CreatePage() {
         } catch (e) {
             console.log(e)
         } finally {
-            setLoadState(true)
+            globalSpinner.setSpinning(false)
         }
     }
 
@@ -114,7 +117,7 @@ export default function CreatePage() {
     }
 
     return (
-        <Spin style={{height: "100vh"}} spinning={!loadState}>
+        <div>
             <Row justify="center">
                 <Col span={8}>
                     <Typography.Title level={3} style={{marginBottom: 20}}>
@@ -131,7 +134,7 @@ export default function CreatePage() {
                 onFinish={async values => {
                     const validation = await validateForm(values)
                     if (validation) {
-                        setLoadState(false)
+                        globalSpinner.setSpinning(true)
                         await createNFTSale(values)
                     } else {
                         message.error("Some fields are missing!");
@@ -209,6 +212,6 @@ export default function CreatePage() {
                     </Button>
                 </Form.Item>
             </Form>
-        </Spin>
+        </div>
     );
 }
