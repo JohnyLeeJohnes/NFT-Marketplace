@@ -1,14 +1,15 @@
 import React, {Component, useState} from 'react';
 import {ethers} from "ethers";
 import 'antd/dist/antd.css';
-import {Button, Layout, message, Spin, Typography} from 'antd';
-import {useTranslation} from "../utils/use-translations";
 import '../styles/index.css';
 import logo from "../public/logo-black.svg"
 import Image from "next/image"
-import {ContractAddressProvider, MenuComponent, MenuSelectionProvider, SpinnerContext, SpinnerProvider} from "../components";
 import Head from "next/head";
 import Web3Modal from "web3modal";
+import {Button, Layout, message, Spin, Typography} from 'antd';
+import {useTranslation} from "../utils/use-translations";
+import {ContractAddressProvider, MenuComponent, MenuSelectionProvider, SpinnerContext, SpinnerProvider} from "../components";
+import {isBrowser} from "react-device-detect";
 
 const {Header, Content, Footer} = Layout;
 
@@ -36,7 +37,7 @@ function App({Component, pageProps}) {
 
     //Hook to show "Login to MetaMask" button
     const Wallet = () => {
-        if (!account.length) {
+        if (!account.length && isBrowser) {
             return (
                 <div className={"address"}>
                     <Typography.Title level={5} style={{align: "right"}}>
@@ -46,9 +47,8 @@ function App({Component, pageProps}) {
                     </Typography.Title>
                 </div>
             )
-        } else {
-            return (<div/>)
         }
+        return null
     }
 
     return (

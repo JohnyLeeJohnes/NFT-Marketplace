@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {ethers} from "ethers";
 import Web3Modal from "web3modal";
-import {Card, Col, Divider, Image, Row, Typography} from 'antd';
+import axios from "axios";
 import 'antd/dist/antd.css';
+import {Card, Col, Divider, Image, List, Row, Typography} from 'antd';
 import {BottomCardComponent, useContractAddressContext, useMenuSelectionContext, useSpinnerContext} from "../components";
+import {useTranslation} from "../utils/use-translations";
+import {BrowserView, MobileView} from 'react-device-detect';
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
-import axios from "axios";
-import {useTranslation} from "../utils/use-translations";
 
 const {Meta} = Card;
 
@@ -74,17 +75,124 @@ export default function CreateDashboard() {
     }
 
     return (
-        <Row>
-            <Col span={12}>
+        <div>
+            <BrowserView>
+                <Row>
+                    <Col span={12} style={{paddingRight: 10}}>
+                        <Typography.Title level={3} style={{marginBottom: 20}}>Listed NFTs</Typography.Title>
+                        <List
+                            size={"large"}
+                            grid={{
+                                gutter: 8,
+                                xs: 1,
+                                sm: 1,
+                                md: 1,
+                                lg: 2,
+                                xl: 2,
+                                xxl: 2,
+                            }}
+                            pagination={{
+                                pageSize: 2,
+                            }}
+                            dataSource={activeNFTs}
+                            renderItem={NFT => (
+                                <List.Item>
+                                    <Card
+                                        key={NFT.tokenID}
+                                        hoverable
+                                        cover={
+                                            <Image
+                                                style={{
+                                                    width: "100%",
+                                                    height: "25vh",
+                                                    objectFit: "contain",
+                                                }}
+                                                src={NFT.image}
+                                                alt={"nft-image"}
+                                            />
+                                        }
+                                    >
+                                        <Meta
+                                            title={`${NFT.name} [ by ${NFT.author} ]`}
+                                            description={NFT.description}
+                                        />
+                                        <Divider/>
+                                        <BottomCardComponent type={"warning"}
+                                                             bottomText={`Listed for: ${NFT.price} MATIC`}/>
+                                    </Card>
+                                </List.Item>
+                            )}>
+                        </List>
+                    </Col>
+                    <Col span={12} style={{paddingLeft: 10}}>
+                        <Typography.Title level={3} style={{marginBottom: 20}}>Sold NFTs</Typography.Title>
+                        <List
+                            size={"large"}
+                            grid={{
+                                gutter: 8,
+                                xs: 1,
+                                sm: 1,
+                                md: 1,
+                                lg: 2,
+                                xl: 2,
+                                xxl: 2,
+                            }}
+                            pagination={{
+                                pageSize: 2,
+                            }}
+                            dataSource={soldNFTs}
+                            renderItem={NFT => (
+                                <List.Item>
+                                    <Card
+                                        key={NFT.tokenID}
+                                        hoverable
+                                        cover={
+                                            <Image
+                                                style={{
+                                                    width: "100%",
+                                                    height: "25vh",
+                                                    objectFit: "contain",
+                                                }}
+                                                src={NFT.image}
+                                                alt={"nft-image"}
+                                            />
+                                        }
+                                    >
+                                        <Meta
+                                            title={`${NFT.name} [ by ${NFT.author} ]`}
+                                            description={NFT.description}
+                                        />
+                                        <Divider/>
+                                        <BottomCardComponent type={"warning"}
+                                                             bottomText={`Listed for: ${NFT.price} MATIC`}/>
+                                    </Card>
+                                </List.Item>
+                            )}>
+                        </List>
+                    </Col>
+                </Row>
+            </BrowserView>
+            <MobileView>
                 <Typography.Title level={3} style={{marginBottom: 20}}>Listed NFTs</Typography.Title>
-                <Row gutter={[16, 16]}>
-                    {activeNFTs.map((NFT, index) => (
-                        <Col
-                            className="gutter-row"
-                            span={10}
-                            key={index}>
+                <List
+                    size={"large"}
+                    grid={{
+                        gutter: 8,
+                        xs: 1,
+                        sm: 1,
+                        md: 1,
+                        lg: 2,
+                        xl: 2,
+                        xxl: 2,
+                    }}
+                    pagination={{
+                        pageSize: 1,
+                    }}
+                    dataSource={activeNFTs}
+                    renderItem={NFT => (
+                        <List.Item>
                             <Card
-                                key={index}
+                                key={NFT.tokenID}
                                 hoverable
                                 cover={
                                     <Image
@@ -106,20 +214,30 @@ export default function CreateDashboard() {
                                 <BottomCardComponent type={"warning"}
                                                      bottomText={`Listed for: ${NFT.price} MATIC`}/>
                             </Card>
-                        </Col>
-                    ))}
-                </Row>
-            </Col>
-            <Col span={12}>
+                        </List.Item>
+                    )}>
+                </List>
+                <Divider/>
                 <Typography.Title level={3} style={{marginBottom: 20}}>Sold NFTs</Typography.Title>
-                <Row gutter={[16, 16]}>
-                    {soldNFTs.map((NFT, index) => (
-                        <Col
-                            className="gutter-row"
-                            span={10}
-                            key={index}>
+                <List
+                    size={"large"}
+                    grid={{
+                        gutter: 8,
+                        xs: 1,
+                        sm: 1,
+                        md: 1,
+                        lg: 2,
+                        xl: 2,
+                        xxl: 2,
+                    }}
+                    pagination={{
+                        pageSize: 1,
+                    }}
+                    dataSource={soldNFTs}
+                    renderItem={NFT => (
+                        <List.Item>
                             <Card
-                                key={index}
+                                key={NFT.tokenID}
                                 hoverable
                                 cover={
                                     <Image
@@ -138,13 +256,13 @@ export default function CreateDashboard() {
                                     description={NFT.description}
                                 />
                                 <Divider/>
-                                <BottomCardComponent type={"danger"} bottomText={`Market price: ${NFT.price} MATIC`}/>
+                                <BottomCardComponent type={"warning"}
+                                                     bottomText={`Listed for: ${NFT.price} MATIC`}/>
                             </Card>
-                        </Col>
-                    ))}
-                </Row>
-            </Col>
-            <Divider type="vertical"/>
-        </Row>
+                        </List.Item>
+                    )}>
+                </List>
+            </MobileView>
+        </div>
     );
 }

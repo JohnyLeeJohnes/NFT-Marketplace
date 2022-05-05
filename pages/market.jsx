@@ -4,7 +4,7 @@ import Web3Modal from "web3modal";
 import {ethers} from "ethers";
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import "antd/dist/antd.css";
-import {Button, Card, Col, Divider, Image, message, Row, Space, Typography} from "antd";
+import {Button, Card, Divider, Image, List, message, Space, Typography} from "antd";
 import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext, useSpinnerContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
 
@@ -100,14 +100,25 @@ export default function Home() {
     }
 
     return (
-        <Row gutter={[16, 16]}>
-            {NFTs.map((NFT, index) => (
-                <Col
-                    className="gutter-row"
-                    span={6}
-                    key={index}>
+        <List
+            size={"large"}
+            grid={{
+                gutter: 16,
+                xs: 1,
+                sm: 2,
+                md: 2,
+                lg: 3,
+                xl: 4,
+                xxl: 4,
+            }}
+            pagination={{
+                pageSize: 8,
+            }}
+            dataSource={NFTs}
+            renderItem={NFT => (
+                <List.Item>
                     <Card
-                        key={index}
+                        key={NFT.tokenID}
                         hoverable
                         cover={
                             <Image
@@ -127,14 +138,15 @@ export default function Home() {
                         />
                         <Divider/>
                         <BottomCardComponent bottomText={`${NFT.price} MATIC`}/>
-                        <Text italic>{`(${NFT.fullPrice} including fee)`}</Text>
+                        <Text italic>
+                            {`(${NFT.fullPrice} including fee)`}
+                        </Text>
                         <Button type="primary" style={{width: "100%", marginTop: 5}} onClick={() => buyNFT(NFT)}>
                             {t("Buy!")}
                         </Button>
                     </Card>
-                </Col>
-            ))}
-        </Row>
+                </List.Item>
+            )}>
+        </List>
     );
-
 }

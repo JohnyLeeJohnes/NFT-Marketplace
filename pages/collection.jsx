@@ -3,7 +3,7 @@ import {ethers} from "ethers";
 import Web3Modal from "web3modal";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
-import {Card, Col, Divider, Image, Row, Space, Typography} from 'antd';
+import {Card, Divider, Image, List, Space, Typography} from 'antd';
 import 'antd/dist/antd.css';
 import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext, useSpinnerContext} from "../components";
 import axios from "axios";
@@ -78,14 +78,25 @@ export default function CreateCollection() {
     }
 
     return (
-        <Row gutter={[16, 16]}>
-            {NFTs.map((NFT, index) => (
-                <Col
-                    className="gutter-row"
-                    span={6}
-                    key={index}>
+        <List
+            size={"large"}
+            grid={{
+                gutter: 16,
+                xs: 1,
+                sm: 2,
+                md: 2,
+                lg: 3,
+                xl: 4,
+                xxl: 4,
+            }}
+            pagination={{
+                pageSize: 8,
+            }}
+            dataSource={NFTs}
+            renderItem={NFT => (
+                <List.Item>
                     <Card
-                        key={index}
+                        key={NFT.tokenID}
                         hoverable
                         cover={
                             <Image
@@ -106,8 +117,8 @@ export default function CreateCollection() {
                         <Divider/>
                         <BottomCardComponent type={"success"} bottomText={`Market price: ${NFT.price} MATIC`}/>
                     </Card>
-                </Col>
-            ))}
-        </Row>
+                </List.Item>
+            )}>
+        </List>
     )
 }
