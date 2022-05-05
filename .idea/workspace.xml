@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="minor changes">
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="changed grids to lists&#10;edited to mobile devices">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MenuComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MenuComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/_app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/collection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/collection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/market.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="marketlist" />
+        <entry key="$PROJECT_DIR$" value="mobile-design" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -78,7 +71,7 @@
       <recent name="C:\Users\Johny\nft-vsfs-market\public\home" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.INSTALL">
+  <component name="RunManager" selected="npm.RUN">
     <configuration name=".local: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -95,6 +88,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker..local: Compose Deployment" />
         <item itemvalue="Docker..local: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -158,14 +152,7 @@
       <workItem from="1650827230886" duration="571000" />
       <workItem from="1650831123376" duration="22000" />
       <workItem from="1650913238617" duration="56000" />
-      <workItem from="1651741609153" duration="23648000" />
-    </task>
-    <task id="LOCAL-00009" summary="Testing MetaMask key">
-      <created>1646946776696</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1646946776696</updated>
+      <workItem from="1651741609153" duration="27407000" />
     </task>
     <task id="LOCAL-00010" summary="Testing MetaMask key">
       <created>1646946838548</created>
@@ -503,7 +490,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651759376865</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="changed grids to lists&#10;edited to mobile devices">
+      <created>1651772747444</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1651772747444</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="All pages working&#10;-Market page working&#10;-Create NFT page working&#10;-Owned NFTs working&#10;-Created NFTs working&#10;Minor changes to design" />
     <MESSAGE value="README.md updated" />
     <MESSAGE value="Testing MetaMask key" />
     <MESSAGE value="Minor changes" />
@@ -536,7 +529,8 @@
     <MESSAGE value="Removed some files" />
     <MESSAGE value="created global spinner" />
     <MESSAGE value="minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes" />
+    <MESSAGE value="changed grids to lists&#10;edited to mobile devices" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed grids to lists&#10;edited to mobile devices" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

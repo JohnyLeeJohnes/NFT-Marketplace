@@ -9,17 +9,13 @@ export function MenuComponent(props) {
     const {t} = useTranslation()
     const menuSelection = useMenuSelectionContext()
 
-
     return (
         <Menu theme="light"
               mode="horizontal"
               selectedKeys={menuSelection.selection}
               defaultSelectedKeys={["/"]}
-              style={{width: 100, justifyContent: "right", float: "right"}}
-              overflowedIndicator={<UnorderedListOutlined/>}
               {...props}
         >
-
             <Menu.Item
                 key={"/"}
                 icon={<HomeOutlined/>}>
@@ -56,6 +52,5 @@ export function MenuComponent(props) {
                 </Link>
             </Menu.Item>
         </Menu>
-
     )
 }

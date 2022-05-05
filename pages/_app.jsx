@@ -9,7 +9,8 @@ import Web3Modal from "web3modal";
 import {Button, Layout, message, Spin, Typography} from 'antd';
 import {useTranslation} from "../utils/use-translations";
 import {ContractAddressProvider, MenuComponent, MenuSelectionProvider, SpinnerContext, SpinnerProvider} from "../components";
-import {isBrowser} from "react-device-detect";
+import {isBrowser, isMobile as isCoolMobile} from "react-device-detect";
+import {UnorderedListOutlined} from "@ant-design/icons";
 
 const {Header, Content, Footer} = Layout;
 
@@ -51,6 +52,18 @@ function App({Component, pageProps}) {
         return null
     }
 
+    const MenuSelector = () => {
+        if (isCoolMobile) {
+            return (
+                <MenuComponent style={{width: 100, justifyContent: "right", float: "right"}}
+                               overflowedIndicator={<UnorderedListOutlined/>}/>
+            )
+        }
+        return (
+            <MenuComponent style={{justifyContent: 'center'}}/>
+        )
+    }
+
     return (
         <ContractAddressProvider>
             <SpinnerProvider>
@@ -64,7 +77,7 @@ function App({Component, pageProps}) {
                                 <Image width={150} height={80} src={logo} alt={"logo"}/>
                             </div>
                             <Wallet/>
-                            <MenuComponent/>
+                            <MenuSelector/>
                         </Header>
 
                         <Content style={{padding: '0 50px', marginTop: 64}}>
