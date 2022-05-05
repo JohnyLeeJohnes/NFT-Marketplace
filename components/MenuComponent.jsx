@@ -5,19 +5,21 @@ import {useTranslation} from "../utils/use-translations";
 import {useMenuSelectionContext} from "./context";
 import {FaExchangeAlt} from 'react-icons/fa';
 
-
 export function MenuComponent(props) {
     const {t} = useTranslation()
     const menuSelection = useMenuSelectionContext()
+
 
     return (
         <Menu theme="light"
               mode="horizontal"
               selectedKeys={menuSelection.selection}
               defaultSelectedKeys={["/"]}
-              style={{justifyContent: 'center'}}
+              style={{width: 100, justifyContent: "right", float: "right"}}
+              overflowedIndicator={<UnorderedListOutlined/>}
               {...props}
         >
+
             <Menu.Item
                 key={"/"}
                 icon={<HomeOutlined/>}>
@@ -54,5 +56,6 @@ export function MenuComponent(props) {
                 </Link>
             </Menu.Item>
         </Menu>
+
     )
 }
