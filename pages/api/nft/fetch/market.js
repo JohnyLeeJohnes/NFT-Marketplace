@@ -6,14 +6,14 @@ import {ContractAddressesFunction} from "../../../../components";
 
 export default async function handler(req, res) {
     try {
-        res.status(200).send(await fetchNFTs())
-    } catch (e){
+        res.status(200).send(await fetchMarketNFTs())
+    } catch (e) {
         console.log(e)
         res.status(500).end(JSON.stringify("server fetch error"))
     }
 }
 
-async function fetchNFTs() {
+async function fetchMarketNFTs() {
     //Load contracts
     const contractAddress = ContractAddressesFunction()
     const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.matic.today")

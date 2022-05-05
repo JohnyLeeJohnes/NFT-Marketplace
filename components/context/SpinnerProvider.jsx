@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {SpinnerContext} from "./SpinnerContext";
 
-export const SpinnerProvider = ({defaultSpinning = true, ...props}) => {
+export const SpinnerProvider = ({defaultSpinning = false, ...props}) => {
     const [spinning, setSpinning] = useState(defaultSpinning);
     return <SpinnerContext.Provider
         value={{

@@ -5,13 +5,7 @@ import {ethers} from "ethers";
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import "antd/dist/antd.css";
 import {Button, Card, Col, Divider, Image, message, Row, Space, Typography} from "antd";
-import {
-    BottomCardComponent,
-    CenterWrapper,
-    useContractAddressContext,
-    useMenuSelectionContext,
-    useSpinnerContext
-} from "../components";
+import {BottomCardComponent, CenterWrapper, useContractAddressContext, useMenuSelectionContext, useSpinnerContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
 
 const {Text} = Typography;
