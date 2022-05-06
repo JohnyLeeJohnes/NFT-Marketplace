@@ -1,99 +1,85 @@
-import React, {Component, useState} from 'react';
-import {ethers} from "ethers";
+import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import '../styles/index.css';
 import logo from "../public/logo-black.svg"
 import Image from "next/image"
 import Head from "next/head";
-import Web3Modal from "web3modal";
-import {Button, Layout, message, Spin, Typography} from 'antd';
+import {Button, Layout, Spin, Typography} from 'antd';
 import {useTranslation} from "../utils/use-translations";
 import {ContractAddressProvider, MenuComponent, MenuSelectionProvider, SpinnerContext, SpinnerProvider} from "../components";
-import {isBrowser, isMobile as isCoolMobile} from "react-device-detect";
-import {UnorderedListOutlined} from "@ant-design/icons";
+import {isBrowser, isMobile} from "react-device-detect";
+import {WalletProvider} from "../components/context/WalletProvider";
+import {useWalletContext} from "../components/context/WalletContext";
 
 const {Header, Content, Footer} = Layout;
 
-function App({Component, pageProps}) {
-    const [account, setAccount] = useState([])
+
+//Login to metamask component
+const Wallet = () => {
+    const walletContext = useWalletContext()
     const {t} = useTranslation()
-
-    //Ping users wallet -> connect with webapp
-    async function getWalletAddress() {
-        try {
-            const web3Modal = new Web3Modal()
-            const instance = await web3Modal.connect();
-            const provider = new ethers.providers.Web3Provider(instance);
-            const signer = provider.getSigner();
-            const address = await signer.getAddress()
-            setAccount(address)
-            message.success({
-                content: `You are logged in with: ${address}`,
-                duration: 3
-            });
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    //Hook to show "Login to MetaMask" button
-    const Wallet = () => {
-        if (!account.length && isBrowser) {
-            return (
-                <div className={"address"}>
-                    <Typography.Title level={5} style={{align: "right"}}>
-                        <Button onClick={getWalletAddress} shape="round" danger>
-                            {t("Login to MetaMask")}
-                        </Button>
-                    </Typography.Title>
-                </div>
-            )
-        }
-        return null
-    }
-
-    const MenuSelector = () => {
-        if (isCoolMobile) {
-            return (
-                <MenuComponent style={{width: 100, justifyContent: "right", float: "right"}}
-                               overflowedIndicator={<UnorderedListOutlined/>}/>
-            )
-        }
+    if (!walletContext.account && isBrowser) {
         return (
-            <MenuComponent style={{justifyContent: 'center'}}/>
+            <div className={"address"}>
+                <Typography.Title level={5} style={{align: "right"}}>
+                    <Button onClick={() => walletContext.callWalletModal()} shape="round" danger>
+                        {t("Login to MetaMask")}
+                    </Button>
+                </Typography.Title>
+            </div>
         )
     }
+    return null
+}
+
+const MenuSelector = () => {
+    if (isMobile) {
+        return (
+            <MenuComponent style={{width: 100, justifyContent: "right", float: "right"}}
+            />
+        )
+    }
+    return (
+        <MenuComponent style={{justifyContent: 'center'}}/>
+    )
+}
+
+function App({Component, pageProps}) {
+    const {t} = useTranslation()
+    console.log(isMobile)
 
     return (
         <ContractAddressProvider>
             <SpinnerProvider>
                 <MenuSelectionProvider>
-                    <Head>
-                        <title>{t("Johny NFT Marketplace")}</title>
-                    </Head>
-                    <Layout style={{minHeight: '100vh'}}>
-                        <Header style={{background: '#fff'}}>
-                            <div className={"logo"}>
-                                <Image width={150} height={80} src={logo} alt={"logo"}/>
-                            </div>
-                            <Wallet/>
-                            <MenuSelector/>
-                        </Header>
+                    <WalletProvider>
+                        <Head>
+                            <title>{t("Johny NFT Marketplace")}</title>
+                        </Head>
+                        <Layout style={{minHeight: '100vh'}}>
+                            <Header style={{background: '#fff'}}>
+                                <div className={"logo"}>
+                                    <Image width={150} height={80} src={logo} alt={"logo"}/>
+                                </div>
+                                <MenuSelector/>
+                                <Wallet/>
+                            </Header>
 
-                        <Content style={{padding: '0 50px', marginTop: 64}}>
-                            <div style={{background: '#fff', padding: 24, minHeight: 380}}>
-                                <SpinnerContext.Consumer>
-                                    {SpinnerContext => <Spin style={{height: "100vh"}} spinning={SpinnerContext.spinning}>
-                                        <Component {...pageProps} />
-                                    </Spin>}
-                                </SpinnerContext.Consumer>
-                            </div>
-                        </Content>
+                            <Content style={isMobile ? {padding: '0 20px', marginTop: 20} : {padding: '0 50px', marginTop: 64}}>
+                                <div style={{background: '#fff', padding: 24, minHeight: 380}}>
+                                    <SpinnerContext.Consumer>
+                                        {SpinnerContext => <Spin style={{height: "100vh"}} spinning={SpinnerContext.spinning}>
+                                            <Component {...pageProps} />
+                                        </Spin>}
+                                    </SpinnerContext.Consumer>
+                                </div>
+                            </Content>
 
-                        <Footer style={{textAlign: 'center'}}>
-                            {t("Johny NFT Market ©2022 Created by Jan Pavlát")}
-                        </Footer>
-                    </Layout>
+                            <Footer style={{textAlign: 'center'}}>
+                                {t("Johny NFT Market ©2022 Created by Jan Pavlát")}
+                            </Footer>
+                        </Layout>
+                    </WalletProvider>
                 </MenuSelectionProvider>
             </SpinnerProvider>
         </ContractAddressProvider>

@@ -13,7 +13,7 @@ export default function Home() {
     useSpinnerContext().useSpinning(false)
 
     return (
-        <div>
+        <>
             <BrowserView>
                 <Row>
                     <Col span={12}>
@@ -187,7 +187,7 @@ export default function Home() {
                     </Paragraph>
                 </Typography>
             </MobileView>
-        </div>
+        </>
     );
 
 }

@@ -117,7 +117,7 @@ export default function CreatePage() {
     }
 
     return (
-        <div>
+        <>
             <Row justify="center">
                 <Col span={8}>
                     <Typography.Title level={3} style={{marginBottom: 20}}>
@@ -212,6 +212,6 @@ export default function CreatePage() {
                     </Button>
                 </Form.Item>
             </Form>
-        </div>
+        </>
     );
 }
