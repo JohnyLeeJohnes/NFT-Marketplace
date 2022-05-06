@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import 'antd/dist/antd.css';
 import '../styles/index.css';
 import logo from "../public/logo-black.svg"
@@ -7,18 +7,16 @@ import Head from "next/head";
 import {Button, Layout, Spin, Typography} from 'antd';
 import {useTranslation} from "../utils/use-translations";
 import {ContractAddressProvider, MenuComponent, MenuSelectionProvider, SpinnerContext, SpinnerProvider} from "../components";
-import {isBrowser, isMobile} from "react-device-detect";
 import {WalletProvider} from "../components/context/WalletProvider";
 import {useWalletContext} from "../components/context/WalletContext";
 
 const {Header, Content, Footer} = Layout;
 
-
 //Login to metamask component
 const Wallet = () => {
     const walletContext = useWalletContext()
     const {t} = useTranslation()
-    if (!walletContext.account && isBrowser) {
+    if (!walletContext.account) {
         return (
             <div className={"address"}>
                 <Typography.Title level={5} style={{align: "right"}}>
@@ -32,6 +30,7 @@ const Wallet = () => {
     return null
 }
 
+/*
 const MenuSelector = () => {
     if (isMobile) {
         return (
@@ -40,19 +39,18 @@ const MenuSelector = () => {
         )
     }
     return (
-        <MenuComponent style={{justifyContent: 'center'}}/>
+        <MenuComponent style={{justifyContent: 'center'}}/>y
     )
-}
+}*/
 
 function App({Component, pageProps}) {
     const {t} = useTranslation()
-    console.log(isMobile)
 
     return (
-        <ContractAddressProvider>
-            <SpinnerProvider>
-                <MenuSelectionProvider>
-                    <WalletProvider>
+        <WalletProvider>
+            <ContractAddressProvider>
+                <SpinnerProvider>
+                    <MenuSelectionProvider>
                         <Head>
                             <title>{t("Johny NFT Marketplace")}</title>
                         </Head>
@@ -61,11 +59,11 @@ function App({Component, pageProps}) {
                                 <div className={"logo"}>
                                     <Image width={150} height={80} src={logo} alt={"logo"}/>
                                 </div>
-                                <MenuSelector/>
+                                <MenuComponent/>
                                 <Wallet/>
                             </Header>
 
-                            <Content style={isMobile ? {padding: '0 20px', marginTop: 20} : {padding: '0 50px', marginTop: 64}}>
+                            <Content style={{padding: '0 50px', marginTop: 64}}>
                                 <div style={{background: '#fff', padding: 24, minHeight: 380}}>
                                     <SpinnerContext.Consumer>
                                         {SpinnerContext => <Spin style={{height: "100vh"}} spinning={SpinnerContext.spinning}>
@@ -79,10 +77,10 @@ function App({Component, pageProps}) {
                                 {t("Johny NFT Market ©2022 Created by Jan Pavlát")}
                             </Footer>
                         </Layout>
-                    </WalletProvider>
-                </MenuSelectionProvider>
-            </SpinnerProvider>
-        </ContractAddressProvider>
+                    </MenuSelectionProvider>
+                </SpinnerProvider>
+            </ContractAddressProvider>
+        </WalletProvider>
     );
 }
 
