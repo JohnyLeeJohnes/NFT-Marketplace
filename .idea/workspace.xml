@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="workspace.xml">
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/use-translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/use-translations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +59,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\Programs\\JetBrains - toolbox\\apps\\IDEA-U\\ch-0\\221.5080.210\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;
@@ -160,14 +162,8 @@
       <workItem from="1651831518419" duration="9465000" />
       <workItem from="1651915230608" duration="7285000" />
       <workItem from="1651948773311" duration="51000" />
-      <workItem from="1651950490579" duration="67000" />
-    </task>
-    <task id="LOCAL-00014" summary="Deploys">
-      <created>1646993693784</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1646993693784</updated>
+      <workItem from="1651950490579" duration="127000" />
+      <workItem from="1651950634586" duration="4000" />
     </task>
     <task id="LOCAL-00015" summary="Deploys">
       <created>1646995495328</created>
@@ -505,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651921945358</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="workspace.xml">
+      <created>1651950568795</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1651950568796</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +516,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Testing .env" />
     <MESSAGE value="Minor image fixes" />
     <MESSAGE value="Renaming to jsx -&gt; removed API cause its not needed now" />
     <MESSAGE value="Renaming to jsx -&gt; removed API cause its not needed now&#10;Finished translation template" />
@@ -538,7 +540,8 @@
     <MESSAGE value="nah" />
     <MESSAGE value="fixed hydration with dynamic import&#10;fixed mobile support for every page&#10;fixed create form&#10;minor design changes" />
     <MESSAGE value="fixed hydration error with dynamic import&#10;fixed mobile support for every page&#10;fixed create form&#10;minor design changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed hydration error with dynamic import&#10;fixed mobile support for every page&#10;fixed create form&#10;minor design changes" />
+    <MESSAGE value="workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
