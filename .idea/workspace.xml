@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="fixed hydration error with dynamic import&#10;fixed mobile support for every page&#10;fixed create form&#10;minor design changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MenuComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MenuComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/context/WalletProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/context/WalletProvider.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/market.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index.css" afterDir="false" />
-    </list>
+    <list default="true" id="2a44f55c-acd0-46d2-9da9-92da568580a9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,6 +91,7 @@
       <list>
         <item itemvalue="Docker..local: Compose Deployment" />
         <item itemvalue="Docker..local: Compose Deployment" />
+        <item itemvalue="Docker..local: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -165,14 +156,7 @@
       <workItem from="1650913238617" duration="56000" />
       <workItem from="1651741609153" duration="28231000" />
       <workItem from="1651831518419" duration="9465000" />
-      <workItem from="1651915230608" duration="6623000" />
-    </task>
-    <task id="LOCAL-00013" summary="Minor changes">
-      <created>1646950568449</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1646950568449</updated>
+      <workItem from="1651915230608" duration="7285000" />
     </task>
     <task id="LOCAL-00014" summary="Deploys">
       <created>1646993693784</created>
@@ -510,7 +494,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651840666330</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="fixed hydration error with dynamic import&#10;fixed mobile support for every page&#10;fixed create form&#10;minor design changes">
+      <created>1651921945358</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1651921945358</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
