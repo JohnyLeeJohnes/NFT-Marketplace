@@ -3,9 +3,11 @@ import "antd/dist/antd.css";
 import {Card, Col, Divider, Row, Typography} from "antd";
 import {useMenuSelectionContext, useSpinnerContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
-import {BrowserView, MobileView} from 'react-device-detect';
+import dynamic from "next/dynamic";
 
 const {Title, Paragraph, Text, Link} = Typography;
+const BrowserView = dynamic(() => import('react-device-detect').then(module => module.BrowserView), {ssr: false});
+const MobileView = dynamic(() => import('react-device-detect').then(module => module.MobileView), {ssr: false});
 
 export default function Home() {
     const {t} = useTranslation()
@@ -19,7 +21,7 @@ export default function Home() {
                     <Col span={12}>
                         <Card bordered={false}>
                             <Typography>
-                                <Title>Johny NFT Marketplace</Title>
+                                <Title>{t("Johny NFT Marketplace")}</Title>
                                 <Paragraph>
                                     Welcome to the<Text strong> Johny NFT Marketplace! </Text>This application is a student
                                     project

@@ -9,8 +9,12 @@ import {useTranslation} from "../utils/use-translations";
 import {ContractAddressProvider, MenuComponent, MenuSelectionProvider, SpinnerContext, SpinnerProvider} from "../components";
 import {WalletProvider} from "../components/context/WalletProvider";
 import {useWalletContext} from "../components/context/WalletContext";
+import dynamic from 'next/dynamic'
+import {MenuOutlined} from "@ant-design/icons";
 
 const {Header, Content, Footer} = Layout;
+const BrowserView = dynamic(() => import('react-device-detect').then(module => module.BrowserView), {ssr: false});
+const MobileView = dynamic(() => import('react-device-detect').then(module => module.MobileView), {ssr: false});
 
 //Login to metamask component
 const Wallet = () => {
@@ -18,34 +22,42 @@ const Wallet = () => {
     const {t} = useTranslation()
     if (!walletContext.account) {
         return (
-            <div className={"address"}>
-                <Typography.Title level={5} style={{align: "right"}}>
-                    <Button onClick={() => walletContext.callWalletModal()} shape="round" danger>
-                        {t("Login to MetaMask")}
-                    </Button>
-                </Typography.Title>
-            </div>
+            <BrowserView>
+                <div className={"address"}>
+                    <Typography.Title level={5} style={{align: "right"}}>
+                        <Button onClick={() => walletContext.callWalletModal()} shape="round" danger>
+                            {t("Login to MetaMask")}
+                        </Button>
+                    </Typography.Title>
+                </div>
+            </BrowserView>
         )
     }
     return null
 }
 
-/*
+
 const MenuSelector = () => {
-    if (isMobile) {
-        return (
-            <MenuComponent style={{width: 100, justifyContent: "right", float: "right"}}
-            />
-        )
-    }
     return (
-        <MenuComponent style={{justifyContent: 'center'}}/>y
+        <>
+            <MobileView>
+                <MenuComponent
+                    style={{
+                        width: 100,
+                        float: 'right',
+                        justifyContent: 'right'
+                    }}
+                    overflowedIndicator={<MenuOutlined/>}/>
+            </MobileView>
+            <BrowserView>
+                <MenuComponent style={{justifyContent: 'center'}}/>
+            </BrowserView>
+        </>
     )
-}*/
+}
 
 function App({Component, pageProps}) {
     const {t} = useTranslation()
-
     return (
         <WalletProvider>
             <ContractAddressProvider>
@@ -59,19 +71,32 @@ function App({Component, pageProps}) {
                                 <div className={"logo"}>
                                     <Image width={150} height={80} src={logo} alt={"logo"}/>
                                 </div>
-                                <MenuComponent/>
                                 <Wallet/>
+                                <MenuSelector/>
                             </Header>
 
-                            <Content style={{padding: '0 50px', marginTop: 64}}>
-                                <div style={{background: '#fff', padding: 24, minHeight: 380}}>
-                                    <SpinnerContext.Consumer>
-                                        {SpinnerContext => <Spin style={{height: "100vh"}} spinning={SpinnerContext.spinning}>
-                                            <Component {...pageProps} />
-                                        </Spin>}
-                                    </SpinnerContext.Consumer>
-                                </div>
-                            </Content>
+                            <BrowserView>
+                                <Content style={{padding: '0 50px', marginTop: 50}}>
+                                    <div style={{background: '#fff', padding: 24, minHeight: 380}}>
+                                        <SpinnerContext.Consumer>
+                                            {SpinnerContext => <Spin style={{height: "100vh"}} spinning={SpinnerContext.spinning}>
+                                                <Component {...pageProps} />
+                                            </Spin>}
+                                        </SpinnerContext.Consumer>
+                                    </div>
+                                </Content>
+                            </BrowserView>
+                            <MobileView>
+                                <Content style={{padding: '0 20px', marginTop: 20}}>
+                                    <div style={{background: '#fff', padding: 24, minHeight: 380}}>
+                                        <SpinnerContext.Consumer>
+                                            {SpinnerContext => <Spin style={{height: "100vh"}} spinning={SpinnerContext.spinning}>
+                                                <Component {...pageProps} />
+                                            </Spin>}
+                                        </SpinnerContext.Consumer>
+                                    </div>
+                                </Content>
+                            </MobileView>
 
                             <Footer style={{textAlign: 'center'}}>
                                 {t("Johny NFT Market ©2022 Created by Jan Pavlát")}

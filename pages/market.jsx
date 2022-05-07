@@ -54,7 +54,7 @@ export default function Home() {
             //Check, if signer owns token
             if (await signer.getAddress() === token.owner) {
                 message.error("Cannot buy your own token")
-                globalSpinner.setSpinning(true)
+                globalSpinner.setSpinning(false)
                 return
             }
 

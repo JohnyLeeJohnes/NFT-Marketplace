@@ -6,11 +6,13 @@ import 'antd/dist/antd.css';
 import {Card, Col, Divider, Image, List, Row, Typography} from 'antd';
 import {BottomCardComponent, useContractAddressContext, useMenuSelectionContext, useSpinnerContext} from "../components";
 import {useTranslation} from "../utils/use-translations";
-import {BrowserView, MobileView} from 'react-device-detect';
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
+import dynamic from "next/dynamic";
 
 const {Meta} = Card;
+const BrowserView = dynamic(() => import('react-device-detect').then(module => module.BrowserView), {ssr: false});
+const MobileView = dynamic(() => import('react-device-detect').then(module => module.MobileView), {ssr: false});
 
 export default function CreateDashboard() {
     const [activeNFTs, setActiveNFTs] = useState([])
@@ -125,7 +127,7 @@ export default function CreateDashboard() {
                         </List>
                     </Col>
                     <Col span={12} style={{paddingLeft: 10}}>
-                        <Typography.Title level={3} style={{marginBottom: 20}}>Sold NFTs</Typography.Title>
+                        <Typography.Title level={3} style={{marginBottom: 20}}>{t("Sold NFTs")}</Typography.Title>
                         <List
                             size={"large"}
                             grid={{
@@ -173,7 +175,7 @@ export default function CreateDashboard() {
                 </Row>
             </BrowserView>
             <MobileView>
-                <Typography.Title level={3} style={{marginBottom: 20}}>Listed NFTs</Typography.Title>
+                <Typography.Title level={3} style={{marginBottom: 20}}>{t("Listed NFTs")}</Typography.Title>
                 <List
                     size={"large"}
                     grid={{

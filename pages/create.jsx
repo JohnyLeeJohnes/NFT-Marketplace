@@ -5,16 +5,19 @@ import {ethers} from "ethers";
 import Token from "../artifacts/contracts/Token.sol/Token.json"
 import JohnyMarket from "../artifacts/contracts/JohnyMarket.sol/JohnyMarket.json"
 import Web3Modal from "web3modal";
-import {Button, Col, Form, Image, Input, InputNumber, message, Row, Typography, Upload} from 'antd';
+import {Button, Form, Image, Input, message, Typography, Upload} from 'antd';
 import 'antd/dist/antd.css';
 import {useContractAddressContext, useMenuSelectionContext, useSpinnerContext} from "../components";
 import {InboxOutlined} from "@ant-design/icons";
 import {useTranslation} from "../utils/use-translations";
 import matic from "../public/matic.svg"
 import Picture from "next/image";
+import dynamic from "next/dynamic";
 
+const InputNumber = dynamic(() => import('antd').then(module => module.InputNumber), {ssr: false});
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 const {Dragger} = Upload;
+
 
 export default function CreatePage() {
     const [fileURL, setFileURL] = useState(null)
@@ -117,101 +120,103 @@ export default function CreatePage() {
     }
 
     return (
-        <>
-            <Row justify="center">
-                <Col span={8}>
-                    <Typography.Title level={3} style={{marginBottom: 20}}>
-                        {t("Create and Sell your NFT")}
-                    </Typography.Title>
-                </Col>
-            </Row>
+        <Form
+            name={"basic"}
+            labelCol={{span: 8}}
+            wrapperCol={{span: 10}}
+            autoComplete={"off"}
+            onFinish={async values => {
+                const validation = await validateForm(values)
+                if (validation) {
+                    globalSpinner.setSpinning(true)
+                    await createNFTSale(values)
+                } else {
+                    message.error("Some fields are missing!");
+                }
+            }}
+        >
 
-            <Form
-                name={"basic"}
-                labelCol={{span: 8}}
-                wrapperCol={{span: 10}}
-                autoComplete={"off"}
-                onFinish={async values => {
-                    const validation = await validateForm(values)
-                    if (validation) {
-                        globalSpinner.setSpinning(true)
-                        await createNFTSale(values)
-                    } else {
-                        message.error("Some fields are missing!");
-                    }
-                }}
+            <Form.Item
+                name={"form_title"}
+                label={<></>}
             >
-                <Form.Item
-                    name={"nft-name"}
-                    label={t("Name")}
-                    rules={[{required: true, message: 'NFT Name cannot be empty'}]}
+                <Typography.Title level={3}>
+                    {t("Create and Sell your NFT")}
+                </Typography.Title>
+            </Form.Item>
+
+            <Form.Item
+                name={"nft-name"}
+                label={t("Name")}
+                rules={[{required: true, message: 'NFT Name cannot be empty'}]}
+            >
+                <Input maxLength={25}/>
+            </Form.Item>
+
+            <Form.Item
+                name={"nft-author"}
+                label={t("Author")}
+            >
+                <Input maxLength={25}/>
+            </Form.Item>
+
+            <Form.Item
+                name={"nft-description"}
+                label={t("Description")}
+                rules={[{required: true, message: 'NFT Description cannot be empty!'}]}
+            >
+                <Input.TextArea maxLength={150} autoSize={{minRows: 2, maxRows: 6}}/>
+            </Form.Item>
+
+            <Form.Item
+                name={"nft-price"}
+                label={t("Price")}
+                rules={[{required: true, min: 0.01, message: 'Price cannot be empty!'}]}
+            >
+                <InputNumber
+                    prefix={<Picture width={15} height={15} src={matic} alt={"MATIC"}/>}
+                    style={{width: 250, maxWidth: 250}}
+                    max={10}
+                    min={0.01}
+                    step={0.01}
+                    stringMode
+                />
+            </Form.Item>
+
+            <Form.Item
+                name={'nft-image'}
+                label={t("NFT Image")}
+                getValueFromEvent={getFile}
+                rules={[{required: true, message: 'You have to upload image to create NFT!'}]}
+            >
+                <Dragger
+                    listType={"text"}
+                    maxCount={1}
+                    beforeUpload={() => false}
+                    onChange={onChange}
+                    onPreview={() => false}
                 >
-                    <Input maxLength={25}/>
+                    <p className="ant-upload-drag-icon">
+                        <InboxOutlined/>
+                    </p>
+                    <p className="ant-upload-text">{t("Click or drag file to this area to upload")}</p>
+                </Dragger>
+            </Form.Item>
+
+            {fileURL && (
+                <Form.Item label={t("Image preview")}>
+                    <Image width={"350"} src={fileURL} alt={"nft-image"}/>
                 </Form.Item>
+            )}
 
-                <Form.Item
-                    name={"nft-author"}
-                    label={t("Author")}
-                >
-                    <Input maxLength={25}/>
-                </Form.Item>
-
-                <Form.Item
-                    name={"nft-description"}
-                    label={t("Description")}
-                    rules={[{required: true, message: 'NFT Description cannot be empty!'}]}
-                >
-                    <Input.TextArea maxLength={150} autoSize={{minRows: 2, maxRows: 6}}/>
-                </Form.Item>
-
-                <Form.Item
-                    name={"nft-price"}
-                    label={t("Price")}
-                    rules={[{required: true, min: 0.01, message: 'Price cannot be empty!'}]}
-                >
-                    <InputNumber
-                        prefix={<Picture width={15} height={15} src={matic} alt={"MATIC"}/>}
-                        style={{width: 250, maxWidth: 250}}
-                        max={10}
-                        min={0.01}
-                        step={0.01}
-                        stringMode
-                    />
-                </Form.Item>
-
-
-                <Form.Item
-                    name={'nft-image'}
-                    label={t("NFT Image")}
-                    getValueFromEvent={getFile}
-                    rules={[{required: true, message: 'You have to upload image to create NFT!'}]}
-                >
-                    <Dragger
-                        listType={"text"}
-                        maxCount={1}
-                        beforeUpload={() => false}
-                        onChange={onChange}
-                        onPreview={() => false}
-                    >
-                        <p className="ant-upload-drag-icon">
-                            <InboxOutlined/>
-                        </p>
-                        <p className="ant-upload-text">{t("Click or drag file to this area to upload")}</p>
-                    </Dragger>
-                </Form.Item>
-
-                {fileURL && (
-                    <Form.Item label={t("Image preview")}>
-                        <Image width={"350"} src={fileURL} alt={"nft-image"}/>
-                    </Form.Item>
-                )}
-
-                <Form.Item wrapperCol={{offset: 8, span: 16}}>
-                    <Button type="primary" htmlType="submit">
-                        {t("Create NFT")}
-                    </Button>
-                </Form.Item>
-            </Form>
-        </>
+            <Form.Item
+                name={"form_submit"}
+                label={<></>}
+            >
+                <Button type="primary" htmlType="submit">
+                    {t("Create NFT")}
+                </Button>
+            </Form.Item>
+        </Form>
     );
 }

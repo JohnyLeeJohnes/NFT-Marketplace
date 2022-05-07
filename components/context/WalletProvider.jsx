@@ -11,7 +11,7 @@ export const WalletProvider = ({children, ...props}) => {
         callWalletModal().then().catch(async e => {
             console.error(e)
             await message.error({
-                content: `There was `,
+                content: `Could not connect to your wallet!`,
                 duration: 3
             });
         })
