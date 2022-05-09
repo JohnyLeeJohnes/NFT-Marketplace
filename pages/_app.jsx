@@ -27,6 +27,7 @@ const Wallet = () => {
                     <Typography.Title level={5} style={{align: "right"}}>
                         <Button onClick={() => walletContext.callWalletModal()} shape="round" danger>
                             {t("Login to MetaMask")}
+
                         </Button>
                     </Typography.Title>
                 </div>
