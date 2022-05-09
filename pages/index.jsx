@@ -23,6 +23,7 @@ export default function Home() {
                             <Typography>
                                 <Title>{t("Johny NFT Marketplace")}</Title>
                                 <Paragraph>
+                                    tester
                                     Welcome to the<Text strong> Johny NFT Marketplace! </Text>This application is a student
                                     project
                                     focusing on creating Web Application that connects to your crypto wallet and lets you trade
